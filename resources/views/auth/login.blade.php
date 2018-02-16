@@ -7,8 +7,11 @@
                 position: fixed !important;
             }
         }
-    </style>
-<div class="container" style="margin-top: 10%">
+    </style>    
+    <div class="header-hotmeal">
+        <a href="{{env('APP_URL')}}"><img src="/img/logo.png" class="img-responsive"></a>
+    </div>
+<div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

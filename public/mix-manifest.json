@@ -3,11 +3,11 @@
     "/css/app.css": "/css/app.css",
     "/slick/slick.css": "/slick/slick.css",
     "/slick/slick-theme.css": "/slick/slick-theme.css",
+    "/js/ProfileClient.js": "/js/ProfileClient.js",
     "/js/MealClient.js": "/js/MealClient.js",
-    "/js/DayViewClient.js": "/js/DayViewClient.js",
     "/js/GroceryListClient.js": "/js/GroceryListClient.js",
     "/js/UploadClient.js": "/js/UploadClient.js",
-    "/js/ProfileClient.js": "/js/ProfileClient.js",
+    "/js/DayViewClient.js": "/js/DayViewClient.js",
     "/js/ApiUtil.js": "/js/ApiUtil.js",
     "/slick/slick.min.js": "/slick/slick.min.js"
 }

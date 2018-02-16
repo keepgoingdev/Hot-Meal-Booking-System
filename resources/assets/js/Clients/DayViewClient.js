@@ -1,5 +1,5 @@
 window.Vue = require('vue');
-
+/*
 Vue.component('day-view', require('../components/DayView.vue'));
 
 const app = new Vue({
@@ -12,3 +12,4 @@ const app = new Vue({
         }
     }
 });
+*/

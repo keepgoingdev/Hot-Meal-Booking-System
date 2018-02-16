@@ -20,6 +20,9 @@
                         {{$status}}
                     </div>
                 @endif
+                    @if(session('message'))
+                        <div class="alert alert-success">{{ session('message') }}</div>
+                    @endif
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}

@@ -37,9 +37,6 @@
                                     <a href="{{ route('account-settings') }}">
                                        Account settings
                                     </a>
-                                    <a href="{{ route('subscription-info') }}">
-                                       Subscription information
-                                    </a>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

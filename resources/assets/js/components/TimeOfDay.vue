@@ -13,7 +13,7 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <tbody v-for="meal in dayMenu.meals">
-                            <meal-item :meal="meal"></meal-item>
+                            <meal-item :meal="meal" :is-favorite="meal.favorite" :is-user="isUser"></meal-item>
                             </tbody>
                         </table>
                     </div>
@@ -37,7 +37,8 @@
         props:[
             'dayMenu',
             'dayOfWeek',
-            'caloriesLeft'
+            'caloriesLeft',
+            'isUser'
         ],
         data: function () {
             return {

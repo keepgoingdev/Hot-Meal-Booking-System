@@ -30,6 +30,7 @@ Route::post('starting-date', 'StepThreeController@saveStartingDate');
 Route::get('validate-coupon', 'StepFiveController@ValidateCoupon');
 
 Route::get('grocery-list', 'GroceryListController@getGroceryList');
-Route::get('week-plans/{weekPlanId}/days/{dayIndex}', 'ProfileController@getMealsByDayIndex');
+Route::get('week-plans/{weekPlanId}', 'ProfileController@getMealsByDayIndex');
+Route::post('mark-meal-as-favorite/{meal}', 'ProfileController@markMealAsFavorite');
 
 Route::post('/upload-csv', 'HomeController@uploadCsv');

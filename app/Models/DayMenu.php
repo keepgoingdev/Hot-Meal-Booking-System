@@ -11,6 +11,9 @@ class DayMenu extends Model
     ];
     public $timestamps = false;
 
+    public function meal() {
+        return $this->belongsTo('\App\Models\Meal');
+    }
     public static function addNewMenuFromSession($dayMenu, $index, $weekPlanId)
     {
         foreach ($dayMenu as $timeOfDayType => $timeOfDay) {

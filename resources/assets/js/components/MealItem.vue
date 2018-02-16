@@ -12,33 +12,45 @@
         </td>
         <td class="semi-top">
         </td>
-        <td class="semi-top"style="width:150px;">
+        <td class="semi-top" style="width:150px;">
             <center><p>{{meal.serving_size}}</p></center>
             <center v-if="meal.condiment"><p>{{meal.condiment.serving_size}}</p></center>
         </td>
-        <td class="semi-top hidden">
-            <center><a href="#"><i class="fa fa-heart-o fa-2x"></i></a></center>
+        <td class="semi-top" v-bind:class="{'hidden': isUser != 1}">
+            <center><a href="#"  @click.prevent="toggleFavorite(meal.id)"><i class="fa fa-2x" v-bind:class="[  isFavorite ? 'fa-heart' : 'fa-heart-o' ]"></i></a></center>
+        </td>                                    
+        <td class="semi-top" v-bind:class="{'hidden': isUser != 1}" id="right-border-table">
+            <center>
+                <div class="checkbox checkbox-info">
+                    <input id="checkbox2" class="mycheck" type="checkbox">
+                    <label for="checkbox2">
+                    </label>
+                </div>
+            </center>
         </td>
     </tr>
-    <!--<tr class="tr-detail-meals" v-if="meal.condiment !== null">-->
-        <!--<td class="td-meal-image"><img :src="meal.condiment.image" alt="" class="img-responsive"></td>-->
-        <!--<td class="semi-top">-->
-            <!--<center><h5>{{meal.condiment.name}}</h5></center>-->
-        <!--</td>-->
-        <!--<td class="semi-top" style="width:100px;">-->
-            <!--<center><p>{{meal.condiment.serving_size}}</p></center>-->
-        <!--</td>-->
-        <!--<td class="semi-top">-->
-            <!--<center><a href="#"><i class="fa fa-heart-o fa-2x"></i></a></center>-->
-        <!--</td>-->
-    <!--</tr>-->
 
 </template>
 
 <script>
+    const ApiUtil = require('../Utils/ApiUtil.js');
+
     export default {
         props: [
-            'meal'
+            'meal',
+            'isUser',
+            'isFavorite'
         ],
+
+        methods: {
+            toggleFavorite(index) {
+                this.isFavorite = !this.isFavorite;
+                let url = 'api/mark-meal-as-favorite/'+index;
+                ApiUtil.postToApi(url).then((data) => {
+                });
+            }
+        },
+
+
     }
 </script>

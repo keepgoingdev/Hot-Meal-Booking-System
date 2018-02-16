@@ -36,4 +36,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    //override
+    protected function authenticated($request, $user)
+    {
+        if($user->confirmed == false) {
+            \Auth::logout();
+            session()->flash('message', 'Please confirm your email.');
+            return redirect()->back();
+        }
+    }
 }

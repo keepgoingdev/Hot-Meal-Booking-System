@@ -30,8 +30,21 @@ class Meal extends Model
     ];
     public $timestamps = false;
 
+    protected $appends = ['favorite'];
+    
     public function condiment(){
         return $this->hasOne('App\Models\Condiment');
+    }
+
+    public function getFavoriteAttribute() {
+        $user = \Auth::user();
+        if(!$user) {
+            return false;
+        }
+        if($user->favoriteMeals->contains($this->id)) {
+            return true;
+        }
+        return false;
     }
 
     public function getImageAttribute($v) {

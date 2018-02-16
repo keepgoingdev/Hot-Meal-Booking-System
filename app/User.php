@@ -36,4 +36,8 @@ class User extends Authenticatable
             ->orderBy('end_date', 'asc')
             ->first();
     }
+    public function favoriteMeals() {
+        return $this->belongsToMany('\App\Models\Meal', 'user_favorite_meals', 'user_id', 'meal_id');
+    }
+
 }

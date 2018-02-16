@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
     Route::get('/home', 'ProfileController@myProfile')->name('my-profile');
     Route::get('/week-plans/{weekPlanId}/days/{index}', 'ProfileController@dayView')->name('day-view');
     // Account
-    Route::get('/update-user-data', 'ProfileController@updateUserData')->name('update-user-data');
+    Route::post('/update-user-data', 'ProfileController@updateUserData')->name('update-user-data');
     Route::get('/account-settings', 'ProfileController@accountSettings')->name('account-settings');
     Route::get('/subscription-info', 'ProfileController@subscriptionInfo')->name('subscription-info');
 });

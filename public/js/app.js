@@ -12150,7 +12150,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft'],
+    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser'],
     data: function data() {
         return {};
     },
@@ -12262,12 +12262,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
+
+var ApiUtil = __webpack_require__(2);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['meal']
+    props: ['meal', 'isUser', 'isFavorite'],
+
+    methods: {
+        toggleFavorite: function toggleFavorite(index) {
+            this.isFavorite = !this.isFavorite;
+            var url = 'api/mark-meal-as-favorite/' + index;
+            ApiUtil.postToApi(url).then(function (data) {});
+        }
+    }
+
 });
 
 /***/ }),
@@ -12331,11 +12339,48 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "semi-top hidden" },
+      { staticClass: "semi-top", class: { hidden: _vm.isUser != 1 } },
       [
         _c("center", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-heart-o fa-2x" })
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleFavorite(_vm.meal.id)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-2x",
+                class: [_vm.isFavorite ? "fa-heart" : "fa-heart-o"]
+              })
+            ]
+          )
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top",
+        class: { hidden: _vm.isUser != 1 },
+        attrs: { id: "right-border-table" }
+      },
+      [
+        _c("center", [
+          _c("div", { staticClass: "checkbox checkbox-info" }, [
+            _c("input", {
+              staticClass: "mycheck",
+              attrs: { id: "checkbox2", type: "checkbox" }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "checkbox2" } })
           ])
         ])
       ],
@@ -12403,7 +12448,15 @@ var render = function() {
                 _vm._l(_vm.dayMenu.meals, function(meal) {
                   return _c(
                     "tbody",
-                    [_c("meal-item", { attrs: { meal: meal } })],
+                    [
+                      _c("meal-item", {
+                        attrs: {
+                          meal: meal,
+                          "is-favorite": meal.favorite,
+                          "is-user": _vm.isUser
+                        }
+                      })
+                    ],
                     1
                   )
                 })
@@ -12631,6 +12684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 // Utils
 var ApiUtil = __webpack_require__(2);
@@ -12808,7 +12862,8 @@ var render = function() {
               attrs: {
                 "day-menu": dayMenu,
                 "day-of-week": _vm.dayOfWeek,
-                "calories-left": _vm.caloriesLeft
+                "calories-left": _vm.caloriesLeft,
+                "is-user": 0
               }
             })
           ],
@@ -13181,7 +13236,6 @@ window.Vue = __webpack_require__(5);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(53));
 Vue.component('meal-view', __webpack_require__(19));
 
 var app = new Vue({
@@ -43995,125 +44049,9 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(54)
-/* template */
-var __vue_template__ = __webpack_require__(55)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Example.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-650f2efa", Component.options)
-  } else {
-    hotAPI.reload("data-v-650f2efa", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-650f2efa", module.exports)
-  }
-}
-
-/***/ }),
+/* 53 */,
+/* 54 */,
+/* 55 */,
 /* 56 */
 /***/ (function(module, exports) {
 

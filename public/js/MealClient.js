@@ -11841,7 +11841,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft'],
+    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser'],
     data: function data() {
         return {};
     },
@@ -11953,12 +11953,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
+
+var ApiUtil = __webpack_require__(2);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['meal']
+    props: ['meal', 'isUser', 'isFavorite'],
+
+    methods: {
+        toggleFavorite: function toggleFavorite(index) {
+            this.isFavorite = !this.isFavorite;
+            var url = 'api/mark-meal-as-favorite/' + index;
+            ApiUtil.postToApi(url).then(function (data) {});
+        }
+    }
+
 });
 
 /***/ }),
@@ -12022,11 +12030,48 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "semi-top hidden" },
+      { staticClass: "semi-top", class: { hidden: _vm.isUser != 1 } },
       [
         _c("center", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-heart-o fa-2x" })
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleFavorite(_vm.meal.id)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-2x",
+                class: [_vm.isFavorite ? "fa-heart" : "fa-heart-o"]
+              })
+            ]
+          )
+        ])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top",
+        class: { hidden: _vm.isUser != 1 },
+        attrs: { id: "right-border-table" }
+      },
+      [
+        _c("center", [
+          _c("div", { staticClass: "checkbox checkbox-info" }, [
+            _c("input", {
+              staticClass: "mycheck",
+              attrs: { id: "checkbox2", type: "checkbox" }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "checkbox2" } })
           ])
         ])
       ],
@@ -12094,7 +12139,15 @@ var render = function() {
                 _vm._l(_vm.dayMenu.meals, function(meal) {
                   return _c(
                     "tbody",
-                    [_c("meal-item", { attrs: { meal: meal } })],
+                    [
+                      _c("meal-item", {
+                        attrs: {
+                          meal: meal,
+                          "is-favorite": meal.favorite,
+                          "is-user": _vm.isUser
+                        }
+                      })
+                    ],
                     1
                   )
                 })
@@ -12179,6 +12232,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__);
+//
 //
 //
 //
@@ -12400,7 +12454,8 @@ var render = function() {
               attrs: {
                 "day-menu": dayMenu,
                 "day-of-week": _vm.dayOfWeek,
-                "calories-left": _vm.caloriesLeft
+                "calories-left": _vm.caloriesLeft,
+                "is-user": 0
               }
             })
           ],

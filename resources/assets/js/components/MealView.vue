@@ -26,6 +26,7 @@
                 :day-menu="dayMenu"
                 :day-of-week="dayOfWeek"
                 :calories-left="caloriesLeft"
+                :is-user="0"
         ></time-of-day>
         </div>
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-btn-footer">

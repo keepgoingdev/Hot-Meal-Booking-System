@@ -65,7 +65,6 @@ class ProfileController extends Controller
         if($weekPlan->user_id !== $user->id){
             return response('Unauthorized', 401);
         }
-        $responseMenu['totalcalories'] = $weekPlan->completed_sum;
         foreach($weekPlan->dayMenus->groupBy('day') as $dayMenu) {
             $day = $dayMenu[0]['day'];
             $responseMenu[$day][Meal::BREAKFAST]['name'] = 'Breakfast';
@@ -74,10 +73,12 @@ class ProfileController extends Controller
             $responseMenu[$day][Meal::LUNCH]['name'] = 'Lunch';
             $responseMenu[$day][Meal::LUNCH]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Lunch')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::LUNCH]['calories'] = $responseMenu[$day][Meal::LUNCH]['meals']->sum('calories');
-
             $responseMenu[$day][Meal::DINNER]['name'] = 'Dinner';
             $responseMenu[$day][Meal::DINNER]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Dinner')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::DINNER]['calories'] = $responseMenu[$day][Meal::DINNER]['meals']->sum('calories');
+            $allMealsForDay = DayMenu::where('week_plan_id', $weekPlan->id)->where('day', $day)->where('meal_completed', true)->select('meal_id')->pluck('meal_id')->toArray();
+
+            $responseMenu[$day]['totalcalories'] = Meal::whereIn('id', $allMealsForDay)->sum('calories');
         }
         return response()->json($responseMenu);
     }

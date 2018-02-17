@@ -80,13 +80,14 @@
                 let url = 'api/week-plans/'+this.weekPlanId;
                 ApiUtil.fetchFromApi(url, {}).then((dayMenus) => {
                     this.dayMenus = dayMenus;
-                    this.totalCalories = dayMenus.totalcalories;
+                    this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
 
             });
             },
             goToDayView(value){
                     this.dayOfWeek = value;
-
+                    //console.log(this.dayMenus[this.dayOfWeek].totalcalories);
+                    this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
                 }
             }
     }

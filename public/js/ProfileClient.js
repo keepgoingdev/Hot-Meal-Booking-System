@@ -12381,11 +12381,13 @@ var timeOfDay = __webpack_require__(11);
             var url = 'api/week-plans/' + this.weekPlanId;
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
-                _this.totalCalories = dayMenus.totalcalories;
+                _this.totalCalories = _this.dayMenus[_this.dayOfWeek].totalcalories;
             });
         },
         goToDayView: function goToDayView(value) {
             this.dayOfWeek = value;
+            //console.log(this.dayMenus[this.dayOfWeek].totalcalories);
+            this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
         }
     }
 });

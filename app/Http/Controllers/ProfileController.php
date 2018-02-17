@@ -140,6 +140,14 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function resumeSubscription() {
+        $user = Auth::user();
+        if ($user->subscription('main')->onGracePeriod()) {
+            $user->subscription('main')->resume();
+        }
+        return redirect()->back();
+    }
+
     public function groceryList()
     {
         return view('profile.grocery_list');

@@ -97,6 +97,7 @@
         },
         mounted() {
             this.getMeals();
+            this.updateDate(this.selectedDate);
         },
         methods: {
             getMeals() {

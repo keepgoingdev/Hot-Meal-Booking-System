@@ -12739,6 +12739,7 @@ var timeOfDay = __webpack_require__(11);
     },
     mounted: function mounted() {
         this.getMeals();
+        this.updateDate(this.selectedDate);
     },
 
     methods: {
@@ -13210,9 +13211,9 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(28);
-__webpack_require__(56);
-__webpack_require__(57);
-module.exports = __webpack_require__(58);
+__webpack_require__(53);
+__webpack_require__(54);
+module.exports = __webpack_require__(55);
 
 
 /***/ }),
@@ -44049,22 +44050,19 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */
+/* 53 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 57 */
+/* 54 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 58 */
+/* 55 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

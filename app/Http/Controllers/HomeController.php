@@ -29,35 +29,5 @@ class HomeController extends Controller
         return view('welcome');
     }
 
-    public function uploadView()
-    {
-        return view('upload');
-    }
-
-    public function uploadCsv(Request $request)
-    {
-        $request->user();
-        $file = $request->file();
-        $path = ($file['file']->path());
-        $csv = Reader::createFromPath($path, 'r');
-        $csv->setHeaderOffset(0);
-
-        $stmt = (new Statement())
-            ->offset(1);
-
-        $records = $stmt->process($csv);
-        $latestMeal = null;
-        foreach ($records as $record) {
-            if(is_numeric($record[''])) {
-                $latestMeal = Meal::createMeal($record);
-            }
-            else{
-                var_dump($latestMeal->id);
-                if(!is_null($latestMeal)){
-                    Condiment::createCondiment($record, $latestMeal->id);
-                }
-            }
-        }
-    }
 
 }

@@ -9,8 +9,8 @@ class SubscriptionPaid
     public function handle($request, Closure $next)
     {
         if ($request->user() && ! $request->user()->subscribed('main')) {
-            // This user is not a paying customer...
-            return redirect('billing');
+            session()->flash('message', 'Your subscription needs to be renewed in order to access the service.');
+            return redirect('account-settings');
         }
 
         return $next($request);

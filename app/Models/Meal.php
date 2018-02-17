@@ -26,7 +26,7 @@ class Meal extends Model
         ];
 
     protected $fillable = [
-        'name', 'serving_size', 'calories', 'image', 'notes', 'is_snack', 'store'
+        'name', 'serving_size', 'calories', 'image', 'notes', 'is_snack', 'store', 'is_enabled'
     ];
     public $timestamps = false;
 
@@ -107,7 +107,7 @@ class Meal extends Model
         $mealCalories = 0;
         while ($mealCalories < $maxCalories) {
 
-                $meal = Meal::where('calories', '<=', ($maxCalories - $mealCalories))
+                $meal = Meal::where('is_enabled', true)->where('calories', '<=', ($maxCalories - $mealCalories))
                     ->where('is_snack', $isSnack)
                     ->whereNotIn('id', $ignoredMealIds)
                     ->with('condiment')

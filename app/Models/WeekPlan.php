@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class WeekPlan extends Model
 {
     protected $fillable = [
-        'start_date', 'end_date', 'user_id'
+        'start_date', 'end_date', 'user_id', 'calory_goal', 'weight'
     ];
     public $timestamps = false;
 
@@ -18,15 +18,17 @@ class WeekPlan extends Model
         return $this->hasMany('App\Models\DayMenu')->where('day', $index)->get();
     }
 
-    public static function storeSessionDataInTable($dayMenus, $startingDate, $userId)
+    public static function storeSessionDataInTable($dayMenus, $startingDate, $goal, $weight, $userId)
     {
         $date = date($startingDate);
-        $startDate = date('Y-m-d', strtotime($date. '+ 7 days'));
+        $startDate = date('Y-m-d', strtotime($date));
         $endDate = date('Y-m-d', strtotime($startDate. '+ 7 days'));
         $weekPlan = self::firstOrNew(array(
             'start_date' => $startDate,
             'end_date' => $endDate,
-            'user_id' => $userId
+            'user_id' => $userId,
+            'calory_goal' => $goal,
+            'weight' => $weight
         ));
         $weekPlan->save();
         foreach ($dayMenus as $index => $dayMenu){

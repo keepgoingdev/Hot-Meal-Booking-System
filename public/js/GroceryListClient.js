@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 66);
+/******/ 	return __webpack_require__(__webpack_require__.s = 63);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -11355,20 +11355,20 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ 66:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(67);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
 
-/***/ 67:
+/***/ 64:
 /***/ (function(module, exports, __webpack_require__) {
 
 window.Vue = __webpack_require__(5);
 
-Vue.component('grocery-list', __webpack_require__(68));
+Vue.component('grocery-list', __webpack_require__(65));
 
 var app = new Vue({
     el: '#grocery-list-client'
@@ -11376,15 +11376,15 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 68:
+/***/ 65:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(69)
+var __vue_script__ = __webpack_require__(66)
 /* template */
-var __vue_template__ = __webpack_require__(73)
+var __vue_template__ = __webpack_require__(70)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -11424,7 +11424,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 69:
+/***/ 66:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11474,7 +11474,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var ApiUtil = __webpack_require__(2);
 
 // Components
-var GroceryListItem = __webpack_require__(70);
+var GroceryListItem = __webpack_require__(67);
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         'grocery-list-item': GroceryListItem
@@ -11511,6 +11511,152 @@ var GroceryListItem = __webpack_require__(70);
         }
     }
 });
+
+/***/ }),
+
+/***/ 67:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/GroceryListItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d696e5d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-d696e5d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 68:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['item']
+});
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", { staticClass: "tr-detail-meals" }, [
+    _c("td", { staticClass: "td-meal-image hidden-print" }, [
+      _c("img", {
+        staticClass: "img-responsive",
+        attrs: { src: _vm.item.meal.image, alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.name))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.quantity))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.serving_size))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top hidden-print" },
+      [
+        _c("center", [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: { src: "img/tj.png", alt: "", id: "img-store" }
+            })
+          ])
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d696e5d2", module.exports)
+  }
+}
 
 /***/ }),
 
@@ -11709,152 +11855,6 @@ var GroceryListItem = __webpack_require__(70);
 /***/ }),
 
 /***/ 70:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(71)
-/* template */
-var __vue_template__ = __webpack_require__(72)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/GroceryListItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d696e5d2", Component.options)
-  } else {
-    hotAPI.reload("data-v-d696e5d2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 71:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['item']
-});
-
-/***/ }),
-
-/***/ 72:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("tr", { staticClass: "tr-detail-meals" }, [
-    _c("td", { staticClass: "td-meal-image hidden-print" }, [
-      _c("img", {
-        staticClass: "img-responsive",
-        attrs: { src: _vm.item.meal.image, alt: "" }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.name))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.quantity))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.serving_size))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top hidden-print" },
-      [
-        _c("center", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", {
-              staticClass: "img-responsive",
-              attrs: { src: "img/tj.png", alt: "", id: "img-store" }
-            })
-          ])
-        ])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d696e5d2", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

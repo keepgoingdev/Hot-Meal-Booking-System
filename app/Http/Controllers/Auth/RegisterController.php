@@ -87,7 +87,6 @@ class RegisterController extends Controller
     {
         $dayMenus = session('dayMenus');
         $startingDate = session('starting-date');
-
         $discountCode = false;
         $input = $request->all();
         $validator = $this->validator($input);
@@ -111,8 +110,7 @@ class RegisterController extends Controller
             $user->confirmation_token = $data['token'];
             $user->save();
 
-            WeekPlan::storeSessionDataInTable($dayMenus, $startingDate, $user->id);
-
+            $s = WeekPlan::storeSessionDataInTable($dayMenus, $startingDate, $goal, $formData['weight-pounds'], $user->id);
             if($discountCode){
                 $discountCode->activate($user->id);
             }
@@ -121,7 +119,7 @@ class RegisterController extends Controller
 
             Mail::to($data['email'])->send(new AccountConfirmation($data));
 
-            return redirect(route('login'))->with('status', 'Confirmation email has been send. Please check your email.');
+            return redirect(route('login'))->with('status', 'Confirmation email has been sent. Please check your email.');
         }
         return redirect(route('register'))->with('status', $validator->errors())->withInput();
     }

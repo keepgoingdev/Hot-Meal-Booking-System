@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Meal;
 use Illuminate\Http\Request;
-
+use App\Plan;
+use Braintree_ClientToken;
 class StepThreeController extends Controller
 {
     public function __construct()
@@ -16,9 +17,14 @@ class StepThreeController extends Controller
     {
         $calorieGoal = ($request->cookie('goal'));
         $calorieGoal = intval($calorieGoal);
-
+        $discount = false;
+        $plans = Plan::orderBy('cost')->get();
+        $braintreeToken = Braintree_ClientToken::generate();
         return view('steps.step3', array(
                 'calorieGoal' => $calorieGoal,
+                'plans' => $plans,
+                'discount' => $discount,
+                'braintreeToken' => $braintreeToken
             )
         );
     }

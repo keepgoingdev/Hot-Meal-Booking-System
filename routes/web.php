@@ -21,14 +21,10 @@ Auth::routes();
 Route::get('/upload', 'HomeController@uploadView');
 
 // Plans routes
-Route::get('/plans', 'PlansController@index');
 // Braintree
 Route::get('/braintree/token', 'BraintreeTokenController@token');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('grocery-list', 'ProfileController@groceryList');
-    Route::get('/plans/{plan}', 'PlansController@show');
-});
+
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -40,15 +36,19 @@ Route::post('/generate', 'StepTwoController@generate')->name('generate');
 Route::get('/step-three', 'StepThreeController@index')->name('step-three');
 Route::get('/step-four', 'GroceryListController@index')->name('step-four');
 
+Route::group(['middleware' => 'auth'], function () {
+    // Account
+    Route::post('/update-user-data', 'ProfileController@updateUserData')->name('update-user-data');
+    Route::get('/account-settings', 'ProfileController@accountSettings')->name('account-settings');
+    Route::resource('admin/meals', 'MealController');
+});
 // User is authenticated and has a paid subscription
 Route::group(['middleware' => ['auth', 'has-paid']], function () {
     // Profile
     Route::get('/home', 'ProfileController@myProfile')->name('my-profile');
     Route::get('/week-plans/{weekPlanId}/days/{index}', 'ProfileController@dayView')->name('day-view');
-    // Account
-    Route::post('/update-user-data', 'ProfileController@updateUserData')->name('update-user-data');
-    Route::get('/account-settings', 'ProfileController@accountSettings')->name('account-settings');
-    Route::get('/subscription-info', 'ProfileController@subscriptionInfo')->name('subscription-info');
+    Route::get('grocery-list', 'ProfileController@groceryList');
+
 });
 
 // Register

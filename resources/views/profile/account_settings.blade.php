@@ -71,7 +71,9 @@
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
                     @if($isGrace)
-                        Valid to: <span class="label label-success">{{$subscription->paidThroughDate->format('d F Y')}}</span>
+                        On grace period, valid to: <span class="label label-success">{{$subscription->paidThroughDate->format('d F Y')}}</span>
+                        <a class="btn btn-success" style="margin-top: 5px" href="api/resume-subscription">Resume subscription</a>
+                        <br>
                     @else
                         Next Billing: <span class="label label-success">{{$subscription->nextBillingDate->format('d F Y')}}</span>
                     @endif

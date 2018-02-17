@@ -18,19 +18,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->group(function(){
+
 });
-Route::get('cancel-subscription', 'ProfileController@cancelSubscription');
 
 Route::post('/calorie-goal', 'StepTwoController@storeCalorieGoal');
-
 Route::get('meals', 'StepThreeController@getMeals');
 Route::post('regenerate-meals', 'StepThreeController@regenerateMeals');
 Route::post('starting-date', 'StepThreeController@saveStartingDate');
-
 Route::get('validate-coupon', 'StepFiveController@ValidateCoupon');
-
 Route::get('grocery-list', 'GroceryListController@getGroceryList');
 Route::get('week-plans/{weekPlanId}', 'ProfileController@getMealsByDayIndex');
 Route::post('mark-meal-as-favorite/{meal}', 'ProfileController@markMealAsFavorite');
+Route::get('cancel-subscription', 'ProfileController@cancelSubscription');
+Route::get('resume-subscription', 'ProfileController@resumeSubscription');
 
-Route::post('/upload-csv', 'HomeController@uploadCsv');

@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 
 class EmailController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function confirmation()
     {
         return view('email.confirmation');

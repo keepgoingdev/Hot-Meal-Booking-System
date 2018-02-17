@@ -41,8 +41,9 @@ class LoginController extends Controller
     {
         if($user->confirmed == false) {
             \Auth::logout();
-            session()->flash('message', 'Please confirm your email.');
+            session()->flash('message', 'Please confirm your email first, before signing in.');
             return redirect()->back();
         }
+
     }
 }

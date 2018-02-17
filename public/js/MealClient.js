@@ -11612,12 +11612,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['startingDate', 'dayOfWeek'],
@@ -11692,8 +11686,6 @@ var render = function() {
               }
             },
             [
-              _vm._m(0, true),
-              _vm._v(" "),
               _c("div", { staticClass: "card-content" }, [
                 _c("h4", { staticClass: "card-title" }, [
                   _vm._v(
@@ -11722,27 +11714,7 @@ var render = function() {
     })
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-read-more" }, [
-      _c("div", { staticClass: "checkbox-on-top checkbox-info" }, [
-        _c("input", {
-          attrs: {
-            id: "checkbox1",
-            type: "checkbox",
-            onclick: "return false;",
-            checked: ""
-          }
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "checkbox1" } })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -11841,7 +11813,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser'],
+    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId'],
     data: function data() {
         return {};
     },
@@ -11859,9 +11831,16 @@ var mealItem = __webpack_require__(13);
             ApiUtil.postToApi(url, formData).then(function (data) {
                 _this.dayMenu.meals = data['meals'];
                 _this.dayMenu.calories = data['calories'];
-                console.log(data);
+                //console.log(data);
             });
-            console.log();
+            //console.log()
+        },
+
+        markCompleted: function markCompleted($event, mealId) {
+
+            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId).then(function (data) {
+                //console.log('done');
+            });
         }
     }
 });
@@ -11953,17 +11932,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 var ApiUtil = __webpack_require__(2);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['meal', 'isUser', 'isFavorite'],
+    props: ['meal', 'isUser'],
 
     methods: {
         toggleFavorite: function toggleFavorite(index) {
-            this.isFavorite = !this.isFavorite;
+            this.meal.favorite = !this.meal.favorite;
             var url = 'api/mark-meal-as-favorite/' + index;
-            ApiUtil.postToApi(url).then(function (data) {});
+            ApiUtil.postToApi(url).then(function (data) {
+                console.log(data.meal_completed);
+            });
+        },
+        mealCompleted: function mealCompleted(mealId) {
+            this.meal.meal_completed = !this.meal.meal_completed;
+            this.$emit('meal-completed', mealId);
         }
     }
 
@@ -12047,7 +12033,7 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: [_vm.isFavorite ? "fa-heart" : "fa-heart-o"]
+                class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
               })
             ]
           )
@@ -12068,10 +12054,16 @@ var render = function() {
           _c("div", { staticClass: "checkbox checkbox-info" }, [
             _c("input", {
               staticClass: "mycheck",
-              attrs: { id: "checkbox2", type: "checkbox" }
+              attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
+              domProps: { checked: _vm.meal.meal_completed },
+              on: {
+                click: function($event) {
+                  _vm.mealCompleted(_vm.meal.id)
+                }
+              }
             }),
             _vm._v(" "),
-            _c("label", { attrs: { for: "checkbox2" } })
+            _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
           ])
         ])
       ],
@@ -12141,10 +12133,11 @@ var render = function() {
                     "tbody",
                     [
                       _c("meal-item", {
-                        attrs: {
-                          meal: meal,
-                          "is-favorite": meal.favorite,
-                          "is-user": _vm.isUser
+                        attrs: { meal: meal, "is-user": _vm.isUser },
+                        on: {
+                          "meal-completed": function($event) {
+                            _vm.markCompleted($event, meal.id)
+                          }
                         }
                       })
                     ],

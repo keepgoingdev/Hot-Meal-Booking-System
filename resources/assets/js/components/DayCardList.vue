@@ -2,13 +2,7 @@
     <div class="col-lg-12 col-xs-12" style="margin-top: 30px;">
         <div v-for="(weekday, index) in weekdays" class="col-xs-12 col-sm-4 col-lg-2" id="box-card">
             <div class="card" style="cursor:pointer" v-bind:class="{'card-selected': index == dayOfWeek}" @click="updateCurrentDate(index)">
-                <div class="card-read-more">
-                    <div class="checkbox-on-top checkbox-info">
-                        <input id="checkbox1" type="checkbox" onclick="return false;" checked>
-                        <label for="checkbox1">
-                        </label>
-                    </div>
-                </div>
+
                 <div class="card-content">
                     <h4 class="card-title">
                         {{weekday.dayName}}

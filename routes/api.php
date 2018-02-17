@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function(){
 
 Route::post('/calorie-goal', 'StepTwoController@storeCalorieGoal');
 Route::get('meals', 'StepThreeController@getMeals');
+Route::post('meal-completed/{mealId}/{weekPlanId}', 'ProfileController@mealCompleted');
 Route::post('regenerate-meals', 'StepThreeController@regenerateMeals');
 Route::post('starting-date', 'StepThreeController@saveStartingDate');
 Route::get('validate-coupon', 'StepFiveController@ValidateCoupon');

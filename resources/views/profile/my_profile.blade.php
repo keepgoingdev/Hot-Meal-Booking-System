@@ -28,40 +28,13 @@
         <div id="profile-client">
             <profile-view></profile-view>
         </div>
-                <!-- BUTTON BEFORE FOOTER -->
-        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-btn-footer">
-            <div class="col-lg-6 col-xs-12 col-sm-6">
-                <a href="#" class="btn btn-success btn-block" id="btn-light-green"><i class="fa fa-plus"></i>Add Additional Foods Consumed</a>
-            </div>
-            <div class="col-lg-6 col-xs-12 col-sm-6">
-                <a href="#" class="btn btn-success btn-block" id="btn-light-orange"><i class="fa fa-plus"></i>Add Exercise</a>
-            </div>
-        </div>
-        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-btn-footer" style="margin-bottom: 20px">
-            <div class="col-lg-4 col-xs-12 col-sm-4">
-                <div class="supporting-text">
-                    <h1>1,200</h1>
-                    <p>Actual Consumed</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-xs-12 col-sm-4">
-                <div class="supporting-text">
-                    <h1>1,100</h1>
-                    <p>Daily Goal of calories</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-xs-12 col-sm-4">
-                <div class="supporting-text-green">
-                    <p class="text-center">Congratulations, You consumed a healthy amount of calories that work with your weight goals.</p>
-                </div>
-            </div>
 
-        </div>
 
     </div>
     <script>
         window.startDate = new Date('{{$startDate}}');
         window.weekPlanId = '{{$weekPlanId}}';
+        window.caloryGoal = '{{ Auth::user()->calorie_goal }}';
     </script>
     <script src="{{ URL::asset('js/ProfileClient.js')}}"></script>
 

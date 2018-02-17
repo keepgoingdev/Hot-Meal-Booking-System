@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DayMenu;
 use App\Models\Meal;
 use App\Models\WeekPlan;
 use Hash;
@@ -48,6 +49,12 @@ class ProfileController extends Controller
             'date' => $date));
     }
 
+    public function mealCompleted($mealId,$weekPlanId) {
+        $meal = DayMenu::where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->first();
+        $meal->update(['meal_completed' => !$meal->meal_completed]);
+        return response($meal);
+    }
+
     public function getMealsByDayIndex($weekPlanId){
         $user = Auth::user();
         $weekPlan = WeekPlan::find($weekPlanId);
@@ -58,18 +65,18 @@ class ProfileController extends Controller
         if($weekPlan->user_id !== $user->id){
             return response('Unauthorized', 401);
         }
+        $responseMenu['totalcalories'] = $weekPlan->completed_sum;
         foreach($weekPlan->dayMenus->groupBy('day') as $dayMenu) {
             $day = $dayMenu[0]['day'];
-            //dd($dayMenu->where('time_of_day', 'Breakfast')->pluck('meal_id'));
             $responseMenu[$day][Meal::BREAKFAST]['name'] = 'Breakfast';
-            $responseMenu[$day][Meal::BREAKFAST]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Breakfast')->pluck('meal_id'));
+            $responseMenu[$day][Meal::BREAKFAST]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Breakfast')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::BREAKFAST]['calories'] = $responseMenu[$day][Meal::BREAKFAST]['meals']->sum('calories');
             $responseMenu[$day][Meal::LUNCH]['name'] = 'Lunch';
-            $responseMenu[$day][Meal::LUNCH]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Lunch')->pluck('meal_id'));
+            $responseMenu[$day][Meal::LUNCH]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Lunch')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::LUNCH]['calories'] = $responseMenu[$day][Meal::LUNCH]['meals']->sum('calories');
 
             $responseMenu[$day][Meal::DINNER]['name'] = 'Dinner';
-            $responseMenu[$day][Meal::DINNER]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Dinner')->pluck('meal_id'));
+            $responseMenu[$day][Meal::DINNER]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Dinner')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::DINNER]['calories'] = $responseMenu[$day][Meal::DINNER]['meals']->sum('calories');
         }
         return response()->json($responseMenu);

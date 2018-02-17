@@ -13,7 +13,7 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <tbody v-for="meal in dayMenu.meals">
-                            <meal-item :meal="meal" :is-favorite="meal.favorite" :is-user="isUser"></meal-item>
+                            <meal-item :meal="meal" :is-user="isUser" v-on:meal-completed="markCompleted($event, meal.id)"></meal-item>
                             </tbody>
                         </table>
                     </div>
@@ -38,7 +38,8 @@
             'dayMenu',
             'dayOfWeek',
             'caloriesLeft',
-            'isUser'
+            'isUser',
+            'weekPlanId'
         ],
         data: function () {
             return {
@@ -57,9 +58,15 @@
                 ApiUtil.postToApi(url, formData).then((data) => {
                     this.dayMenu.meals = data['meals'];
                     this.dayMenu.calories = data['calories'];
-                    console.log(data);
+                    //console.log(data);
                 });
-                console.log()
+                //console.log()
+            },
+            markCompleted: function ($event, mealId) {
+
+                ApiUtil.postToApi('api/meal-completed/'+mealId+'/'+weekPlanId).then((data) => {
+                    //console.log('done');
+                });
             }
         }
     }

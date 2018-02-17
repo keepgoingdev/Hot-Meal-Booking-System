@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //Override the calory goal in the user table with the one from our latest weekly plan
+    public function getCalorieGoalAttribute() {
+        return $this->latestWeekPlan()->calory_goal;
+    }
+
     public function latestWeekPlan(){
         $date = $startDate = date('Y-m-d', time());
 

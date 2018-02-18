@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\DailyAdditional;
 use Illuminate\Database\Eloquent\Model;
 class WeekPlan extends Model
 {
@@ -32,6 +33,10 @@ class WeekPlan extends Model
         ));
         $weekPlan->save();
         foreach ($dayMenus as $index => $dayMenu){
+            DailyAdditional::create([
+                'week_plan_id' => $weekPlan->id,
+                'day' => $index
+            ]);
             DayMenu::addNewMenuFromSession($dayMenu, $index, $weekPlan->id);
         }
     }

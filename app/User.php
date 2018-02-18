@@ -30,7 +30,9 @@ class User extends Authenticatable
 
     //Override the calory goal in the user table with the one from our latest weekly plan
     public function getCalorieGoalAttribute() {
-        return $this->latestWeekPlan()->calory_goal;
+        if($this->latestWeekPlan() != null)
+            return $this->latestWeekPlan()->calory_goal;
+        return 0;
     }
 
     public function latestWeekPlan(){

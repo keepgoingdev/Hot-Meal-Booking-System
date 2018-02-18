@@ -36,7 +36,7 @@
 </div>
 @extends('layouts.footer')
 <!-- Scripts -->
-<script src="js/bootstrap.js"></script>
+<script src="/js/bootstrap.js"></script>
 @yield('braintree')
 </body>
 </html>

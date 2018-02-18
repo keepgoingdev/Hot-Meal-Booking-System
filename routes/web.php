@@ -40,7 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
     // Account
     Route::post('/update-user-data', 'ProfileController@updateUserData')->name('update-user-data');
     Route::get('/account-settings', 'ProfileController@accountSettings')->name('account-settings');
-    Route::resource('admin/meals', 'MealController');
 });
 // User is authenticated and has a paid subscription
 Route::group(['middleware' => ['auth', 'has-paid']], function () {
@@ -50,7 +49,10 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
     Route::get('grocery-list', 'ProfileController@groceryList');
 
 });
-
+//Admin stuff
+Route::group(['middleware' => ['auth', 'is-admin']], function () {
+    Route::resource('admin/meals', 'MealController');
+});
 // Register
 Route::get('/register', 'StepFiveController@index')->name('register');
 

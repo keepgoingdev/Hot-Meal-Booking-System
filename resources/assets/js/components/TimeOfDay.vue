@@ -39,7 +39,8 @@
             'dayOfWeek',
             'caloriesLeft',
             'isUser',
-            'weekPlanId'
+            'weekPlanId',
+            'caloryGoal'
         ],
         data: function () {
             return {
@@ -64,8 +65,9 @@
             },
             markCompleted: function ($event, mealId) {
 
-                ApiUtil.postToApi('api/meal-completed/'+mealId+'/'+weekPlanId).then((data) => {
-                    //console.log('done');
+                ApiUtil.postToApi('api/meal-completed/'+mealId+'/'+weekPlanId+'/'+this.dayOfWeek).then((data) => {
+                    this.$emit('meal-completed-two', data);
+
                 });
             }
         }

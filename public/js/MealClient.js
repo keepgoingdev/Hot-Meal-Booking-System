@@ -11813,7 +11813,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId'],
+    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId', 'caloryGoal'],
     data: function data() {
         return {};
     },
@@ -11837,9 +11837,10 @@ var mealItem = __webpack_require__(13);
         },
 
         markCompleted: function markCompleted($event, mealId) {
+            var _this2 = this;
 
-            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId).then(function (data) {
-                //console.log('done');
+            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
+                _this2.$emit('meal-completed-two', data);
             });
         }
     }

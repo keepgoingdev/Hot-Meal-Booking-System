@@ -11813,7 +11813,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId'],
+    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId', 'caloryGoal'],
     data: function data() {
         return {};
     },
@@ -11837,9 +11837,10 @@ var mealItem = __webpack_require__(13);
         },
 
         markCompleted: function markCompleted($event, mealId) {
+            var _this2 = this;
 
-            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId).then(function (data) {
-                //console.log('done');
+            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
+                _this2.$emit('meal-completed-two', data);
             });
         }
     }
@@ -12343,6 +12344,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -12388,6 +12395,13 @@ var timeOfDay = __webpack_require__(11);
             this.dayOfWeek = value;
             //console.log(this.dayMenus[this.dayOfWeek].totalcalories);
             this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
+        },
+        updateCalories: function updateCalories($event) {
+            if ($event.meal_completed == true) {
+                this.totalCalories += $event.meal.calories;
+            } else {
+                this.totalCalories -= $event.meal.calories;
+            }
         }
     }
 });
@@ -12416,15 +12430,23 @@ var render = function() {
         return _c(
           "div",
           [
-            _c("time-of-day", {
-              attrs: {
-                "day-menu": dayMenu,
-                "day-of-week": _vm.dayOfWeek,
-                "calories-left": _vm.caloriesLeft,
-                "is-user": 1,
-                weekPlanId: _vm.weekPlanId
-              }
-            })
+            dayMenu instanceof Object
+              ? _c("time-of-day", {
+                  attrs: {
+                    "day-menu": dayMenu,
+                    "day-of-week": _vm.dayOfWeek,
+                    "calories-left": _vm.caloriesLeft,
+                    "is-user": 1,
+                    weekPlanId: _vm.weekPlanId,
+                    caloryGoal: _vm.caloryGoal
+                  },
+                  on: {
+                    "meal-completed-two": function($event) {
+                      _vm.updateCalories($event)
+                    }
+                  }
+                })
+              : _vm._e()
           ],
           1
         )
@@ -12456,7 +12478,27 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "col-lg-4 col-xs-12 col-sm-4" }, [
+            parseInt(_vm.totalCalories) <= parseInt(_vm.caloryGoal)
+              ? _c("div", { staticClass: "supporting-text-green" }, [
+                  _c("p", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "Congratulations, You consumed a healthy amount of calories that work with your weight goals."
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            parseInt(_vm.totalCalories) > parseInt(_vm.caloryGoal)
+              ? _c("div", { staticClass: "supporting-text-orange" }, [
+                  _c("p", { staticClass: "text-center" }, [
+                    _vm._v(
+                      "You consumed more calories than what your daily goal was."
+                    )
+                  ])
+                ])
+              : _vm._e()
+          ])
         ]
       )
     ],
@@ -12501,20 +12543,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 col-xs-12 col-sm-4" }, [
-      _c("div", { staticClass: "supporting-text-green" }, [
-        _c("p", { staticClass: "text-center" }, [
-          _vm._v(
-            "Congratulations, You consumed a healthy amount of calories that work with your weight goals."
-          )
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true

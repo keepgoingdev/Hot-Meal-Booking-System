@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DailyAdditional;
 use App\Models\DayMenu;
 use App\Models\Meal;
 use App\Models\WeekPlan;
@@ -49,9 +50,20 @@ class ProfileController extends Controller
             'date' => $date));
     }
 
-    public function mealCompleted($mealId,$weekPlanId) {
-        $meal = DayMenu::where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->first();
-        $meal->update(['meal_completed' => !$meal->meal_completed]);
+    public function mealCompleted($mealId,$weekPlanId, $day) {
+        $meal = DayMenu::with('meal')->where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->where('day', $day)->first();
+        $completed = !$meal->meal_completed;
+        $meal->update(['meal_completed' => $completed]);
+        $f = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $day)->first();
+        //dd($f);
+        if($completed) {
+            $f->completed_sum += $meal->meal->calories;
+            $f->save();
+        } else {
+            $f->completed_sum -= $meal->meal->calories;
+            $f->save();
+        }
+
         return response($meal);
     }
 

@@ -1,16 +1,19 @@
 <template>
     <div>
             <day-card-list v-on:set-current-date="goToDayView"
+
                 :starting-date="startDate"
                 :day-of-week="dayOfWeek"
                 locked="false"></day-card-list>
         <div v-for="dayMenu in dayMenus[dayOfWeek]">
-            <time-of-day
+            <time-of-day v-if="dayMenu instanceof Object"
+                         v-on:meal-completed-two="updateCalories($event)"
                     :day-menu="dayMenu"
                     :day-of-week="dayOfWeek"
                     :calories-left="caloriesLeft"
                     :is-user="1"
                     :weekPlanId="weekPlanId"
+                     :caloryGoal="caloryGoal"
             ></time-of-day>
         </div>
         <!-- BUTTON BEFORE FOOTER -->
@@ -36,8 +39,11 @@
                 </div>
             </div>
             <div class="col-lg-4 col-xs-12 col-sm-4">
-                <div class="supporting-text-green">
+                <div class="supporting-text-green" v-if="parseInt(totalCalories) <= parseInt(caloryGoal)">
                     <p class="text-center">Congratulations, You consumed a healthy amount of calories that work with your weight goals.</p>
+                </div>
+                <div class="supporting-text-orange" v-if="parseInt(totalCalories) > parseInt(caloryGoal)">
+                    <p class="text-center">You consumed more calories than what your daily goal was.</p>
                 </div>
             </div>
 
@@ -88,7 +94,14 @@
                     this.dayOfWeek = value;
                     //console.log(this.dayMenus[this.dayOfWeek].totalcalories);
                     this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
+                },
+            updateCalories($event) {
+                if($event.meal_completed == true) {
+                    this.totalCalories += $event.meal.calories;
+                } else {
+                    this.totalCalories -= $event.meal.calories;
                 }
+            }
             }
     }
 </script>

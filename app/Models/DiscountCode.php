@@ -18,6 +18,10 @@ class DiscountCode extends Model
         return $this->belongsTo('App\Plan');
     }
 
+    public function meal() {
+        return $this->belongsTo('App\Models\Meal');
+    }
+
     public function activate($userId){
         $this->is_activated = true;
         $this->activated_by = $userId;

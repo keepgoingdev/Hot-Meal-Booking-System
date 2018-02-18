@@ -13,7 +13,9 @@ class ModifyWeekPlanAgain extends Migration
      */
     public function up()
     {
-        Schema::table('week_plans', function(Blueprint $table) {
+        Schema::create('daily_additional', function(Blueprint $table) {
+            $table->integer('week_plan_id');
+            $table->integer('day');
             $table->integer('exercise')->default(0);
             $table->integer('additional')->default(0);
             $table->integer('completed_sum')->default(0);
@@ -27,6 +29,6 @@ class ModifyWeekPlanAgain extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('daily_additional');
     }
 }

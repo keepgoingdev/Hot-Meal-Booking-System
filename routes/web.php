@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // User is authenticated and has a paid subscription
 Route::group(['middleware' => ['auth', 'has-paid']], function () {
+    Route::get('/home/all-weeks', 'ProfileController@allWeeks')->name('my-profile');
     Route::get('/home/{weekId?}', 'ProfileController@myProfile')->name('my-profile');
     Route::get('/week-plans/{weekPlanId}/days/{index}', 'ProfileController@dayView')->name('day-view');
     Route::get('grocery-list', 'ProfileController@groceryList');

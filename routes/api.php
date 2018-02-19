@@ -23,7 +23,7 @@ Route::middleware('auth:api')->group(function(){
 
 Route::post('/calorie-goal', 'StepTwoController@storeCalorieGoal');
 Route::get('meals', 'StepThreeController@getMeals');
-Route::post('meal-completed/{mealId}/{weekPlanId}/{day}/{mealtype}', 'ProfileController@mealCompleted');
+Route::post('meal-completed/{mealId}/{weekPlanId}/{day}', 'ProfileController@mealCompleted');
 Route::post('add-additional/{weekPlanId}/{day}', 'ProfileController@addAdditional');
 Route::post('add-exercise/{weekPlanId}/{day}', 'ProfileController@addExercise');
 Route::post('get-new-meals', 'ProfileController@getNewMeals');

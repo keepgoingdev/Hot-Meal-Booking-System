@@ -12,15 +12,18 @@
             </div>
         </div>
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile">
-            <div class="col-lg-4 col-xs-12 col-sm-3 col-md-4">
+            <div class="col-lg-2 col-xs-12 col-sm-4 col-md-3">
                 <h5>This Week's Menu</h5>
             </div>
-            <div class="col-lg-5 col-xs-12 col-sm-5 col-md-5">
-                <a href="/grocery-list" class="btn btn-default" id="btn-list">View this Week's Grocery List <i
+            <div class="col-lg-3 col-xs-12 col-sm-4 col-md-3">
+                <a href="/home/all-weeks" class="btn btn-block btn-default" id="btn-list-week">View All Weeks <i class="fa fa-info"></i></a>
+            </div>
+            <div class="col-lg-4 col-xs-12 col-sm-4 col-md-3">
+                <a href="/grocery-list" class="btn btn-block btn-default" id="btn-list">View this Week's Grocery List <i
                             class="fa fa-server"></i></a>
             </div>
             <div class="col-lg-3 col-xs-12 col-sm-4 col-md-3">
-                <a href="/add-new-week" class="btn btn-default" id="btn-list-week">Add New Week <i class="fa fa-plus"></i></a>
+                <a href="/add-new-week" class="btn  btn-block btn-default" id="btn-list-week">Add New Week <i class="fa fa-plus"></i></a>
             </div>
         </div>
 

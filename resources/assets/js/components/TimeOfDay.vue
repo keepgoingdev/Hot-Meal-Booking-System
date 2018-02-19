@@ -52,12 +52,12 @@
                 let formData = new FormData();
                 var url = null;
                 if(this.isUser) {
-                    url = 'api/get-new-meals';
+                    url = '/api/get-new-meals';
                     formData.append('mealType', this.dayMenu.name);
                     formData.append('weekPlanId', this.weekPlanId);
                     formData.append('day', this.dayOfWeek);
                 } else {
-                    url = 'api/regenerate-meals';
+                    url = '/api/regenerate-meals';
                     formData.append('day-menu-name', this.dayMenu.name);
                     formData.append('max-calories', maxCalories);
                     formData.append('day-of-week', this.dayOfWeek);
@@ -72,7 +72,7 @@
             },
             markCompleted: function ($event, mealId) {
 
-                ApiUtil.postToApi('api/meal-completed/'+mealId+'/'+weekPlanId+'/'+this.dayOfWeek+'/'+this.dayMenu.name).then((data) => {
+                ApiUtil.postToApi('/api/meal-completed/'+mealId+'/'+weekPlanId+'/'+this.dayOfWeek).then((data) => {
                     this.$emit('meal-completed-two', data);
 
                 });

@@ -11825,12 +11825,12 @@ var mealItem = __webpack_require__(13);
             var formData = new FormData();
             var url = null;
             if (this.isUser) {
-                url = 'api/get-new-meals';
+                url = '/api/get-new-meals';
                 formData.append('mealType', this.dayMenu.name);
                 formData.append('weekPlanId', this.weekPlanId);
                 formData.append('day', this.dayOfWeek);
             } else {
-                url = 'api/regenerate-meals';
+                url = '/api/regenerate-meals';
                 formData.append('day-menu-name', this.dayMenu.name);
                 formData.append('max-calories', maxCalories);
                 formData.append('day-of-week', this.dayOfWeek);
@@ -11847,7 +11847,7 @@ var mealItem = __webpack_require__(13);
         markCompleted: function markCompleted($event, mealId) {
             var _this2 = this;
 
-            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek + '/' + this.dayMenu.name).then(function (data) {
+            ApiUtil.postToApi('/api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
                 _this2.$emit('meal-completed-two', data);
             });
         }

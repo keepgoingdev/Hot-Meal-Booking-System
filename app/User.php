@@ -43,6 +43,24 @@ class User extends Authenticatable
             ->orderBy('end_date', 'desc')
             ->first();
     }
+
+    public function currentWeekPlan() {
+        $date = $startDate = date('Y-m-d', time());
+
+        $d  = $this->hasMany('App\Models\WeekPlan')
+                    ->where('end_date', '>', $date)
+                    ->where('start_date', '<=', $date)
+                    ->orderBy('end_date', 'desc')
+                    ->first();
+        if($d == null) {
+            //first plan is yet to start
+            return $this->hasMany('App\Models\WeekPlan')
+                  ->where('end_date', '>=', $date)
+                  ->orderBy('end_date', 'asc')
+                  ->first();
+        }
+        return $d;
+    }
     public function favoriteMeals() {
         return $this->belongsToMany('\App\Models\Meal', 'user_favorite_meals', 'user_id', 'meal_id');
     }

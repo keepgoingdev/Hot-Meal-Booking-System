@@ -25,7 +25,7 @@ class ProfileController extends Controller
         $format = 'd F Y';
         $date = date($format, time());
         if($weekId == null) {
-            $weekPlan = $user->latestWeekPlan();
+            $weekPlan = $user->currentWeekPlan();
         } else {
             $weekPlan = WeekPlan::find($weekId);
             if($weekPlan->user_id != Auth::id()) {
@@ -63,6 +63,10 @@ class ProfileController extends Controller
         return view('profile.add_new_week');
     }
 
+    public function allWeeks() {
+        $allweeks = WeekPlan::where('user_id', Auth::id())->orderBy('end_date','desc')->get();
+        return view('profile.all_weeks', compact('allweeks'));
+    }
 
 
     public function getMealsForNewWeek(Request $request) {
@@ -107,7 +111,7 @@ class ProfileController extends Controller
             ]);
             DayMenu::addNewMenuFromSession($dayMenu, $index, $newWeek->id);
         }
-
+        return redirect('/home/'.$newWeek->id);
 
 
 
@@ -141,8 +145,8 @@ class ProfileController extends Controller
         return response()->json(array('meals' => $meals, 'calories' => $mealCalories));
     }
 
-    public function mealCompleted($mealId,$weekPlanId, $day, $mealType) {
-        $meal = DayMenu::with('meal')->where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->where('day', $day)->where('time_of_day', $mealType)->first();
+    public function mealCompleted($mealId,$weekPlanId, $day) {
+        $meal = DayMenu::with('meal')->where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->where('day', $day)->first();
         $completed = !$meal->meal_completed;
         $meal->update(['meal_completed' => $completed]);
         $f = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $day)->first();
@@ -196,6 +200,9 @@ class ProfileController extends Controller
             $responseMenu[$day][Meal::DINNER]['name'] = 'Dinner';
             $responseMenu[$day][Meal::DINNER]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Dinner')->pluck('meal_id'), $weekPlan->id, $day);
             $responseMenu[$day][Meal::DINNER]['calories'] = $responseMenu[$day][Meal::DINNER]['meals']->sum('calories');
+            $responseMenu[$day][Meal::SNACKS]['name'] = 'Snacks';
+            $responseMenu[$day][Meal::SNACKS]['meals'] = Meal::getMealByIds($dayMenu->where('time_of_day', 'Snacks')->pluck('meal_id'), $weekPlan->id, $day);
+            $responseMenu[$day][Meal::SNACKS]['calories'] = $responseMenu[$day][Meal::SNACKS]['meals']->sum('calories');
            // $allMealsForDay = DayMenu::where('week_plan_id', $weekPlan->id)->where('day', $day)->where('meal_completed', true)->select('meal_id')->pluck('meal_id')->toArray();
             $additional = DailyAdditional::where('week_plan_id', $weekPlan->id)->where('day', $day)->first();
             $responseMenu[$day]['totalcalories'] = $additional->completed_sum;

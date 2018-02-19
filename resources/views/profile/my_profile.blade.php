@@ -20,7 +20,7 @@
                             class="fa fa-server"></i></a>
             </div>
             <div class="col-lg-3 col-xs-12 col-sm-4 col-md-3">
-                <a href="#" class="btn btn-default" id="btn-list-week">Add New Week <i class="fa fa-plus"></i></a>
+                <a href="/add-new-week" class="btn btn-default" id="btn-list-week">Add New Week <i class="fa fa-plus"></i></a>
             </div>
         </div>
 

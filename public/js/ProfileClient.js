@@ -11847,7 +11847,7 @@ var mealItem = __webpack_require__(13);
         markCompleted: function markCompleted($event, mealId) {
             var _this2 = this;
 
-            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
+            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek + '/' + this.dayMenu.name).then(function (data) {
                 _this2.$emit('meal-completed-two', data);
             });
         }
@@ -12412,7 +12412,7 @@ var timeOfDay = __webpack_require__(11);
             var _this = this;
 
             console.log(this.weekPlanId);
-            var url = 'api/week-plans/' + this.weekPlanId;
+            var url = '/api/week-plans/' + this.weekPlanId;
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
                 _this.totalCalories = _this.dayMenus[_this.dayOfWeek].totalcalories;
@@ -12439,14 +12439,14 @@ var timeOfDay = __webpack_require__(11);
         updateAdditional: function updateAdditional() {
             var formData = new FormData();
             formData.append('additional', this.additional ? this.additional : 0);
-            ApiUtil.postToApi('api/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+            ApiUtil.postToApi('/api/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
         },
         updateExercise: function updateExercise() {
             var formData = new FormData();
             formData.append('exercise', this.exercise ? this.exercise : 0);
-            ApiUtil.postToApi('api/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+            ApiUtil.postToApi('/api/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
         }

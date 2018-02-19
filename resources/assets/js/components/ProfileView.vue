@@ -102,7 +102,7 @@
         methods:{
             getMeals() {
                 console.log(this.weekPlanId);
-                let url = 'api/week-plans/'+this.weekPlanId;
+                let url = '/api/week-plans/'+this.weekPlanId;
                 ApiUtil.fetchFromApi(url, {}).then((dayMenus) => {
                     this.dayMenus = dayMenus;
                     this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
@@ -130,14 +130,14 @@
             updateAdditional() {
                 let formData = new FormData();
                 formData.append('additional', this.additional ? this.additional : 0);
-                ApiUtil.postToApi('api/add-additional/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
+                ApiUtil.postToApi('/api/add-additional/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
                     //this.totalCalories += this.additional;
                 });
             },
             updateExercise() {
                 let formData = new FormData();
                 formData.append('exercise', this.exercise ? this.exercise : 0);
-                ApiUtil.postToApi('api/add-exercise/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
+                ApiUtil.postToApi('/api/add-exercise/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
                     //this.totalCalories += this.additional;
                 });
             }

@@ -6,6 +6,7 @@ use App\DailyAdditional;
 use App\Models\DayMenu;
 use App\Models\Meal;
 use App\Models\WeekPlan;
+use Faker\Provider\cs_CZ\DateTime;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +19,19 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
 
-    public function myProfile()
+    public function myProfile($weekId = null)
     {
         $user = Auth::user();
         $format = 'd F Y';
         $date = date($format, time());
-        $weekPlan = $user->latestWeekPlan();
+        if($weekId == null) {
+            $weekPlan = $user->latestWeekPlan();
+        } else {
+            $weekPlan = WeekPlan::find($weekId);
+            if($weekPlan->user_id != Auth::id()) {
+                return back();
+            }
+        }
 
         return view('profile.my_profile', array(
             'user' => $user,
@@ -50,6 +58,60 @@ class ProfileController extends Controller
             'date' => $date));
     }
 
+    public function addNewWeek() {
+
+        return view('profile.add_new_week');
+    }
+
+
+
+    public function getMealsForNewWeek(Request $request) {
+        $latestWeek = Auth::user()->latestWeekPlan();
+        $validator = \Validator::make($request->all(), [
+            'weight' => 'required|integer'
+        ]);
+        if($validator->fails()) {
+            return back();
+        }
+        $user = Auth::user();
+        $user->weight = $request->weight;
+        $user->save();
+        $date = new \DateTime($latestWeek->end_date);
+        $date2 = new \DateTime($latestWeek->end_date);
+        $startOfNewWeek = $date->modify('+1 day');
+        $endOfNewWeek = $date2->modify('+8 days');
+
+        $newWeek = WeekPlan::create([
+            'user_id' => Auth::id(),
+            'start_date' => $startOfNewWeek,
+            'end_date' => $endOfNewWeek,
+            'calory_goal' => $user->fresh()->calculateBMR(),
+            'weight' => $request->weight
+        ]);
+
+        $calorieGoal = $newWeek->calory_goal;
+        $dayMenus = [];
+        $ignoredMealIds = [];
+        for ($index = 0; $index < 7; $index++) {
+            list($dayMenu, $ignoredMealIds) = Meal::generateMealsForOneDay($calorieGoal, $ignoredMealIds);
+            $dayMenus[$index] = $dayMenu;
+            if ($index % 2 === 0) {
+                $ignoredMealIds = [];
+            }
+        }
+
+        foreach ($dayMenus as $index => $dayMenu){
+            DailyAdditional::create([
+                'week_plan_id' => $newWeek->id,
+                'day' => $index
+            ]);
+            DayMenu::addNewMenuFromSession($dayMenu, $index, $newWeek->id);
+        }
+
+
+
+
+    }
     //regenerate meals for logged in users
     public function getNewMeals(Request $request){
         $dayOfWeek = $request->input('day');
@@ -79,8 +141,8 @@ class ProfileController extends Controller
         return response()->json(array('meals' => $meals, 'calories' => $mealCalories));
     }
 
-    public function mealCompleted($mealId,$weekPlanId, $day) {
-        $meal = DayMenu::with('meal')->where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->where('day', $day)->first();
+    public function mealCompleted($mealId,$weekPlanId, $day, $mealType) {
+        $meal = DayMenu::with('meal')->where('meal_id', $mealId)->where('week_plan_id', $weekPlanId)->where('day', $day)->where('time_of_day', $mealType)->first();
         $completed = !$meal->meal_completed;
         $meal->update(['meal_completed' => $completed]);
         $f = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $day)->first();

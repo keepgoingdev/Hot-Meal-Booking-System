@@ -11847,7 +11847,7 @@ var mealItem = __webpack_require__(13);
         markCompleted: function markCompleted($event, mealId) {
             var _this2 = this;
 
-            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
+            ApiUtil.postToApi('api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek + '/' + this.dayMenu.name).then(function (data) {
                 _this2.$emit('meal-completed-two', data);
             });
         }

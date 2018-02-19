@@ -121,7 +121,7 @@
                     this.showExercise = false;
                 },
             updateCalories($event) {
-                if(parseInt($event.meal_completed) == true) {
+                if($event.meal_completed == true) {
                     this.totalCalories += $event.meal.calories;
                 } else {
                     this.totalCalories -= $event.meal.calories;

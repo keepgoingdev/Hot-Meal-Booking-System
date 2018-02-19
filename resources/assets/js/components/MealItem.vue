@@ -23,7 +23,7 @@
             <center>
                 <div class="checkbox checkbox-info">
 
-                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="parseInt(meal.meal_completed) == 1" @click="mealCompleted(meal.id)">
+                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed" @click="mealCompleted(meal.id)">
                     <label :for="'check'+parseInt(meal.id)">
                     </label>
                 </div>
@@ -47,11 +47,11 @@
                 this.meal.favorite = !this.meal.favorite;
                 let url = '/intapi/mark-meal-as-favorite/'+index;
                 ApiUtil.postToApi(url).then((data) => {
-                    //console.log(data.meal_completed);
+                    console.log(data.meal_completed);
                 });
             },
             mealCompleted(mealId) {
-                this.meal.meal_completed = ! parseInt(this.meal.meal_completed);
+                this.meal.meal_completed = ! this.meal.meal_completed;
                 this.$emit('meal-completed', mealId);
             }
         },

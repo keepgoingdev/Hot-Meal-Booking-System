@@ -11953,11 +11953,11 @@ var ApiUtil = __webpack_require__(2);
             this.meal.favorite = !this.meal.favorite;
             var url = '/intapi/mark-meal-as-favorite/' + index;
             ApiUtil.postToApi(url).then(function (data) {
-                //console.log(data.meal_completed);
+                console.log(data.meal_completed);
             });
         },
         mealCompleted: function mealCompleted(mealId) {
-            this.meal.meal_completed = !parseInt(this.meal.meal_completed);
+            this.meal.meal_completed = !this.meal.meal_completed;
             this.$emit('meal-completed', mealId);
         }
     }
@@ -12064,7 +12064,7 @@ var render = function() {
             _c("input", {
               staticClass: "mycheck",
               attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
-              domProps: { checked: parseInt(_vm.meal.meal_completed) == 1 },
+              domProps: { checked: _vm.meal.meal_completed },
               on: {
                 click: function($event) {
                   _vm.mealCompleted(_vm.meal.id)
@@ -12430,7 +12430,7 @@ var timeOfDay = __webpack_require__(11);
             this.showExercise = false;
         },
         updateCalories: function updateCalories($event) {
-            if (parseInt($event.meal_completed) == true) {
+            if ($event.meal_completed == true) {
                 this.totalCalories += $event.meal.calories;
             } else {
                 this.totalCalories -= $event.meal.calories;

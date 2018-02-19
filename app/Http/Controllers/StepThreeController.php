@@ -43,6 +43,7 @@ class StepThreeController extends Controller
                 }
             }
         }
+
         if(is_array($dayMenus)) {
             $request->session()->put('dayMenus', ($dayMenus));
         }
@@ -78,6 +79,6 @@ class StepThreeController extends Controller
         $startingDate = $request->input('starting-date');
         $request->session()->put('starting-date', ($startingDate));
 
-        return response('OK');
+        return response(200);
     }
 }

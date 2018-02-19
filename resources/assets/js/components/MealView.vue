@@ -104,6 +104,8 @@
                 let url = 'api/meals';
                 ApiUtil.fetchFromApi(url, {}).then((dayMenus) => {
                     this.dayMenus = dayMenus;
+                    $('#proceed').removeAttr('disabled');
+                    $('#proceed').text('View your weekly plan!');
                 });
             },
             updateDate: function(value) {

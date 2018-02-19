@@ -26,11 +26,12 @@
             </ul>
         </div>
         <div class="col-lg-4 col-lg-offset-4" id="box-show-steps-caption">
-            <h3 class="text-center">Step 3: We've generated your weekly plan!</h3>
-            <a class="btn btn-default btn-block  btn-lg box-form-btn-green" href="/register">View My Weekly Plan</a>
+            <h3 class="text-center">Step 3: We're generating your weekly plan!</h3>
+            <a id="proceed" class="btn btn-default btn-block  btn-lg box-form-btn-green" href="/register" disabled="">Generating</a>
         </div>
         <div id="meal-client" style="display: none">
             <meal-view></meal-view>
         </div>
+
         <script src="{{ URL::asset('js/MealClient.js')}}"></script>
 @endsection

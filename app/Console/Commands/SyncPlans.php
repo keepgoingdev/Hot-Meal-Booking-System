@@ -26,7 +26,7 @@ class SyncPlans extends Command
 
         // Iterate through the plans while populating our table with the plan data
         foreach ($braintreePlans as $braintreePlan) {
-            $discount = strpos( $braintreePlan->name, 'discounted') != false;
+            $discount = strpos( strtolower($braintreePlan->name), 'discounted') != false;
             Plan::create([
                 'name' => $braintreePlan->name,
                 'slug' => str_slug($braintreePlan->name),

@@ -179,7 +179,7 @@
 
                             $('#coupon-validation').val(plan);
                             discountMessage.text('$' + price + ' USD' + ' - ' + planName);
-                            $('#total-cost').text('total cost: $' + price);
+                            $('#total-cost').text('Total cost: $' + price);
                         })
                 }
             }

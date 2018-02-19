@@ -12343,6 +12343,8 @@ var timeOfDay = __webpack_require__(11);
             var url = 'api/meals';
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
+                $('#proceed').removeAttr('disabled');
+                $('#proceed').text('View your weekly plan!');
             });
         },
 

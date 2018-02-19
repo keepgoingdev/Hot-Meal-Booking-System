@@ -25,6 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php $i = count($allweeks) @endphp
                     @foreach($allweeks as $week)
                         @php
                         $ate = 0;
@@ -34,7 +35,7 @@
                         }
                         @endphp
                         <tr>
-                            <td><a href="/home/{{$week->id}}">View Week</a></td>
+                            <td><a href="/home/{{$week->id}}">View Week #{{$i--}}</a></td>
                             <td>{{$week->start_date}}</td>
                             <td>{{$week->end_date}}</td>
                             <td>{{$week->weight}}</td>

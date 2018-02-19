@@ -12373,7 +12373,7 @@ var render = function() {
             _c("input", {
               staticClass: "mycheck",
               attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
-              domProps: { checked: parseInt(_vm.meal.meal_completed) },
+              domProps: { checked: parseInt(_vm.meal.meal_completed) == 1 },
               on: {
                 click: function($event) {
                   _vm.mealCompleted(_vm.meal.id)

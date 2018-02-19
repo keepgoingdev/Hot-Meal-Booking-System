@@ -72,7 +72,7 @@
             },
             markCompleted: function ($event, mealId) {
 
-                ApiUtil.postToApi('/api/meal-completed/'+mealId+'/'+weekPlanId+'/'+this.dayOfWeek).then((data) => {
+                ApiUtil.postToApi('/intapi/meal-completed/'+mealId+'/'+weekPlanId+'/'+this.dayOfWeek).then((data) => {
                     this.$emit('meal-completed-two', data);
 
                 });

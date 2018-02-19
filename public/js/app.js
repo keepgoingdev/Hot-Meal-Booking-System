@@ -12156,7 +12156,7 @@ var mealItem = __webpack_require__(13);
         markCompleted: function markCompleted($event, mealId) {
             var _this2 = this;
 
-            ApiUtil.postToApi('/api/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
+            ApiUtil.postToApi('/intapi/meal-completed/' + mealId + '/' + weekPlanId + '/' + this.dayOfWeek).then(function (data) {
                 _this2.$emit('meal-completed-two', data);
             });
         }
@@ -12373,7 +12373,7 @@ var render = function() {
             _c("input", {
               staticClass: "mycheck",
               attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
-              domProps: { checked: _vm.meal.meal_completed },
+              domProps: { checked: parseInt(_vm.meal.meal_completed) },
               on: {
                 click: function($event) {
                   _vm.mealCompleted(_vm.meal.id)

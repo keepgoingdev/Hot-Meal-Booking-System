@@ -182,11 +182,11 @@ class ProfileController extends Controller
     public function getMealsByDayIndex($weekPlanId){
         $user = Auth::user();
         $weekPlan = WeekPlan::find($weekPlanId);
-
+     
         if(is_null($weekPlan)){
             return response('Bad request', 400);
         }
-        if($weekPlan->user_id !== $user->id){
+        if($weekPlan->user_id != $user->id){
             return response('Unauthorized', 401);
         }
         foreach($weekPlan->dayMenus->groupBy('day') as $dayMenu) {

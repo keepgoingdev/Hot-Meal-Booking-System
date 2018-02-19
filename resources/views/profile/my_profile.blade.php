@@ -39,6 +39,6 @@
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ Auth::user()->calorie_goal }}';
     </script>
-    <script src="{{ URL::asset('js/ProfileClient.js')}}"></script>
+    <script src="{{ URL::asset('js/ProfileClient.js?v2')}}"></script>
 
 @endsection

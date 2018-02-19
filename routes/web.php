@@ -41,6 +41,28 @@ Route::group(['middleware' => ['auth', 'is-admin']], function () {
     Route::resource('admin/meals', 'MealController');
 });
 
+Route::group(['prefix' => 'api'], function() {
+    Route::post('/calorie-goal', 'StepTwoController@storeCalorieGoal');
+    Route::get('meals', 'StepThreeController@getMeals');
+    Route::post('meal-completed/{mealId}/{weekPlanId}/{day}', 'ProfileController@mealCompleted');
+    Route::post('add-additional/{weekPlanId}/{day}', 'ProfileController@addAdditional');
+    Route::post('add-exercise/{weekPlanId}/{day}', 'ProfileController@addExercise');
+    Route::post('get-new-meals', 'ProfileController@getNewMeals');
+    Route::post('regenerate-meals', 'StepThreeController@regenerateMeals');
+    Route::post('starting-date', 'StepThreeController@saveStartingDate');
+    Route::get('validate-coupon', 'StepFiveController@ValidateCoupon');
+    Route::get('grocery-list', 'GroceryListController@getGroceryList');
+    Route::get('week-plans/{weekPlanId}', 'ProfileController@getMealsByDayIndex');
+    Route::post('mark-meal-as-favorite/{meal}', 'ProfileController@markMealAsFavorite');
+    Route::get('cancel-subscription', 'ProfileController@cancelSubscription');
+    Route::get('resume-subscription', 'ProfileController@resumeSubscription');
+});
+
+
+
+
+
+
 // Confirmation email
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
 Route::get('/users/confirmation-error', 'Auth\RegisterController@confirmationError')->name('confirmation-error');

@@ -47,11 +47,11 @@
                 this.meal.favorite = !this.meal.favorite;
                 let url = '/intapi/mark-meal-as-favorite/'+index;
                 ApiUtil.postToApi(url).then((data) => {
-                    console.log(data.meal_completed);
+                    //console.log(data.meal_completed);
                 });
             },
             mealCompleted(mealId) {
-                this.meal.meal_completed = ! this.meal.meal_completed;
+                this.meal.meal_completed = ! parseInt(this.meal.meal_completed);
                 this.$emit('meal-completed', mealId);
             }
         },

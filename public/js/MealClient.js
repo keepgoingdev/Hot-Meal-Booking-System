@@ -11953,11 +11953,11 @@ var ApiUtil = __webpack_require__(2);
             this.meal.favorite = !this.meal.favorite;
             var url = '/intapi/mark-meal-as-favorite/' + index;
             ApiUtil.postToApi(url).then(function (data) {
-                console.log(data.meal_completed);
+                //console.log(data.meal_completed);
             });
         },
         mealCompleted: function mealCompleted(mealId) {
-            this.meal.meal_completed = !this.meal.meal_completed;
+            this.meal.meal_completed = !parseInt(this.meal.meal_completed);
             this.$emit('meal-completed', mealId);
         }
     }

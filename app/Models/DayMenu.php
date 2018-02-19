@@ -10,7 +10,11 @@ class DayMenu extends Model
         'day', 'week_plan_id', 'meal_id', 'time_of_day', 'meal_completed'
     ];
     public $timestamps = false;
-
+    protected $casts = [
+        'meal_completed' => 'integer',
+        'meal_id' => 'integer',
+        'week_plan_id' => 'integer',
+    ];
     public function meal() {
         return $this->belongsTo('\App\Models\Meal');
     }

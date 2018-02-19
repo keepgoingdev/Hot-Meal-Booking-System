@@ -29,7 +29,11 @@ class Meal extends Model
         'name', 'serving_size', 'calories', 'image', 'notes', 'is_snack', 'store', 'is_enabled'
     ];
     public $timestamps = false;
-
+    protected $casts = [
+        'calories' => 'integer',
+        'is_snack' => 'integer',
+        'is_enabled' => 'integer',
+    ];
     protected $appends = ['favorite'];
     
     public function condiment(){

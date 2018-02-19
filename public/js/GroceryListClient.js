@@ -11492,7 +11492,7 @@ var GroceryListItem = __webpack_require__(67);
         getGroceryList: function getGroceryList() {
             var _this = this;
 
-            var url = 'api/grocery-list';
+            var url = '/intapi/grocery-list';
             ApiUtil.fetchFromApi(url, {}).then(function (listItems) {
                 _this.listItems = listItems;
             });

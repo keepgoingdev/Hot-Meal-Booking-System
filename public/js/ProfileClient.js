@@ -11825,12 +11825,12 @@ var mealItem = __webpack_require__(13);
             var formData = new FormData();
             var url = null;
             if (this.isUser) {
-                url = '/api/get-new-meals';
+                url = '/intapi/get-new-meals';
                 formData.append('mealType', this.dayMenu.name);
                 formData.append('weekPlanId', this.weekPlanId);
                 formData.append('day', this.dayOfWeek);
             } else {
-                url = '/api/regenerate-meals';
+                url = '/intapi/regenerate-meals';
                 formData.append('day-menu-name', this.dayMenu.name);
                 formData.append('max-calories', maxCalories);
                 formData.append('day-of-week', this.dayOfWeek);
@@ -11951,7 +11951,7 @@ var ApiUtil = __webpack_require__(2);
     methods: {
         toggleFavorite: function toggleFavorite(index) {
             this.meal.favorite = !this.meal.favorite;
-            var url = 'api/mark-meal-as-favorite/' + index;
+            var url = '/intapi/mark-meal-as-favorite/' + index;
             ApiUtil.postToApi(url).then(function (data) {
                 console.log(data.meal_completed);
             });
@@ -12412,7 +12412,7 @@ var timeOfDay = __webpack_require__(11);
             var _this = this;
 
             console.log(this.weekPlanId);
-            var url = '/api/week-plans/' + this.weekPlanId;
+            var url = '/intapi/week-plans/' + this.weekPlanId;
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
                 _this.totalCalories = _this.dayMenus[_this.dayOfWeek].totalcalories;
@@ -12439,14 +12439,14 @@ var timeOfDay = __webpack_require__(11);
         updateAdditional: function updateAdditional() {
             var formData = new FormData();
             formData.append('additional', this.additional ? this.additional : 0);
-            ApiUtil.postToApi('/api/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+            ApiUtil.postToApi('/intapi/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
         },
         updateExercise: function updateExercise() {
             var formData = new FormData();
             formData.append('exercise', this.exercise ? this.exercise : 0);
-            ApiUtil.postToApi('/api/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+            ApiUtil.postToApi('/intapi/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
         }

@@ -45,7 +45,7 @@
         methods: {
             toggleFavorite(index) {
                 this.meal.favorite = !this.meal.favorite;
-                let url = 'api/mark-meal-as-favorite/'+index;
+                let url = '/intapi/mark-meal-as-favorite/'+index;
                 ApiUtil.postToApi(url).then((data) => {
                     console.log(data.meal_completed);
                 });

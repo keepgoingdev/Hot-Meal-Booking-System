@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth', 'is-admin']], function () {
     Route::resource('admin/meals', 'MealController');
 });
 
-Route::group(['prefix' => 'api'], function() {
+Route::group(['prefix' => 'intapi'], function() {
     Route::post('/calorie-goal', 'StepTwoController@storeCalorieGoal');
     Route::get('meals', 'StepThreeController@getMeals');
     Route::post('meal-completed/{mealId}/{weekPlanId}/{day}', 'ProfileController@mealCompleted');

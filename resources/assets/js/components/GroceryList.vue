@@ -58,7 +58,7 @@
         },
         methods: {
             getGroceryList() {
-                let url = 'api/grocery-list';
+                let url = '/intapi/grocery-list';
                 ApiUtil.fetchFromApi(url, {}).then((listItems) => {
                     this.listItems = listItems;
                 });

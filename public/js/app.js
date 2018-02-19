@@ -12134,12 +12134,12 @@ var mealItem = __webpack_require__(13);
             var formData = new FormData();
             var url = null;
             if (this.isUser) {
-                url = '/api/get-new-meals';
+                url = '/intapi/get-new-meals';
                 formData.append('mealType', this.dayMenu.name);
                 formData.append('weekPlanId', this.weekPlanId);
                 formData.append('day', this.dayOfWeek);
             } else {
-                url = '/api/regenerate-meals';
+                url = '/intapi/regenerate-meals';
                 formData.append('day-menu-name', this.dayMenu.name);
                 formData.append('max-calories', maxCalories);
                 formData.append('day-of-week', this.dayOfWeek);
@@ -12260,7 +12260,7 @@ var ApiUtil = __webpack_require__(2);
     methods: {
         toggleFavorite: function toggleFavorite(index) {
             this.meal.favorite = !this.meal.favorite;
-            var url = 'api/mark-meal-as-favorite/' + index;
+            var url = '/intapi/mark-meal-as-favorite/' + index;
             ApiUtil.postToApi(url).then(function (data) {
                 console.log(data.meal_completed);
             });
@@ -12748,7 +12748,7 @@ var timeOfDay = __webpack_require__(11);
         getMeals: function getMeals() {
             var _this = this;
 
-            var url = 'api/meals';
+            var url = '/intapi/meals';
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
                 $('#proceed').removeAttr('disabled');
@@ -12761,7 +12761,7 @@ var timeOfDay = __webpack_require__(11);
                 this.selectedDate = value;
             }
 
-            var url = 'api/starting-date';
+            var url = '/intapi/starting-date';
             var formData = new FormData();
             formData.append('starting-date', this.selectedDate.toISOString().split('T')[0]);
             ApiUtil.postToApi(url, formData);

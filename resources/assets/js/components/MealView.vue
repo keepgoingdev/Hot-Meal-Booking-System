@@ -101,7 +101,7 @@
         },
         methods: {
             getMeals() {
-                let url = 'api/meals';
+                let url = '/intapi/meals';
                 ApiUtil.fetchFromApi(url, {}).then((dayMenus) => {
                     this.dayMenus = dayMenus;
                     $('#proceed').removeAttr('disabled');
@@ -113,7 +113,7 @@
                     this.selectedDate = value;
                 }
 
-                let url = 'api/starting-date';
+                let url = '/intapi/starting-date';
                 var formData = new FormData();
                 formData.append('starting-date', this.selectedDate.toISOString().split('T')[0]);
                 ApiUtil.postToApi(url, formData);

@@ -155,7 +155,7 @@
                 else {
                     $.ajax({
                         type: "get",
-                        url: "api/validate-coupon",
+                        url: "/intapi/validate-coupon",
                         data: {'coupon-code': coupon}
                     })
                         .done(function (data) {

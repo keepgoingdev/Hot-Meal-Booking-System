@@ -20,6 +20,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -37,7 +38,6 @@
         props:[
             'dayMenu',
             'dayOfWeek',
-            'caloriesLeft',
             'isUser',
             'weekPlanId',
             'caloryGoal'
@@ -49,12 +49,19 @@
         },
         methods: {
             regenerateMeals(){
-                let url = 'api/regenerate-meals';
                 let formData = new FormData();
-                let maxCalories = this.dayMenu.calories + this.caloriesLeft;
-                formData.append('day-menu-name', this.dayMenu.name);
-                formData.append('max-calories', maxCalories);
-                formData.append('day-of-week', this.dayOfWeek);
+                var url = null;
+                if(this.isUser) {
+                    url = 'api/get-new-meals';
+                    formData.append('mealType', this.dayMenu.name);
+                    formData.append('weekPlanId', this.weekPlanId);
+                    formData.append('day', this.dayOfWeek);
+                } else {
+                    url = 'api/regenerate-meals';
+                    formData.append('day-menu-name', this.dayMenu.name);
+                    formData.append('max-calories', maxCalories);
+                    formData.append('day-of-week', this.dayOfWeek);
+                }
 
                 ApiUtil.postToApi(url, formData).then((data) => {
                     this.dayMenu.meals = data['meals'];

@@ -11802,6 +11802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 // Utils
 var ApiUtil = __webpack_require__(2);
@@ -11813,7 +11814,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId', 'caloryGoal'],
+    props: ['dayMenu', 'dayOfWeek', 'isUser', 'weekPlanId', 'caloryGoal'],
     data: function data() {
         return {};
     },
@@ -11821,12 +11822,19 @@ var mealItem = __webpack_require__(13);
         regenerateMeals: function regenerateMeals() {
             var _this = this;
 
-            var url = 'api/regenerate-meals';
             var formData = new FormData();
-            var maxCalories = this.dayMenu.calories + this.caloriesLeft;
-            formData.append('day-menu-name', this.dayMenu.name);
-            formData.append('max-calories', maxCalories);
-            formData.append('day-of-week', this.dayOfWeek);
+            var url = null;
+            if (this.isUser) {
+                url = 'api/get-new-meals';
+                formData.append('mealType', this.dayMenu.name);
+                formData.append('weekPlanId', this.weekPlanId);
+                formData.append('day', this.dayOfWeek);
+            } else {
+                url = 'api/regenerate-meals';
+                formData.append('day-menu-name', this.dayMenu.name);
+                formData.append('max-calories', maxCalories);
+                formData.append('day-of-week', this.dayOfWeek);
+            }
 
             ApiUtil.postToApi(url, formData).then(function (data) {
                 _this.dayMenu.meals = data['meals'];
@@ -12350,6 +12358,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -12372,10 +12392,17 @@ var timeOfDay = __webpack_require__(11);
             caloryGoal: window.caloryGoal,
             dayMenus: [],
             totalCalories: 0,
-            caloriesLeft: 0
+            additional: 0,
+            exercise: 0,
+            showAdditionalFood: false,
+            showExercise: false
         };
     },
-
+    computed: {
+        total: function total() {
+            return parseInt(this.totalCalories) + parseInt(this.additional ? this.additional : 0) - parseInt(this.exercise ? this.exercise : 0);
+        }
+    },
     mounted: function mounted() {
         this.getMeals();
     },
@@ -12389,12 +12416,18 @@ var timeOfDay = __webpack_require__(11);
             ApiUtil.fetchFromApi(url, {}).then(function (dayMenus) {
                 _this.dayMenus = dayMenus;
                 _this.totalCalories = _this.dayMenus[_this.dayOfWeek].totalcalories;
+                _this.additional = _this.dayMenus[_this.dayOfWeek].additional;
+                _this.exercise = _this.dayMenus[_this.dayOfWeek].exercise;
             });
         },
         goToDayView: function goToDayView(value) {
             this.dayOfWeek = value;
             //console.log(this.dayMenus[this.dayOfWeek].totalcalories);
             this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
+            this.additional = this.dayMenus[this.dayOfWeek].additional;
+            this.exercise = this.dayMenus[this.dayOfWeek].exercise;
+            this.showAdditionalFood = false;
+            this.showExercise = false;
         },
         updateCalories: function updateCalories($event) {
             if ($event.meal_completed == true) {
@@ -12402,6 +12435,20 @@ var timeOfDay = __webpack_require__(11);
             } else {
                 this.totalCalories -= $event.meal.calories;
             }
+        },
+        updateAdditional: function updateAdditional() {
+            var formData = new FormData();
+            formData.append('additional', this.additional ? this.additional : 0);
+            ApiUtil.postToApi('api/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+                //this.totalCalories += this.additional;
+            });
+        },
+        updateExercise: function updateExercise() {
+            var formData = new FormData();
+            formData.append('exercise', this.exercise ? this.exercise : 0);
+            ApiUtil.postToApi('api/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
+                //this.totalCalories += this.additional;
+            });
         }
     }
 });
@@ -12435,7 +12482,6 @@ var render = function() {
                   attrs: {
                     "day-menu": dayMenu,
                     "day-of-week": _vm.dayOfWeek,
-                    "calories-left": _vm.caloriesLeft,
                     "is-user": 1,
                     weekPlanId: _vm.weekPlanId,
                     caloryGoal: _vm.caloryGoal
@@ -12452,7 +12498,147 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "col-lg-12 col-xs-12 col-sm-12",
+          attrs: { id: "box-btn-footer" }
+        },
+        [
+          _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-6" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success btn-block",
+                attrs: { href: "#", id: "btn-light-green" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.showAdditionalFood = !_vm.showAdditionalFood
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fa fa-plus" }),
+                _vm._v("Add Additional Foods Consumed")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                class: [_vm.showAdditionalFood ? "" : "hidden"],
+                staticStyle: { padding: "20px" }
+              },
+              [
+                _vm._v("\n                I ate "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.additional,
+                      expression: "additional"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  staticStyle: { display: "inline", width: "150px" },
+                  attrs: { type: "text", placeholder: "123" },
+                  domProps: { value: _vm.additional },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.additional = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" more calories.\n                "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: { "margin-top": "-2px" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.updateAdditional($event)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-check" }), _vm._v(" Confirm")]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-6" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-success btn-block",
+                attrs: { href: "#", id: "btn-light-orange" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.showExercise = !_vm.showExercise
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-plus" }), _vm._v("Add Exercise")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                class: [_vm.showExercise ? "" : "hidden"],
+                staticStyle: { padding: "20px" }
+              },
+              [
+                _vm._v("\n                I spent "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.exercise,
+                      expression: "exercise"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  staticStyle: { display: "inline", width: "150px" },
+                  attrs: { type: "text", placeholder: "123" },
+                  domProps: { value: _vm.exercise },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.exercise = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" calories exercising!\n                "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: { "margin-top": "-2px" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.updateExercise($event)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-check" }), _vm._v(" Confirm")]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -12464,7 +12650,29 @@ var render = function() {
         [
           _c("div", { staticClass: "col-lg-4 col-xs-12 col-sm-4" }, [
             _c("div", { staticClass: "supporting-text" }, [
-              _c("h1", [_vm._v(_vm._s(_vm.totalCalories))]),
+              _c("h1", [
+                _vm._v(_vm._s(_vm.total) + "\n                    "),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "small",
+                  {
+                    staticClass: "text-muted",
+                    staticStyle: { "font-size": "12px" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.totalCalories) +
+                        " + " +
+                        _vm._s(_vm.additional ? _vm.additional : 0) +
+                        " additional - " +
+                        _vm._s(parseInt(_vm.exercise ? _vm.exercise : 0)) +
+                        " exercise\n                    "
+                    )
+                  ]
+                )
+              ]),
               _vm._v(" "),
               _c("p", [_vm._v("Actual Consumed")])
             ])
@@ -12479,7 +12687,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-lg-4 col-xs-12 col-sm-4" }, [
-            parseInt(_vm.totalCalories) <= parseInt(_vm.caloryGoal)
+            parseInt(_vm.total) <= parseInt(_vm.caloryGoal)
               ? _c("div", { staticClass: "supporting-text-green" }, [
                   _c("p", { staticClass: "text-center" }, [
                     _vm._v(
@@ -12489,7 +12697,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            parseInt(_vm.totalCalories) > parseInt(_vm.caloryGoal)
+            parseInt(_vm.total) > parseInt(_vm.caloryGoal)
               ? _c("div", { staticClass: "supporting-text-orange" }, [
                   _c("p", { staticClass: "text-center" }, [
                     _vm._v(
@@ -12505,46 +12713,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-lg-12 col-xs-12 col-sm-12",
-        attrs: { id: "box-btn-footer" }
-      },
-      [
-        _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-6" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-success btn-block",
-              attrs: { href: "#", id: "btn-light-green" }
-            },
-            [
-              _c("i", { staticClass: "fa fa-plus" }),
-              _vm._v("Add Additional Foods Consumed")
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-6 col-xs-12 col-sm-6" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-success btn-block",
-              attrs: { href: "#", id: "btn-light-orange" }
-            },
-            [_c("i", { staticClass: "fa fa-plus" }), _vm._v("Add Exercise")]
-          )
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

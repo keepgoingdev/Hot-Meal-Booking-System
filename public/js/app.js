@@ -12111,6 +12111,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 // Utils
 var ApiUtil = __webpack_require__(2);
@@ -12122,7 +12123,7 @@ var mealItem = __webpack_require__(13);
     components: {
         'meal-item': mealItem
     },
-    props: ['dayMenu', 'dayOfWeek', 'caloriesLeft', 'isUser', 'weekPlanId', 'caloryGoal'],
+    props: ['dayMenu', 'dayOfWeek', 'isUser', 'weekPlanId', 'caloryGoal'],
     data: function data() {
         return {};
     },
@@ -12130,12 +12131,19 @@ var mealItem = __webpack_require__(13);
         regenerateMeals: function regenerateMeals() {
             var _this = this;
 
-            var url = 'api/regenerate-meals';
             var formData = new FormData();
-            var maxCalories = this.dayMenu.calories + this.caloriesLeft;
-            formData.append('day-menu-name', this.dayMenu.name);
-            formData.append('max-calories', maxCalories);
-            formData.append('day-of-week', this.dayOfWeek);
+            var url = null;
+            if (this.isUser) {
+                url = 'api/get-new-meals';
+                formData.append('mealType', this.dayMenu.name);
+                formData.append('weekPlanId', this.weekPlanId);
+                formData.append('day', this.dayOfWeek);
+            } else {
+                url = 'api/regenerate-meals';
+                formData.append('day-menu-name', this.dayMenu.name);
+                formData.append('max-calories', maxCalories);
+                formData.append('day-of-week', this.dayOfWeek);
+            }
 
             ApiUtil.postToApi(url, formData).then(function (data) {
                 _this.dayMenu.meals = data['meals'];

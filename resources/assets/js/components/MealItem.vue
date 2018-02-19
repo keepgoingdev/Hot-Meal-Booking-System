@@ -23,7 +23,7 @@
             <center>
                 <div class="checkbox checkbox-info">
 
-                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed" @click="mealCompleted(meal.id)">
+                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed == '1' || meal.meal_completed == true" @click="mealCompleted(meal.id)">
                     <label :for="'check'+parseInt(meal.id)">
                     </label>
                 </div>

@@ -135,11 +135,16 @@ class Meal extends Model
     {
         //return self::whereIn('meals.id', $mealIds)->get();
 
-        return self::select(\DB::raw('distinct meals.*, day_menus.meal_completed'))
+        $s = self::select(\DB::raw('distinct meals.*, day_menus.meal_completed'))
             ->whereIn('meals.id', $mealIds)
             ->leftJoin('day_menus', 'meals.id', '=', 'day_menus.meal_id')
             ->where('week_plan_id', $weekPlanId)
             ->where('day', $day)
             ->get();
+            //ugly fix to get rid of weird mysql not casting correctly to int on this very single server...
+        foreach($s as &$a) {
+        	$a->meal_completed = (int) $a->meal_completed;
+        }
+        return $s;
     }
 }

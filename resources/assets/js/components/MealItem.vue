@@ -18,10 +18,11 @@
         </td>                                    
         <td class="semi-top" v-bind:class="{'hidden': isUser != 1}" style="min-width: 40px" id="right-border-table">
             <center>
-                <div class="checkbox checkbox-info"  @click="mealCompleted(meal.id)">
+                <div class="checkbox checkbox-info">
 
-                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed == '1' || meal.meal_completed == true">
-
+                    <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed == '1' || meal.meal_completed == true" @click="mealCompleted(meal.id)">
+                    <label :for="'check'+parseInt(meal.id)">
+                    </label>
                 </div>
             </center>
         </td>

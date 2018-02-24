@@ -643,7 +643,7 @@ input[type=number]::-webkit-outer-spin-button {
 #right-border-table{
 	border-left:1px solid #DDDDDD;
 }
-/*
+
 .checkbox {
 	padding-left: 0px;
 }
@@ -714,7 +714,7 @@ input[type=number]::-webkit-outer-spin-button {
 .checkbox-info input[type="checkbox"]:checked + ::after {
 	color: #fff;
 }
-*/
+
 #box-btn-footer{
 	padding-top:50px;
 }

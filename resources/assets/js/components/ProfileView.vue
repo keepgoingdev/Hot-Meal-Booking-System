@@ -110,12 +110,7 @@
                     this.exercise = this.dayMenus[this.dayOfWeek].exercise;
                     Vue.nextTick(function () {
                         $('[data-toggle="tooltip"]').tooltip();
-                        $(function() {
-                            $('.mycheck').bootstrapToggle({
-                                off: 'Not Eaten',
-                                on: 'Eaten'
-                            });
-                        })
+
                     })
             });
             },
@@ -127,6 +122,7 @@
                     this.exercise = this.dayMenus[this.dayOfWeek].exercise;
                     this.showAdditionalFood = false;
                     this.showExercise = false;
+
                 },
             updateCalories($event) {
                 if($event.meal_completed == true) {

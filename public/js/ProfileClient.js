@@ -11941,6 +11941,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -12047,31 +12048,24 @@ var render = function() {
       },
       [
         _c("center", [
-          _c(
-            "div",
-            {
-              staticClass: "checkbox checkbox-info",
+          _c("div", { staticClass: "checkbox checkbox-info" }, [
+            _c("input", {
+              staticClass: "mycheck",
+              attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
+              domProps: {
+                checked:
+                  _vm.meal.meal_completed == "1" ||
+                  _vm.meal.meal_completed == true
+              },
               on: {
                 click: function($event) {
                   _vm.mealCompleted(_vm.meal.id)
                 }
               }
-            },
-            [
-              _c("input", {
-                staticClass: "mycheck",
-                attrs: {
-                  id: "check" + parseInt(_vm.meal.id),
-                  type: "checkbox"
-                },
-                domProps: {
-                  checked:
-                    _vm.meal.meal_completed == "1" ||
-                    _vm.meal.meal_completed == true
-                }
-              })
-            ]
-          )
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
+          ])
         ])
       ],
       1
@@ -12435,12 +12429,6 @@ var timeOfDay = __webpack_require__(11);
                 _this.exercise = _this.dayMenus[_this.dayOfWeek].exercise;
                 Vue.nextTick(function () {
                     $('[data-toggle="tooltip"]').tooltip();
-                    $(function () {
-                        $('.mycheck').bootstrapToggle({
-                            off: 'Not Eaten',
-                            on: 'Eaten'
-                        });
-                    });
                 });
             });
         },

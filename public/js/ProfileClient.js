@@ -12458,8 +12458,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { "z-index": "-1" } },
     [
       _c("day-card-list", {
+        staticStyle: { "z-index": "100" },
         attrs: {
           "starting-date": _vm.startDate,
           "day-of-week": _vm.dayOfWeek,

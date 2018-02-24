@@ -1,6 +1,6 @@
 <template>
-    <div>
-            <day-card-list v-on:set-current-date="goToDayView"
+    <div style="z-index: -1">
+            <day-card-list v-on:set-current-date="goToDayView" style="z-index: 100"
 
                 :starting-date="startDate"
                 :day-of-week="dayOfWeek"

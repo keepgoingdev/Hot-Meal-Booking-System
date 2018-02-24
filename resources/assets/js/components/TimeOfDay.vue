@@ -3,6 +3,7 @@
         <div class="col-lg-6 col-sm-6">
             <span class="btn btn-default" id="btn-meal-name">{{dayMenu.name}}</span>
             <button @click="regenerateMeals" class="btn btn-default" id="btn-meal-shuffle"><i class="fa fa-random"></i></button>
+            <span style="margin-top: 5px"><i class="fa fa-question circle"  data-toggle="tooltip" title="You can regenerate the meals by clicking the button!"></i></span>
         </div>
         <div class="col-lg-6 col-sm-6">
             <p class="total-calories-profile">{{dayMenu.calories}} calories</p>
@@ -23,8 +24,8 @@
 
     </div>
 </template>
-
 <script>
+
     // Utils
     const ApiUtil = require('../Utils/ApiUtil.js');
 

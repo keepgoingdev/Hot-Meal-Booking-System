@@ -12113,6 +12113,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 // Utils
 var ApiUtil = __webpack_require__(2);
 
@@ -12216,12 +12217,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -12361,24 +12356,31 @@ var render = function() {
       },
       [
         _c("center", [
-          _c("div", { staticClass: "checkbox checkbox-info" }, [
-            _c("input", {
-              staticClass: "mycheck",
-              attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
-              domProps: {
-                checked:
-                  _vm.meal.meal_completed == "1" ||
-                  _vm.meal.meal_completed == true
-              },
+          _c(
+            "div",
+            {
+              staticClass: "checkbox checkbox-info",
               on: {
                 click: function($event) {
                   _vm.mealCompleted(_vm.meal.id)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
-          ])
+            },
+            [
+              _c("input", {
+                staticClass: "mycheck",
+                attrs: {
+                  id: "check" + parseInt(_vm.meal.id),
+                  type: "checkbox"
+                },
+                domProps: {
+                  checked:
+                    _vm.meal.meal_completed == "1" ||
+                    _vm.meal.meal_completed == true
+                }
+              })
+            ]
+          )
         ])
       ],
       1
@@ -12426,7 +12428,9 @@ var render = function() {
             on: { click: _vm.regenerateMeals }
           },
           [_c("i", { staticClass: "fa fa-random" })]
-        )
+        ),
+        _vm._v(" "),
+        _vm._m(0)
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-6 col-sm-6" }, [
@@ -12466,7 +12470,22 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticStyle: { "margin-top": "5px" } }, [
+      _c("i", {
+        staticClass: "fa fa-question circle",
+        attrs: {
+          "data-toggle": "tooltip",
+          title: "You can regenerate the meals by clicking the button!"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -63,6 +63,7 @@
 </template>
 
 <script>
+
     const ApiUtil = require('../Utils/ApiUtil.js');
 
     const dayCardList = require('../components/DayCardList.vue');
@@ -107,7 +108,15 @@
                     this.totalCalories = this.dayMenus[this.dayOfWeek].totalcalories;
                     this.additional = this.dayMenus[this.dayOfWeek].additional;
                     this.exercise = this.dayMenus[this.dayOfWeek].exercise;
-
+                    Vue.nextTick(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                        $(function() {
+                            $('.mycheck').bootstrapToggle({
+                                off: 'Not Eaten',
+                                on: 'Eaten'
+                            });
+                        })
+                    })
             });
             },
             goToDayView(value){

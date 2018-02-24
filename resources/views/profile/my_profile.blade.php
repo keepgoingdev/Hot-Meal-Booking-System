@@ -35,6 +35,7 @@
 
     </div>
     <script>
+
         window.startDate = new Date('{{$startDate}}');
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ Auth::user()->calorie_goal }}';

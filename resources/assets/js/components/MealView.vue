@@ -65,13 +65,13 @@
                 }
             }
             let nextMonday = new Date();
-            let daysToNextMonday = (1 + 7 - nextMonday.getDay()) % 7;
+            /*let daysToNextMonday = (1 + 7 - nextMonday.getDay()) % 7;
 
             //if today is Monday pick next week
             if(daysToNextMonday === 0){
                 daysToNextMonday = 7;
             }
-            nextMonday.setDate(nextMonday.getDate() + daysToNextMonday);
+            nextMonday.setDate(nextMonday.getDate() + daysToNextMonday);*/
 
             return {
                 state: state,

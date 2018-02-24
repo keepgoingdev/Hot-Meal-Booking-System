@@ -4,9 +4,11 @@
         <a href="/"><img src="img/logo.png" alt="" class="img-responsive"></a>
     </div>
     <div class="container" id="container-profile">
-        <div id="grocery-list-client">
-            <grocery-list></grocery-list>
+
+        <div class="col-lg-12" id="box-show-steps-caption">
+            <h3 class="text-center">FAQ</h3>
         </div>
+        <p>Please provide me with this info.</p>
     </div>
-    <script src="{{ URL::asset('js/GroceryListClient.js')}}"></script>
+    </div>
 @endsection

@@ -13,10 +13,13 @@ class GroceryListController extends Controller
         $this->middleware('auth');
     }
 
-    public function getGroceryList(Request $request)
+    public function getGroceryList(Request $request, $weekPlanId)
     {
         $user = $request->user();
-        $weekPlan = WeekPlan::getCurrentWeekPlan($user->id);
+        $weekPlan = WeekPlan::find($weekPlanId);
+        if(\Auth::id() != $weekPlan->user_id) {
+            return response()->json(array('message' => 'Error'),400);
+        }
         if(is_null($weekPlan)){
             return response()->json(array('message' => 'You have not planned any meals for current week'));
         }

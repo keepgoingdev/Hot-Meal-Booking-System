@@ -11701,7 +11701,7 @@ var render = function() {
                       _vm._s(weekday.month) +
                       ", " +
                       _vm._s(weekday.day) +
-                      "'" +
+                      " " +
                       _vm._s(weekday.year) +
                       "\n                "
                   )
@@ -11942,6 +11942,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -11982,19 +11986,6 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "td-meal-image", staticStyle: { width: "120px" } },
-      [
-        _vm.meal.condiment
-          ? _c("img", {
-              staticClass: "img-responsive",
-              attrs: { src: _vm.meal.condiment.image, alt: "" }
-            })
-          : _vm._e()
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
       { staticClass: "semi-top" },
       [
         _c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.name))])]),
@@ -12006,7 +11997,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("td", { staticClass: "semi-top" }),
+    _c("td", { staticClass: "semi-top hidden-sm hidden-xs" }),
     _vm._v(" "),
     _c(
       "td",
@@ -12056,6 +12047,7 @@ var render = function() {
       {
         staticClass: "semi-top",
         class: { hidden: _vm.isUser != 1 },
+        staticStyle: { "min-width": "40px" },
         attrs: { id: "right-border-table" }
       },
       [
@@ -12309,7 +12301,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__);
-//
 //
 //
 //
@@ -12654,31 +12645,30 @@ var render = function() {
         [
           _c("div", { staticClass: "col-lg-4 col-xs-12 col-sm-4" }, [
             _c("div", { staticClass: "supporting-text" }, [
-              _c("h1", [
-                _vm._v(_vm._s(_vm.total) + "\n                    "),
-                _c("br"),
-                _vm._v(" "),
-                _c(
-                  "small",
-                  {
-                    staticClass: "text-muted",
-                    staticStyle: { "font-size": "12px" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.totalCalories) +
-                        " + " +
-                        _vm._s(_vm.additional ? _vm.additional : 0) +
-                        " additional - " +
-                        _vm._s(parseInt(_vm.exercise ? _vm.exercise : 0)) +
-                        " exercise\n                    "
-                    )
-                  ]
-                )
+              _c("h1", [_vm._v(_vm._s(_vm.total) + "                    ")]),
+              _vm._v(" "),
+              _c("p", { staticStyle: { "margin-bottom": "0" } }, [
+                _vm._v("Actual Consumed")
               ]),
               _vm._v(" "),
-              _c("p", [_vm._v("Actual Consumed")])
+              _c(
+                "small",
+                {
+                  staticClass: "text-muted",
+                  staticStyle: { "font-size": "12px" }
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.totalCalories) +
+                      " + " +
+                      _vm._s(_vm.additional ? _vm.additional : 0) +
+                      " additional - " +
+                      _vm._s(parseInt(_vm.exercise ? _vm.exercise : 0)) +
+                      " exercise\n                    "
+                  )
+                ]
+              )
             ])
           ]),
           _vm._v(" "),

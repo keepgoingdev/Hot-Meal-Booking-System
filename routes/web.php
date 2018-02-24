@@ -7,8 +7,15 @@ Route::get('/upload', 'HomeController@uploadView');
 Route::get('/braintree/token', 'BraintreeTokenController@token');
 // Register
 Route::get('/register', 'StepFiveController@index')->name('register');
-
-
+Route::get('privacy-policy', function() {
+   return view('privacypolicy');
+});
+Route::get('contact', function() {
+    return view('contact');
+});
+Route::get('faq', function() {
+    return view('faq');
+});
 Route::get('/', 'HomeController@index')->name('home');
 
  // Steps
@@ -30,7 +37,7 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
     Route::get('/home/all-weeks', 'ProfileController@allWeeks')->name('my-profile');
     Route::get('/home/{weekId?}', 'ProfileController@myProfile')->name('my-profile');
     Route::get('/week-plans/{weekPlanId}/days/{index}', 'ProfileController@dayView')->name('day-view');
-    Route::get('grocery-list', 'ProfileController@groceryList');
+    Route::get('grocery-list/{weekPlanId?}', 'ProfileController@groceryList')->name('grocerylist');
     Route::get('add-new-week', 'ProfileController@addNewWeek');
     Route::post('add-new-week', 'ProfileController@getMealsForNewWeek');
 });
@@ -51,7 +58,7 @@ Route::group(['prefix' => 'intapi'], function() {
     Route::post('regenerate-meals', 'StepThreeController@regenerateMeals');
     Route::post('starting-date', 'StepThreeController@saveStartingDate');
     Route::get('validate-coupon', 'StepFiveController@ValidateCoupon');
-    Route::get('grocery-list', 'GroceryListController@getGroceryList');
+    Route::get('grocery-list/{weekPlanId?}', 'GroceryListController@getGroceryList');
     Route::get('week-plans/{weekPlanId}', 'ProfileController@getMealsByDayIndex');
     Route::post('mark-meal-as-favorite/{meal}', 'ProfileController@markMealAsFavorite');
     Route::get('cancel-subscription', 'ProfileController@cancelSubscription');

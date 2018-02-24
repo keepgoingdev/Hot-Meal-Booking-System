@@ -10,7 +10,7 @@
                 <span class="[ icon-bar ]"></span>
             </button>
             <div class="[ animbrand ]">
-                <a class="[ navbar-brand ][ animate ]" href="/"><img src="/img/logo.png" alt=""
+                <a class="[ navbar-brand ][ animate ]" href="/home"><img src="/img/logo.png" alt=""
                                                                      class="img-responsive"></a>
             </div>
         </div>

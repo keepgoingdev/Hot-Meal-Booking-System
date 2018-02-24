@@ -8,7 +8,7 @@
                         {{weekday.dayName}}
                     </h4>
                     <p class="text-center">
-                        {{weekday.month}}, {{weekday.day}}'{{weekday.year}}
+                        {{weekday.month}}, {{weekday.day}} {{weekday.year}}
                     </p>
                 </div>
             </div>

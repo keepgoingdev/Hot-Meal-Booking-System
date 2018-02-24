@@ -7,8 +7,9 @@
                 <h2>Hi, {{Auth::user()->first_name}}</h2>
                 <h5>Here are all your weekly plans.</h5>
             </div>
-            <div class="col-lg-6 col-xs-12 col-sm-6">
-                <p class="date-profile">Today's Date : {{date('d F Y')}}</p>
+            <div class="col-lg-6 col-xs-12 col-sm-6 text-right">
+                <a class="btn box-form-btn-green" style="margin-top: 15px;margin-bottom: 10px" href="/home">My Profile</a>
+                <p class="">Today's Date : {{date('d F Y')}}</p>
             </div>
         </div>
         <div class="col-md-12" id="box-menu-profile">
@@ -36,8 +37,8 @@
                         @endphp
                         <tr>
                             <td><a href="/home/{{$week->id}}">View Week #{{$i--}}</a></td>
-                            <td>{{$week->start_date}}</td>
-                            <td>{{$week->end_date}}</td>
+                            <td>{{date('m/d/Y', strtotime($week->start_date))}}</td>
+                            <td>{{date('m/d/Y', strtotime($week->end_date))}}</td>
                             <td>{{$week->weight}}</td>
                             <td>{{$week->calory_goal*7}}</td>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="header-hotmeal">
-        <img src="img/logo.png" alt="" class="img-responsive">
+        <a href="/"><img src="img/logo.png" alt="" class="img-responsive"></a>
     </div>
     <div class="container" id="container-profile">
         <div class="col-lg-12 hidden-xs" id="box-steps">

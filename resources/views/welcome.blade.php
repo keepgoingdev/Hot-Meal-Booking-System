@@ -80,6 +80,7 @@
     </div>
     <div class="container" id="container-whyitworks">
         <div class="col-lg-12 col-sm-12">
+            <br><br>
             <h1 class="text-whyitworks">How it works</h1>
         </div>
         <div class="col-lg-offset-1 col-xs-offset-2 col-sm-offset-1 col-md-offset-1 col-lg-10 col-xs-9 col-sm-9 col-md-11"
@@ -220,7 +221,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-offset-1 col-lg-10">
-                    <img class="box-shadow" width="100%" style="margin-bottom: 80px;" src="/img/comparison.png"/>
+                    <img class="box-shadow hidden-xs" width="100%" style="margin-bottom: 80px;" src="/img/comparison.png"/>
+                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 10px;" src="/img/comparison_left.jpg"/>
+                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 80px;" src="/img/comparison_right.jpg"/>
+
                 </div>
             </div>
             <div class="col-xs-12">

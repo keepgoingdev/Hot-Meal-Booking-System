@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @extends('layouts.navbar')
+    @include('layouts.navbar')
     <div class="container">
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-user-profile">
             <div class="col-lg-6 col-xs-12 col-sm-6">
@@ -19,7 +19,7 @@
                 <a href="/home/all-weeks" class="btn btn-block btn-default" id="btn-list-week">View All Weeks <i class="fa fa-info"></i></a>
             </div>
             <div class="col-lg-4 col-xs-12 col-sm-4 col-md-3">
-                <a href="/grocery-list" class="btn btn-block btn-default" id="btn-list">View this Week's Grocery List <i
+                <a href="{{ route('grocerylist', $weekPlanId) }}" class="btn btn-block btn-default" id="btn-list">View this Week's Grocery List <i
                             class="fa fa-server"></i></a>
             </div>
             <div class="col-lg-3 col-xs-12 col-sm-4 col-md-3">

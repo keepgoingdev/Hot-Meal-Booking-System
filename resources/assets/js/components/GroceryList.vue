@@ -3,8 +3,14 @@
         <div class="col-lg-12 hidden-print" id="box-show-steps-caption">
             <h3 class="text-center">View Your Grocery List For The Week</h3>
         </div>
-        <div class="col-lg-12 col-xs-12 col-sm-12 hidden-print" id="box-menu-profile">
-            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+        <div class="col-lg-12 col-xs-12 col-sm-12 hidden-print" id="box-menu-profile" style="padding-bottom: 5px">
+            <div class="col-lg-3">
+                <div class="text-left">
+                    <!--<a href="#" class="btn btn-default" id="btn-edit">Edit <i class="fa fa-pencil-square-o"></i></a>-->
+                    <span @click="goBack" class="btn btn-default" id="btn-print">My Profile</span>
+                </div>
+            </div>
+            <div class="col-lg-3  col-lg-offset-6">
                 <div class="box-btn-edit-print">
                     <!--<a href="#" class="btn btn-default" id="btn-edit">Edit <i class="fa fa-pencil-square-o"></i></a>-->
                     <span @click="printTable" class="btn btn-default" id="btn-print">Print <i class="fa fa-print"></i></span>
@@ -58,10 +64,13 @@
         },
         methods: {
             getGroceryList() {
-                let url = '/intapi/grocery-list';
+                let url = '/intapi/grocery-list/'+window.weekPlanId;
                 ApiUtil.fetchFromApi(url, {}).then((listItems) => {
                     this.listItems = listItems;
                 });
+            },
+            goBack() {
+                window.location = '/home';
             },
             printTable() {
 //                var pageTitle = 'Page Title',

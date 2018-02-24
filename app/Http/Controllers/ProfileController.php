@@ -32,7 +32,6 @@ class ProfileController extends Controller
                 return back();
             }
         }
-
         return view('profile.my_profile', array(
             'user' => $user,
             'date' => $date,
@@ -285,8 +284,8 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function groceryList()
+    public function groceryList($weekPlanId)
     {
-        return view('profile.grocery_list');
+        return view('profile.grocery_list', compact('weekPlanId'));
     }
 }

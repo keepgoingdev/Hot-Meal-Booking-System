@@ -35,13 +35,12 @@
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-btn-footer" style="margin-bottom: 20px">
             <div class="col-lg-4 col-xs-12 col-sm-4">
                 <div class="supporting-text">
-                    <h1>{{ total }}
-                        <br>
+                    <h1>{{ total }}                    </h1>
+
+                        <p style="margin-bottom: 0">Actual Consumed</p>
                         <small class="text-muted" style="font-size: 12px">
                             {{totalCalories}} + {{additional ? additional : 0}} additional - {{ parseInt(exercise ? exercise : 0) }} exercise
                         </small>
-                    </h1>
-                    <p>Actual Consumed</p>
                 </div>
             </div>
             <div class="col-lg-4 col-xs-12 col-sm-4">

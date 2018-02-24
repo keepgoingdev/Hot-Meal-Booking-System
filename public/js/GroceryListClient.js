@@ -11469,6 +11469,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 // Utils
 var ApiUtil = __webpack_require__(2);
@@ -11492,10 +11498,13 @@ var GroceryListItem = __webpack_require__(67);
         getGroceryList: function getGroceryList() {
             var _this = this;
 
-            var url = '/intapi/grocery-list';
+            var url = '/intapi/grocery-list/' + window.weekPlanId;
             ApiUtil.fetchFromApi(url, {}).then(function (listItems) {
                 _this.listItems = listItems;
             });
+        },
+        goBack: function goBack() {
+            window.location = '/home';
         },
         printTable: function printTable() {
             //                var pageTitle = 'Page Title',
@@ -11868,10 +11877,25 @@ var render = function() {
       "div",
       {
         staticClass: "col-lg-12 col-xs-12 col-sm-12 hidden-print",
+        staticStyle: { "padding-bottom": "5px" },
         attrs: { id: "box-menu-profile" }
       },
       [
-        _c("div", { staticClass: "col-lg-12 col-xs-12 col-sm-12 col-md-12" }, [
+        _c("div", { staticClass: "col-lg-3" }, [
+          _c("div", { staticClass: "text-left" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-default",
+                attrs: { id: "btn-print" },
+                on: { click: _vm.goBack }
+              },
+              [_vm._v("My Profile")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-3  col-lg-offset-6" }, [
           _c("div", { staticClass: "box-btn-edit-print" }, [
             _c(
               "span",

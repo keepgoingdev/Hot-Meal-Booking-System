@@ -11701,7 +11701,7 @@ var render = function() {
                       _vm._s(weekday.month) +
                       ", " +
                       _vm._s(weekday.day) +
-                      "'" +
+                      " " +
                       _vm._s(weekday.year) +
                       "\n                "
                   )
@@ -11942,6 +11942,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -11982,19 +11986,6 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "td-meal-image", staticStyle: { width: "120px" } },
-      [
-        _vm.meal.condiment
-          ? _c("img", {
-              staticClass: "img-responsive",
-              attrs: { src: _vm.meal.condiment.image, alt: "" }
-            })
-          : _vm._e()
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
       { staticClass: "semi-top" },
       [
         _c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.name))])]),
@@ -12006,7 +11997,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("td", { staticClass: "semi-top" }),
+    _c("td", { staticClass: "semi-top hidden-sm hidden-xs" }),
     _vm._v(" "),
     _c(
       "td",
@@ -12056,6 +12047,7 @@ var render = function() {
       {
         staticClass: "semi-top",
         class: { hidden: _vm.isUser != 1 },
+        staticStyle: { "min-width": "40px" },
         attrs: { id: "right-border-table" }
       },
       [
@@ -12305,13 +12297,12 @@ var timeOfDay = __webpack_require__(11);
             }
         };
         var nextMonday = new Date();
-        var daysToNextMonday = (1 + 7 - nextMonday.getDay()) % 7;
-
-        //if today is Monday pick next week
-        if (daysToNextMonday === 0) {
+        /*let daysToNextMonday = (1 + 7 - nextMonday.getDay()) % 7;
+         //if today is Monday pick next week
+        if(daysToNextMonday === 0){
             daysToNextMonday = 7;
         }
-        nextMonday.setDate(nextMonday.getDate() + daysToNextMonday);
+        nextMonday.setDate(nextMonday.getDate() + daysToNextMonday);*/
 
         return {
             state: state,

@@ -86,7 +86,8 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         $dayMenus = session('dayMenus');
-        $startingDate = session('starting-date');
+       // $startingDate = session('starting-date');
+        $startingDate = date('Y-m-d');
         $discountCode = false;
         $input = $request->all();
         $validator = $this->validator($input);

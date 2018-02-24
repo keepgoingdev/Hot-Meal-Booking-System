@@ -72,7 +72,7 @@
                 <div class="col-lg-4" style="font-size:16px">
                     @if($isGrace)
                         On grace period, valid to: <span class="label label-success">{{$subscription->paidThroughDate->format('d F Y')}}</span>
-                        <a class="btn btn-success" style="margin-top: 5px" href="api/resume-subscription">Resume subscription</a>
+                        <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume subscription</a>
                         <br>
                     @else
                         Next Billing: <span class="label label-success">{{$subscription->nextBillingDate->format('d F Y')}}</span>
@@ -80,7 +80,7 @@
                         <br><br>
 
                     @if(!$isGrace)
-                        <a class="btn btn-warning" href="api/cancel-subscription">Cancel subscription</a>
+                        <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel subscription</a>
                             <br><br>
                     @endif
                 </div>

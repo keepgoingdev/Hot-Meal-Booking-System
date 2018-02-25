@@ -39,20 +39,20 @@ class StepOneController extends Controller
 
     protected static function calculateBMR($data){
         if($data['gender'] === 'M'){
-            $bmrWeight = 13.7516 * ($data['weight-pounds'])/2.20462262;
-            $bmrHeight = 5.0033 * ($data['height-feet'] * 30.48) + ($data['height-inches'] * 2.54);
-            $bmrAge = 6.755 * $data['age'];
-            $bmr = 66.473 + $bmrWeight + $bmrHeight - $bmrAge;
-
+            // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5
+            $weightInKg = $data['weight-pounds'] * 0.45359237;
+            $heightInCm = $data['height-feet'] * 30.48 + $data['height-inches'] * 2.54;
+            $bmr = (10 * $weightInKg) + (6.25 * $heightInCm) - (5*$data['age']) + 5;
+            $bmr = round($bmr) * 1.2; //1.2 is light activity.
             if($bmr < 1200){
                 $bmr = 1200;
             }
         }
         elseif ($data['gender'] === 'F'){
-            $bmrWeight = 9.5634 * ($data['weight-pounds'])/2.20462262;
-            $bmrHeight = 1.8496 * ($data['height-feet'] * 30.48) + ($data['height-inches'] * 2.54);
-            $bmrAge = 4.6765 * $data['age'];
-            $bmr = 665.0955 + $bmrWeight + $bmrHeight - $bmrAge;
+            $weightInKg = $data['weight-pounds'] * 0.45359237;
+            $heightInCm = $data['height-feet'] * 30.48 + $data['height-inches'] * 2.54;
+            $bmr = (10 * $weightInKg) + (6.25 * $heightInCm) - (5*$data['age']) - 161;
+            $bmr = round($bmr) * 1.2; //1.2 is light activity.
             if($bmr < 1000){
                 $bmr = 1000;
             }

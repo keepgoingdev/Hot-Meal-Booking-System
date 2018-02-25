@@ -70,20 +70,20 @@ class User extends Authenticatable
             $weight = $this->weight;
         }
         if($this->gender == 'M'){
-            $bmrWeight = 13.7516 * ($weight)/2.20462262;
-            $bmrHeight = 5.0033 * ($this->height_feet * 30.48) + ($this->height_inches * 2.54);
-            $bmrAge = 6.755 * 25; //25=age
-            $bmr = 66.473 + $bmrWeight + $bmrHeight - $bmrAge;
-
+            // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5
+            $weightInKg = $weight * 0.45359237;
+            $heightInCm = $this->height_feet * 30.48 + $this->height_inches * 2.54;
+            $bmr = (10 * $weightInKg) + (6.25 * $heightInCm) - (5*25) + 5;
+            $bmr = round($bmr) * 1.2; //1.2 is light activity.
             if($bmr < 1200){
                 $bmr = 1200;
             }
         }
-        elseif ($this->gender == 'F'){
-            $bmrWeight = 9.5634 * ($weight)/2.20462262;
-            $bmrHeight = 1.8496 * ($this->height_feet * 30.48) + ($this->height_inches * 2.54);
-            $bmrAge = 4.6765 * 25; //25=age
-            $bmr = 665.0955 + $bmrWeight + $bmrHeight - $bmrAge;
+        elseif($this->gender == 'F'){
+            $weightInKg = $weight * 0.45359237;
+            $heightInCm = $this->height_feet * 30.48 + $this->height_inches * 2.54;
+            $bmr = (10 * $weightInKg) + (6.25 * $heightInCm) - (5*25) - 161;
+            $bmr = round($bmr) * 1.2; //1.2 is light activity.
             if($bmr < 1000){
                 $bmr = 1000;
             }
@@ -93,6 +93,7 @@ class User extends Authenticatable
             $bmr = 1500;
         }
         return $bmr;
+
     }
 
 }

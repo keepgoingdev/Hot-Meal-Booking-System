@@ -7,7 +7,7 @@
             <div class="col-lg-3">
                 <div class="text-left">
                     <!--<a href="#" class="btn btn-default" id="btn-edit">Edit <i class="fa fa-pencil-square-o"></i></a>-->
-                    <span @click="goBack" class="btn btn-default" id="btn-print">My Profile</span>
+                    <span @click="goBack" class="btn btn-default" id="btn-print">Back To Dashboard</span>
                 </div>
             </div>
             <div class="col-lg-3  col-lg-offset-6">
@@ -27,8 +27,8 @@
                                 <tr>
                                     <th class="hidden-print" colspan="2">FOOD ITEM</th>
                                     <th class="hidden">FOOD ITEM</th>
-                                    <th class="text-center">QUANTITIY</th>
-                                    <th class="text-center">SERVINGS</th>
+                                    <th class="text-center">TOTAL SERVINGS</th>
+                                    <th class="text-center">SERVING SIZE</th>
                                     <th class="text-center hidden-print">STORE</th>
                                 </tr>
                                 </thead>

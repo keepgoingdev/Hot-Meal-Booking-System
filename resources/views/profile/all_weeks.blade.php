@@ -8,11 +8,12 @@
                 <h5>Here are all your weekly plans.</h5>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-6 text-right">
-                <a class="btn box-form-btn-green" style="margin-top: 15px;margin-bottom: 10px" href="/home">My Profile</a>
+                <a class="btn box-form-btn-green" style="margin-top: 15px;margin-bottom: 10px" href="/home">Back To Dashboard</a>
                 <p class="">Today's Date : {{date('d F Y')}}</p>
             </div>
         </div>
-        <div class="col-md-12" id="box-menu-profile">
+
+        <div class="col-md-12" id="box-menu-profile"><div class="alert alert-info">Net Calories is the sum of calories you’ve eaten minus the sum of calories you’ve burned.</div>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -47,7 +48,8 @@
                                 @php $diff = $week->calory_goal*7 - $ate @endphp
                                 @if($diff > 0)
                                     <div class="label label-success">You were {{$diff}} calories under the limit. </div>
-                                @else
+                                @elseif ($diff = 0)
+                                    <div class="label label-success">You matched your weekly goal perfectly. </div> @else
                                     <div class="label label-danger">You were {{$diff}} calories over the limit. </div>
                                 @endif
                             </td>

@@ -11890,7 +11890,7 @@ var render = function() {
                 attrs: { id: "btn-print" },
                 on: { click: _vm.goBack }
               },
-              [_vm._v("My Profile")]
+              [_vm._v("Back To Dashboard")]
             )
           ])
         ]),
@@ -11977,9 +11977,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "hidden" }, [_vm._v("FOOD ITEM")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("QUANTITIY")]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("TOTAL SERVINGS")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("SERVINGS")]),
+        _c("th", { staticClass: "text-center" }, [_vm._v("SERVING SIZE")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-center hidden-print" }, [_vm._v("STORE")])
       ])

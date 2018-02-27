@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ route('my-profile') }}">
-                                        Profile
+                                        Dashboard
                                     </a>
                                     <a href="{{ route('account-settings') }}">
                                        Account settings

@@ -29,7 +29,7 @@ class AccountConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.account.confirmed')->from('hello@thehotmeal.com','thehotmeal.com')
+        return $this->markdown('emails.account.confirmed')->from('hello@thehotmeal.com','The Hot Meal')
             ->subject('Registration Confirmation')->with($this->data);
     }
 }

@@ -11,13 +11,12 @@
         <div class="col-lg-12">
             <div class="box-detail-meal">
                 <div class="panel panel-default">
-                    <div class="table-responsive">
+
                         <table class="table table-hover">
                             <tbody v-for="meal in dayMenu.meals">
                             <meal-item :meal="meal" :is-user="isUser" v-on:meal-completed="markCompleted($event, meal.id)"></meal-item>
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </div>

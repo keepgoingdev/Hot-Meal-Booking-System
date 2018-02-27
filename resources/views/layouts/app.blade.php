@@ -38,6 +38,10 @@
 @include('layouts.footer')
 <!-- Scripts -->
 <script src="/js/bootstrap.js"></script>
+    <script>
+        $('#myModal').modal('show');
+
+    </script>
 @yield('braintree')
 </body>
 </html>

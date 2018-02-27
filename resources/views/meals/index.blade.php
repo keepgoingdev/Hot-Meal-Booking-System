@@ -16,6 +16,7 @@
                     {{ $meals->links() }}
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Serving Size</th>
                             <th>Calories</th>
@@ -26,6 +27,7 @@
                         <tbody>
                             @foreach($meals as $meal)
                                 <tr>
+                                    <td><img src="{{ $meal->image }}" style="max-height:50px" class="img img-responsive" alt=""></td>
                                     <td>{{$meal->name}}</td>
                                     <td>{{$meal->serving_size}}</td>
                                     <td>{{$meal->calories}}</td>

@@ -1883,6 +1883,23 @@ input[type=number]::-webkit-outer-spin-button {
 	.td-meal-image .img-responsive{
 		min-width: 150px;
 	}
+	@media(max-width: 768px) {
+		.td-meal-image {
+			max-width:300px;
+			word-wrap:break-word;
+			white-space: normal !important;
+		}
+		.td-meal-image .img-responsive {
+			max-width:100px;
+		}
+		table {
+			table-layout: fixed;
+		}
+		.tabletext {
+			display: inline !important;
+			max-width: 300px;
+		}
+	}
 	.box-detail-meal{
 		padding-top: 50px;
 	}

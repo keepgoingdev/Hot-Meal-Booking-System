@@ -6,6 +6,7 @@
             <div class="col-lg-6 col-xs-12 col-sm-6">
                 <h2>Hi, {{$user->first_name}}</h2>
                 <h5>Daily Calorie Goal: {{$user->calorie_goal}} Calories per day</h5>
+                <h5 style="color:#7FD220">Your personal coach is <b>Tara</b>. <br>Reach her at <a style="color:#FB7E4F" href="mailto:tara@thehotmeal.com">tara@thehotmeal.com</a></h5>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-6">
                 <p class="date-profile">Today's Date : {{$date}}</p>
@@ -27,15 +28,49 @@
             </div>
         </div>
 
-        <!--CARD -->
+        <!--CARD -->     @php
+            $goal = Auth::user()->gender == 'M' ? 8400 : 7000;
+        @endphp
         <div id="profile-client">
             <profile-view></profile-view>
         </div>
+        <!-- Modal -->
+        @if(Auth::user()->popup_shown == false)
+            <?php
+                Auth::user()->popup_shown = true;
+            Auth::user()->save();
 
+            ?>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Site Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Hey there {{ Auth::user()->first_name}}, <i class="fa fa-lightbulb"></i> <br>
+                            Please don’t forget to mark each meal you’ve eaten! <br>
+                            You must CHECK THE <b>COMPLETED</b> BOX next to every meal, to keep your goals accurate. <br><br>
+
+
+                        The Hot Meal</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @endif
 
     </div>
-    <script>
 
+    <script>
+        window.gender = '{{ Auth::user()->gender }}';
         window.startDate = new Date('{{$startDate}}');
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ Auth::user()->calorie_goal }}';

@@ -12111,7 +12111,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // Utils
@@ -12251,6 +12250,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -12282,23 +12295,80 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", { staticClass: "tr-detail-meals", attrs: { colspan: "2" } }, [
-    _c("td", { staticClass: "td-meal-image" }, [
+    _c("td", { staticClass: "td-meal-image text-center" }, [
       _c("img", {
         staticClass: "img-responsive",
+        staticStyle: { margin: "0px auto", display: "block" },
         attrs: { src: _vm.meal.image, alt: "" }
-      })
+      }),
+      _vm._v(" "),
+      _c("p", { staticClass: "visible-sm visible-xs" }, [
+        _vm._v(_vm._s(_vm.meal.name))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "visible-sm visible-xs" }, [
+        _vm._v(_vm._s(_vm.meal.serving_size))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row visible-sm visible-xs" }, [
+        _c("div", { staticClass: "col-xs-6 text-right" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleFavorite(_vm.meal.id)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-2x",
+                class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
+              })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-xs-6 text-left" }, [
+          _c(
+            "div",
+            {
+              staticClass: "checkbox checkbox-info",
+              staticStyle: { "margin-top": "-4px" }
+            },
+            [
+              _c("input", {
+                staticClass: "mycheck",
+                attrs: {
+                  id: "check" + parseInt(_vm.meal.id),
+                  type: "checkbox"
+                },
+                domProps: {
+                  checked:
+                    _vm.meal.meal_completed == "1" ||
+                    _vm.meal.meal_completed == true
+                },
+                on: {
+                  click: function($event) {
+                    _vm.mealCompleted(_vm.meal.id)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
+            ]
+          )
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "semi-top" },
-      [
-        _c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.name))])]),
-        _vm._v(" "),
-        _vm.meal.condiment
-          ? _c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.condiment.name))])])
-          : _vm._e()
-      ],
+      { staticClass: "semi-top hidden-xs hidden-sm" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.name))])])],
       1
     ),
     _vm._v(" "),
@@ -12306,7 +12376,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "semi-top", staticStyle: { width: "150px" } },
+      {
+        staticClass: "semi-top hidden-sm hidden-xs",
+        staticStyle: { width: "150px" }
+      },
       [
         _c("center", [_c("p", [_vm._v(_vm._s(_vm.meal.serving_size))])]),
         _vm._v(" "),
@@ -12321,7 +12394,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "td",
-      { staticClass: "semi-top", class: { hidden: _vm.isUser != 1 } },
+      {
+        staticClass: "semi-top  hidden-sm hidden-xs",
+        class: { hidden: _vm.isUser != 1 }
+      },
       [
         _c("center", [
           _c(
@@ -12350,7 +12426,7 @@ var render = function() {
     _c(
       "td",
       {
-        staticClass: "semi-top",
+        staticClass: "semi-top  hidden-sm hidden-xs",
         class: { hidden: _vm.isUser != 1 },
         staticStyle: { "min-width": "40px" },
         attrs: { id: "right-border-table" }
@@ -12436,28 +12512,26 @@ var render = function() {
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "box-detail-meal" }, [
           _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "table-responsive" }, [
-              _c(
-                "table",
-                { staticClass: "table table-hover" },
-                _vm._l(_vm.dayMenu.meals, function(meal) {
-                  return _c(
-                    "tbody",
-                    [
-                      _c("meal-item", {
-                        attrs: { meal: meal, "is-user": _vm.isUser },
-                        on: {
-                          "meal-completed": function($event) {
-                            _vm.markCompleted($event, meal.id)
-                          }
+            _c(
+              "table",
+              { staticClass: "table table-hover" },
+              _vm._l(_vm.dayMenu.meals, function(meal) {
+                return _c(
+                  "tbody",
+                  [
+                    _c("meal-item", {
+                      attrs: { meal: meal, "is-user": _vm.isUser },
+                      on: {
+                        "meal-completed": function($event) {
+                          _vm.markCompleted($event, meal.id)
                         }
-                      })
-                    ],
-                    1
-                  )
-                })
-              )
-            ])
+                      }
+                    })
+                  ],
+                  1
+                )
+              })
+            )
           ])
         ])
       ])

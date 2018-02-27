@@ -50,10 +50,14 @@
                 </div>
             </div>
             <div class="col-lg-4 col-xs-12 col-sm-4">
-                <div class="supporting-text-green" v-if="parseInt(total) <= parseInt(caloryGoal)">
+
+                <div class="supporting-text-orange" v-if="parseInt(total) <= minGoal">
+                    <p class="text-center">You are not eating enough. Please mark the meals as complete to get an updated calculation.</p>
+                </div>
+                <div class="supporting-text-green" v-if="parseInt(total) > minGoal && parseInt(total) <= parseInt(caloryGoal)*1.1">
                     <p class="text-center">Congratulations, You consumed a healthy amount of calories that work with your weight goals.</p>
                 </div>
-                <div class="supporting-text-orange" v-if="parseInt(total) > parseInt(caloryGoal)">
+                <div class="supporting-text-orange" v-if="parseInt(total) > parseInt(caloryGoal)*1.1">
                     <p class="text-center">You consumed more calories than what your daily goal was.</p>
                 </div>
             </div>
@@ -76,6 +80,7 @@
             'time-of-day': timeOfDay,
             Datepicker
         },
+
         data: function(){
             let date = new Date();
             return {
@@ -94,6 +99,9 @@
         computed: {
             total : function() {
                 return parseInt(this.totalCalories) + parseInt(this.additional ? this.additional : 0) - parseInt(this.exercise ? this.exercise : 0) ;
+            },
+            minGoal : function() {
+                return window.gender == 'M' ? 1200 : 1000;
             }
         },
         mounted() {

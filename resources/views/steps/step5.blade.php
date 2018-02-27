@@ -4,7 +4,7 @@
         <a href="/"><img src="img/logo.png" alt="" class="img-responsive"></a>
     </div>
     <div class="container" id="container-profile">
-        <div class="col-lg-12" id="box-steps">
+        <div class="col-lg-12 hidden-xs" id="box-steps">
             <ul class="steps">
                 <li class="step step--complete">
                     <span class="step__icon"></span>

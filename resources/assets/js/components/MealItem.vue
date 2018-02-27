@@ -38,6 +38,8 @@
                     <label :for="'check'+parseInt(meal.id)">
                     </label>
                 </div>
+                <br><small v-if="meal.meal_completed == '0' || meal.meal_completed == false" class="text-muted">Check to mark meal as completed.</small>
+
             </center>
         </td>
     </tr>

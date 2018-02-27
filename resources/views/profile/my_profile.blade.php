@@ -6,7 +6,7 @@
             <div class="col-lg-6 col-xs-12 col-sm-6">
                 <h2>Hi, {{$user->first_name}}</h2>
                 <h5>Daily Calorie Goal: {{$user->calorie_goal}} Calories per day</h5>
-                <h5 style="color:#7FD220">Your personal coach is <b>Tara</b>. <br>Reach her at <a style="color:#FB7E4F" href="mailto:tara@thehotmeal.com">tara@thehotmeal.com</a></h5>
+                <h5 style="color:#7FD220">Your personal coach is <b>Tara</b>. <br>Email -  <a style="color:#FB7E4F" href="mailto:tara@thehotmeal.com">tara@thehotmeal.com</a></h5>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-6">
                 <p class="date-profile">Today's Date : {{$date}}</p>

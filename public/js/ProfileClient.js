@@ -11955,6 +11955,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 var ApiUtil = __webpack_require__(2);
 
@@ -12141,7 +12143,14 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
-          ])
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm.meal.meal_completed == "0" || _vm.meal.meal_completed == false
+            ? _c("small", { staticClass: "text-muted" }, [
+                _vm._v("Check to mark meal as completed.")
+              ])
+            : _vm._e()
         ])
       ],
       1

@@ -9,7 +9,7 @@
         }
     </style>    
     <div class="header-hotmeal">
-        <a href="{{env('APP_URL')}}"><img src="/img/logo.png" class="img-responsive"></a>
+        <a href="/"><img src="/img/logo.png" class="img-responsive"></a>
     </div>
 <div class="container" style="margin-top: 50px">
     <div class="row">

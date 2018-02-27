@@ -114,15 +114,19 @@ class MealController extends Controller
             $request->merge(['is_enabled' => false]);
         }
         $meal->fill($request->all());
-        if($request->has('image')) {
+        
+        if($request->image) {
+        
             try {
-                \Storage::disk('public')->putFileAs('img/food', $request->file('image'), time() . '_' . $request->file('image')->getClientOriginalName());
+                $l = \Storage::disk('public')->putFileAs('img/food', $request->file('image'), time() . '_' . $request->file('image')->getClientOriginalName());
+                
                 $meal->image = time() . '_' . $request->file('image')->getClientOriginalName();
+                
             } catch (\Exception $e) {
                 session()->flash('message', 'There has been an error with the file upload. - ' . $e->getMessage());
                 return redirect()->back()->withInput();
             }
-        }
+        } 
         $meal->save();
         session()->flash('message', 'Saved!');
         return redirect('/admin/meals');

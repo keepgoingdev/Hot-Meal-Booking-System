@@ -54,7 +54,7 @@
                     this.weekdays.push({
                         'dayName': this.days[currentDate.day()],
                         'day': currentDate.date(),
-                        'month': this.months[currentDate.format('M')],
+                        'month': this.months[currentDate.month()],
                         'year': currentDate.format('YYYY')});
                 }
             },

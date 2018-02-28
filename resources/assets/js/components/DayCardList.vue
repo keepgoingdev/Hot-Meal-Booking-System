@@ -46,15 +46,14 @@
         },
         methods: {
             setWeekdays(){
-                var momentStartDate = moment.utc(this.startingDate);
+                var momentStartDate = moment.utc(this.startingDate).add(-1 , 'days');
                 this.weekdays = [];
                 for(let index = 0; index<7; index++){
-                    var currentDate = momentStartDate.add(index, 'days');
-
+                    var currentDate = momentStartDate.add(1, 'days');
                     this.weekdays.push({
-                        'dayName': this.days[currentDate.day()],
+                        'dayName': currentDate.format('dddd'),
                         'day': currentDate.date(),
-                        'month': this.months[currentDate.month()],
+                        'month': currentDate.format('MMM'),
                         'year': currentDate.format('YYYY')});
                 }
             },

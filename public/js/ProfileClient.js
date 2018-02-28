@@ -27867,15 +27867,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         setWeekdays: function setWeekdays() {
-            var momentStartDate = __WEBPACK_IMPORTED_MODULE_0_moment___default.a.utc(this.startingDate);
+            var momentStartDate = __WEBPACK_IMPORTED_MODULE_0_moment___default.a.utc(this.startingDate).add(-1, 'days');
             this.weekdays = [];
             for (var index = 0; index < 7; index++) {
-                var currentDate = momentStartDate.add(index, 'days');
-
+                var currentDate = momentStartDate.add(1, 'days');
                 this.weekdays.push({
-                    'dayName': this.days[currentDate.day()],
+                    'dayName': currentDate.format('dddd'),
                     'day': currentDate.date(),
-                    'month': this.months[currentDate.month()],
+                    'month': currentDate.format('MMM'),
                     'year': currentDate.format('YYYY') });
             }
         },

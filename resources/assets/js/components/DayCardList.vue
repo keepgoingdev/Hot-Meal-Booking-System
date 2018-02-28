@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
     export default {
         props:[
             'startingDate',
@@ -45,16 +46,16 @@
         },
         methods: {
             setWeekdays(){
+                var momentStartDate = moment.utc(this.startingDate);
                 this.weekdays = [];
                 for(let index = 0; index<7; index++){
-                    let date = new Date(this.startingDate.getTime());
-                    date.setDate(date.getDate() + index);
+                    var currentDate = momentStartDate.add(index, 'days');
 
                     this.weekdays.push({
-                        'dayName': this.days[date.getDay()],
-                        'day': date.getDate(),
-                        'month': this.months[date.getMonth()],
-                        'year': date.getFullYear()});
+                        'dayName': this.days[currentDate.day()],
+                        'day': currentDate.date(),
+                        'month': this.months[currentDate.format('M')],
+                        'year': currentDate.format('YYYY')});
                 }
             },
             updateCurrentDate(index){

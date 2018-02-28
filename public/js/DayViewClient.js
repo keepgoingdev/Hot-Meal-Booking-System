@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 76);
+/******/ 	return __webpack_require__(__webpack_require__.s = 197);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 var g;
@@ -93,7 +93,36 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 4:
+/***/ 197:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(198);
+
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, exports, __webpack_require__) {
+
+window.Vue = __webpack_require__(6);
+/*
+Vue.component('day-view', require('../components/DayView.vue'));
+
+const app = new Vue({
+    template:'<day-view :week-plan-id="weekPlanId" :day-index="dayIndex"></day-view>\n',
+    el: '#day-view-client',
+    data(){
+        return {
+            weekPlanId: 2,
+            dayIndex: 0
+        }
+    }
+});
+*/
+
+/***/ }),
+
+/***/ 5:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -284,7 +313,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11098,11 +11127,11 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7).setImmediate))
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -11155,7 +11184,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(7);
+__webpack_require__(8);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11166,11 +11195,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11360,36 +11389,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(4)))
-
-/***/ }),
-
-/***/ 76:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(77);
-
-
-/***/ }),
-
-/***/ 77:
-/***/ (function(module, exports, __webpack_require__) {
-
-window.Vue = __webpack_require__(5);
-/*
-Vue.component('day-view', require('../components/DayView.vue'));
-
-const app = new Vue({
-    template:'<day-view :week-plan-id="weekPlanId" :day-index="dayIndex"></day-view>\n',
-    el: '#day-view-client',
-    data(){
-        return {
-            weekPlanId: 2,
-            dayIndex: 0
-        }
-    }
-});
-*/
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5)))
 
 /***/ })
 

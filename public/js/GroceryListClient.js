@@ -60,12 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 63);
+/******/ 	return __webpack_require__(__webpack_require__.s = 184);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 var g;
@@ -93,7 +93,455 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 1:
+/***/ 184:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(185);
+
+
+/***/ }),
+
+/***/ 185:
+/***/ (function(module, exports, __webpack_require__) {
+
+window.Vue = __webpack_require__(6);
+
+Vue.component('grocery-list', __webpack_require__(186));
+
+var app = new Vue({
+    el: '#grocery-list-client'
+});
+
+/***/ }),
+
+/***/ 186:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(187)
+/* template */
+var __vue_template__ = __webpack_require__(191)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/GroceryList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c72e9538", Component.options)
+  } else {
+    hotAPI.reload("data-v-c72e9538", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 187:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// Utils
+var ApiUtil = __webpack_require__(3);
+
+// Components
+var GroceryListItem = __webpack_require__(188);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'grocery-list-item': GroceryListItem
+    },
+    data: function data() {
+        return {
+            listItems: []
+        };
+    },
+    mounted: function mounted() {
+        this.getGroceryList();
+    },
+
+    methods: {
+        getGroceryList: function getGroceryList() {
+            var _this = this;
+
+            var url = '/intapi/grocery-list/' + window.weekPlanId;
+            ApiUtil.fetchFromApi(url, {}).then(function (listItems) {
+                _this.listItems = listItems;
+            });
+        },
+        goBack: function goBack() {
+            window.location = '/home';
+        },
+        printTable: function printTable() {
+            //                var pageTitle = 'Page Title',
+            //                    stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+            //                    win = window.open('', 'Print', 'width=1024,height=1024');
+            //                win.document.write('<html><head><title>Grocery List</title>' +
+            //                    '<link rel="stylesheet" href="' + stylesheet + '">' +
+            //                    '</head><body>' + $('.table')[0].innerHTML + '</body></html>');
+            //                win.document.close();
+            window.print();
+            //                win.close();
+            //                return false;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 188:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(189)
+/* template */
+var __vue_template__ = __webpack_require__(190)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/GroceryListItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d696e5d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-d696e5d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 189:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['item']
+});
+
+/***/ }),
+
+/***/ 190:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", { staticClass: "tr-detail-meals" }, [
+    _c("td", { staticClass: "td-meal-image hidden-print" }, [
+      _c("img", {
+        staticClass: "img-responsive",
+        attrs: { src: _vm.item.meal.image, alt: "" }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.name))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.quantity))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top" },
+      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.serving_size))])])],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      { staticClass: "semi-top hidden-print" },
+      [
+        _c("center", [
+          _c("a", { attrs: { href: "#" } }, [
+            _c("img", {
+              staticClass: "img-responsive",
+              attrs: { src: "img/tj.png", alt: "", id: "img-store" }
+            })
+          ])
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d696e5d2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 191:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-12 col-xs-12 col-sm-12 hidden-print",
+        staticStyle: { "padding-bottom": "5px" },
+        attrs: { id: "box-menu-profile" }
+      },
+      [
+        _c("div", { staticClass: "col-lg-3" }, [
+          _c("div", { staticClass: "text-left" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-default",
+                attrs: { id: "btn-print" },
+                on: { click: _vm.goBack }
+              },
+              [_vm._v("Back To Dashboard")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-3  col-lg-offset-6" }, [
+          _c("div", { staticClass: "box-btn-edit-print" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-default",
+                attrs: { id: "btn-print" },
+                on: { click: _vm.printTable }
+              },
+              [_vm._v("Print "), _c("i", { staticClass: "fa fa-print" })]
+            )
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-12 col-sm-12",
+        staticStyle: { "margin-top": "0px" },
+        attrs: { id: "box-meal-profile" }
+      },
+      [
+        _c("div", { staticClass: "col-lg-12 col-xs-12" }, [
+          _c("div", { staticClass: "box-detail-meal" }, [
+            _c("div", { staticClass: "panel panel-default" }, [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c(
+                  "table",
+                  { staticClass: "table table-hover" },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._l(_vm.listItems, function(item) {
+                      return _c(
+                        "tbody",
+                        [_c("grocery-list-item", { attrs: { item: item } })],
+                        1
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "col-lg-12 hidden-print",
+        attrs: { id: "box-show-steps-caption" }
+      },
+      [
+        _c("h3", { staticClass: "text-center" }, [
+          _vm._v("View Your Grocery List For The Week")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { attrs: { id: "thead-food-item" } }, [
+      _c("tr", [
+        _c("th", { staticClass: "hidden-print", attrs: { colspan: "2" } }, [
+          _vm._v("FOOD ITEM")
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "hidden" }, [_vm._v("FOOD ITEM")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("TOTAL SERVINGS")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("SERVING SIZE")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center hidden-print" }, [_vm._v("STORE")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c72e9538", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -203,7 +651,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -278,7 +726,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -469,7 +917,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11283,11 +11731,11 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7).setImmediate))
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -11340,7 +11788,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(7);
+__webpack_require__(8);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11351,325 +11799,11 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 
-/***/ 63:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(64);
-
-
-/***/ }),
-
-/***/ 64:
-/***/ (function(module, exports, __webpack_require__) {
-
-window.Vue = __webpack_require__(5);
-
-Vue.component('grocery-list', __webpack_require__(65));
-
-var app = new Vue({
-    el: '#grocery-list-client'
-});
-
-/***/ }),
-
-/***/ 65:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(66)
-/* template */
-var __vue_template__ = __webpack_require__(70)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/GroceryList.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c72e9538", Component.options)
-  } else {
-    hotAPI.reload("data-v-c72e9538", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 66:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-// Utils
-var ApiUtil = __webpack_require__(2);
-
-// Components
-var GroceryListItem = __webpack_require__(67);
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: {
-        'grocery-list-item': GroceryListItem
-    },
-    data: function data() {
-        return {
-            listItems: []
-        };
-    },
-    mounted: function mounted() {
-        this.getGroceryList();
-    },
-
-    methods: {
-        getGroceryList: function getGroceryList() {
-            var _this = this;
-
-            var url = '/intapi/grocery-list/' + window.weekPlanId;
-            ApiUtil.fetchFromApi(url, {}).then(function (listItems) {
-                _this.listItems = listItems;
-            });
-        },
-        goBack: function goBack() {
-            window.location = '/home';
-        },
-        printTable: function printTable() {
-            //                var pageTitle = 'Page Title',
-            //                    stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
-            //                    win = window.open('', 'Print', 'width=1024,height=1024');
-            //                win.document.write('<html><head><title>Grocery List</title>' +
-            //                    '<link rel="stylesheet" href="' + stylesheet + '">' +
-            //                    '</head><body>' + $('.table')[0].innerHTML + '</body></html>');
-            //                win.document.close();
-            window.print();
-            //                win.close();
-            //                return false;
-        }
-    }
-});
-
-/***/ }),
-
-/***/ 67:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(68)
-/* template */
-var __vue_template__ = __webpack_require__(69)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/GroceryListItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d696e5d2", Component.options)
-  } else {
-    hotAPI.reload("data-v-d696e5d2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 68:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['item']
-});
-
-/***/ }),
-
-/***/ 69:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("tr", { staticClass: "tr-detail-meals" }, [
-    _c("td", { staticClass: "td-meal-image hidden-print" }, [
-      _c("img", {
-        staticClass: "img-responsive",
-        attrs: { src: _vm.item.meal.image, alt: "" }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.name))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.quantity))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.item.meal.serving_size))])])],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top hidden-print" },
-      [
-        _c("center", [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", {
-              staticClass: "img-responsive",
-              attrs: { src: "img/tj.png", alt: "", id: "img-store" }
-            })
-          ])
-        ])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d696e5d2", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 7:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11859,141 +11993,7 @@ if (false) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(4)))
-
-/***/ }),
-
-/***/ 70:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-12 col-xs-12 col-sm-12 hidden-print",
-        staticStyle: { "padding-bottom": "5px" },
-        attrs: { id: "box-menu-profile" }
-      },
-      [
-        _c("div", { staticClass: "col-lg-3" }, [
-          _c("div", { staticClass: "text-left" }, [
-            _c(
-              "span",
-              {
-                staticClass: "btn btn-default",
-                attrs: { id: "btn-print" },
-                on: { click: _vm.goBack }
-              },
-              [_vm._v("Back To Dashboard")]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-3  col-lg-offset-6" }, [
-          _c("div", { staticClass: "box-btn-edit-print" }, [
-            _c(
-              "span",
-              {
-                staticClass: "btn btn-default",
-                attrs: { id: "btn-print" },
-                on: { click: _vm.printTable }
-              },
-              [_vm._v("Print "), _c("i", { staticClass: "fa fa-print" })]
-            )
-          ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "col-lg-12 col-sm-12",
-        staticStyle: { "margin-top": "0px" },
-        attrs: { id: "box-meal-profile" }
-      },
-      [
-        _c("div", { staticClass: "col-lg-12 col-xs-12" }, [
-          _c("div", { staticClass: "box-detail-meal" }, [
-            _c("div", { staticClass: "panel panel-default" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c(
-                  "table",
-                  { staticClass: "table table-hover" },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._l(_vm.listItems, function(item) {
-                      return _c(
-                        "tbody",
-                        [_c("grocery-list-item", { attrs: { item: item } })],
-                        1
-                      )
-                    })
-                  ],
-                  2
-                )
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-lg-12 hidden-print",
-        attrs: { id: "box-show-steps-caption" }
-      },
-      [
-        _c("h3", { staticClass: "text-center" }, [
-          _vm._v("View Your Grocery List For The Week")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { attrs: { id: "thead-food-item" } }, [
-      _c("tr", [
-        _c("th", { staticClass: "hidden-print", attrs: { colspan: "2" } }, [
-          _vm._v("FOOD ITEM")
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "hidden" }, [_vm._v("FOOD ITEM")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("TOTAL SERVINGS")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("SERVING SIZE")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center hidden-print" }, [_vm._v("STORE")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c72e9538", module.exports)
-  }
-}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5)))
 
 /***/ })
 

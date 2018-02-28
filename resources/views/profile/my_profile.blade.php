@@ -71,7 +71,7 @@
 
     <script>
         window.gender = '{{ Auth::user()->gender }}';
-        window.startDate = new Date('{{$startDate}}');
+        window.startDate = '{{$startDate}}';
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ Auth::user()->calorie_goal }}';
     </script>

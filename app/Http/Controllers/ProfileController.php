@@ -83,12 +83,12 @@ class ProfileController extends Controller
         $date2 = new \DateTime($latestWeek->end_date);
         $startOfNewWeek = $date->modify('+1 day');
         $endOfNewWeek = $date2->modify('+8 days');
-
+        $goal = $user->fresh()->calculateBMR() + (int) $request->lose;
         $newWeek = WeekPlan::create([
             'user_id' => Auth::id(),
             'start_date' => $startOfNewWeek,
             'end_date' => $endOfNewWeek,
-            'calory_goal' => $user->fresh()->calculateBMR(),
+            'calory_goal' => $goal,
             'weight' => $request->weight
         ]);
 

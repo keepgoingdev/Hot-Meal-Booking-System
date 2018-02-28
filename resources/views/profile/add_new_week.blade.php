@@ -18,6 +18,20 @@
                 <div class="form-group">
                     <input type="text" placeholder="Your current weight" name="weight" class="form-control">
                 </div>
+
+                <div class="form-group">                                        <select class="form-control" name="lose" id="lose-select">
+                                            <option value="-1000" {{ old("lose") === '-2' ? "selected":"" }}>Lose 2 pounds per week</option>
+                                            <option value="-750" {{ old("lose") === '-1.5' ? "selected":"" }}>Lose 1.5 pounds per week</option>
+                                            <option value="-500" {{ old("lose") === '-1' ? "selected":"" }}>Lose 1 pound per week</option>
+                                            <option value="-250" {{ old("lose") === '-0.5' ? "selected":"" }}>Lose 0.5 pounds per week</option>
+                                            <option value="0" selected>Maintain weight</option>
+                                            <option value="250" {{ old("lose") === '0.5' ? "selected":"" }}>Gain 0.5 pounds per week</option>
+                                            <option value="500" {{ old("lose") === '1' ? "selected":"" }}>Gain 1 pounds per week</option>
+                                            <option value="750" {{ old("lose") === '1.5' ? "selected":"" }}>Gain 1.5 pounds per week</option>
+                                            <option value="1000" {{ old("lose") === '2' ? "selected":"" }}>Gain 2 pounds per week</option>
+
+                                        </select>
+                </div>
                 <div class="form-group">
                     <input type="submit" class="form-control btn-md btn btn-success"  value="Get new weekly plan!">
                 </div>

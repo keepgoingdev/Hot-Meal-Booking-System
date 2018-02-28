@@ -141,7 +141,7 @@
         </div>
     </div>
 
-    <div class="container-fluid" id="fluid-grey">
+    <div class="container-fluid" id="fluid-grey" style="overflow:hidden">
         <div class="container ">
             <div class="col-lg-12">
                 <h3>What They’re Saying About TheHotMeal.com</h3>

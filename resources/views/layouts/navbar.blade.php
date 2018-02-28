@@ -16,7 +16,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
+        <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1" style="margin-bottom: -50px">
             <ul class="[ nav navbar-nav navbar-right ]">
                 @guest
                     <li><a href="{{route('step-one')}}" class="btn btn-default" id="btn-trial-nav">GET STARTED</a></li>

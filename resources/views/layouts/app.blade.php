@@ -27,7 +27,19 @@
             }
         });
     </script>
-
+    <style>
+    #bs-example-navbar-collapse-1 {
+    margin-bottom: -50px;
+    
+    }
+    .slick-next { 
+    right: -5px !important;
+    }
+#box-user-profile {
+padding-top: 0 !important;
+margin-top: 50px
+}
+    </style>   
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css?v1')}}">

@@ -13,6 +13,7 @@ Route::get('privacy-policy', function() {
 Route::get('contact', function() {
     return view('contact');
 });
+Route::post('contact', 'HomeController@contact');
 Route::get('faq', function() {
     return view('faq');
 });

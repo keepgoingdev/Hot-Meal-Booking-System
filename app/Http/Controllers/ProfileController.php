@@ -286,6 +286,15 @@ class ProfileController extends Controller
 
     public function groceryList($weekPlanId)
     {
-        return view('profile.grocery_list', compact('weekPlanId'));
+    	
+        $weekPlan = WeekPlan::find($weekPlanId);
+        if(\Auth::id() != $weekPlan->user_id) {
+            return response()->json(array('message' => 'Error'),400);
+        }
+        if(is_null($weekPlan)){
+            return response()->json(array('message' => 'You have not planned any meals for current week'));
+        }
+        $groceryList = \App\Models\GroceryList::getCurrentList(\Auth::id(), $weekPlan);
+        return view('profile.grocery_list', compact('groceryList'));
     }
 }

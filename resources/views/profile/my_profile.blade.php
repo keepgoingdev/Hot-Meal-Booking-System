@@ -12,7 +12,7 @@
                 <p class="date-profile">Today's Date : {{$date}}</p>
             </div>
         </div>
-        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile">
+        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile" style=" z-index: 100;">
             <div class="col-lg-2 col-xs-12 col-sm-4 col-md-3">
                 <h5>This Week's Menu</h5>
             </div>
@@ -75,6 +75,6 @@
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ Auth::user()->calorie_goal }}';
     </script>
-    <script src="{{ URL::asset('js/ProfileClient.js?v5')}}"></script>
+    <script src="{{ URL::asset('js/ProfileClient.js?v1.0.0')}}"></script>
 
 @endsection

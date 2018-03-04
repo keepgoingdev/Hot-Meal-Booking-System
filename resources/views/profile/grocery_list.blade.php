@@ -4,7 +4,7 @@
 
 <div class="container">
  <div>
-        <div class="col-lg-12 hidden-print" id="box-show-steps-caption">
+        <div class="col-lg-12 hidden-print" id="box-show-steps-caption" style="margin-top: 50px;padding-top: 0">
             <h3 class="text-center">View Your Grocery List For The Week</h3>
         </div>
         <div class="col-lg-12 col-xs-12 col-sm-12 hidden-print" id="box-menu-profile" style="padding-bottom: 5px">

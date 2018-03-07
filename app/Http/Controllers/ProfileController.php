@@ -142,8 +142,16 @@ class ProfileController extends Controller
         if($dayMenuName == Meal::$types[Meal::SNACKS]){
             $isSnack = true;
         }
-        $alreadyAte = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $dayOfWeek)->first();
-        $maxCalories = ($weekPlan->calory_goal - $alreadyAte->getCalculatedCals()) / 2.5;
+        #$alreadyAte = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $dayOfWeek)->first();
+        $otherMeals = DayMenu::where('week_plan_id', $weekPlanId)
+            ->where('day', $dayOfWeek)
+            ->where('time_of_day', '!=', $dayMenuName)
+            ->select('meal_id')->get()->pluck('meal_id')->toArray();
+        $otherMeals = Meal::whereIn('id', $otherMeals)->sum('calories');
+        $maxCalories = ($weekPlan->calory_goal - (int)$otherMeals);
+        if($maxCalories < 0 || $maxCalories > $weekPlan->calory_goal / 3.5) { //adjust for users who already had the error
+            $maxCalories = 600;
+        }
         list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], $isSnack);
         $dayMenus = DayMenu::where('day', $dayOfWeek)->where('time_of_day', $dayMenuName)->where('week_plan_id', $weekPlanId)->delete();
         foreach($meals as $meal) {

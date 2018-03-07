@@ -42,13 +42,14 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
     Route::get('add-new-week', 'ProfileController@addNewWeek');
     Route::post('add-new-week', 'ProfileController@getMealsForNewWeek');
     Route::get('/fresh-picks', 'ProfileController@freshPicks')->name('fresh-picks');
+    Route::get('/favorite-meals', 'ProfileController@favoriteMeals');
 });
 
 
 //Admin stuff
 Route::group(['middleware' => ['auth', 'is-admin']], function () {
     Route::resource('admin/meals', 'MealController');
-    Route::get('admin/users/{userId}/favorite-meals', 'UserController@favoriteMeals')->name('users.viewmeals');
+    //Route::get('admin/users/{userId}/favorite-meals', 'UserController@favoriteMeals')->name('users.viewmeals');
 
     Route::resource('admin/users', 'UserController');
 });

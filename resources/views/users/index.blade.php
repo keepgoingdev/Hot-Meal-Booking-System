@@ -32,7 +32,7 @@
                                     <td>{{$user->coupon_code}}</td>
                                     <td>{{$user->subscription}}</td>
                                     <td>
-                                        <a class="btn btn-info" href="{{ route('users.viewmeals', $user->id) }}">View Favorite Meals</a>
+                                        @php /* <a class="btn btn-info" href="{{ route('users.viewmeals', $user->id) }}">View Favorite Meals</a> */ @endphp
                                         <a class="btn btn-danger deleteUser" href="{{ route('users.destroy', $user->id) }}">Delete</a>
                                     </td>
                                 </tr>

@@ -70,6 +70,13 @@ class ProfileController extends Controller
         return view('profile.fresh_picks');
     }
 
+    public function favoriteMeals() {
+        $user = Auth::user();
+        $favoriteMeals = \DB::table('user_favorite_meals')->where('user_id', $user->id)->select('meal_id')->get()->pluck('meal_id')->toArray();
+        $favoriteMeals = \App\Models\Meal::whereIn('id', $favoriteMeals)->get();
+        return view('profile.fav_meals', compact('user', 'favoriteMeals'));
+    }
+
     public function allWeeks() {
         $allweeks = WeekPlan::where('user_id', Auth::id())->orderBy('end_date','desc')->get();
         return view('profile.all_weeks', compact('allweeks'));

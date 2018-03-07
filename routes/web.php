@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
 //Admin stuff
 Route::group(['middleware' => ['auth', 'is-admin']], function () {
     Route::resource('admin/meals', 'MealController');
+    Route::get('admin/users/{userId}/favorite-meals', 'UserController@favoriteMeals')->name('users.viewmeals');
+
     Route::resource('admin/users', 'UserController');
 });
 

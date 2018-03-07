@@ -26,6 +26,13 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function favoriteMeals(Request $request, $userId) {
+        $user = User::find($userId);
+        $favoriteMeals = \DB::table('user_favorite_meals')->where('user_id', $user->id)->select('meal_id')->get()->pluck('meal_id')->toArray();
+        $favoriteMeals = \App\Models\Meal::whereIn('id', $favoriteMeals)->get();
+        return view('users.fav_meals', compact('user', 'favoriteMeals'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

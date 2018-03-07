@@ -12,7 +12,12 @@
                 <p class="date-profile">Today's Date : {{$date}}</p>
             </div>
         </div>
-        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile" style=" z-index: 100;">
+        <div class="col-lg-12 col-xs-12 col-sm-12" style="padding-top: 20px; z-index: 100;">
+            <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3">
+                <a href="/fresh-picks" class="btn btn-block btn-default" id="btn-list-picks">Fresh Picks <i class="fa fa-leaf" style="color: #82c91e"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile" style="z-index: 100;">
             <div class="col-lg-2 col-xs-12 col-sm-4 col-md-3">
                 <h5>This Week's Menu</h5>
             </div>

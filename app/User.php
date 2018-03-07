@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
+    use Notifiable, Billable, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +18,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password', 'confirmed', 'gender', 'calorie_goal', 'weight', 'height_feet', 'height_inches'
+    ];
+
+    public $sortable = [
+        'first_name', 'last_name', 'email'
     ];
 
     /**
@@ -93,7 +98,5 @@ class User extends Authenticatable
             $bmr = 1500;
         }
         return $bmr;
-
     }
-
 }

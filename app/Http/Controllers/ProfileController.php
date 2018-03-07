@@ -32,11 +32,16 @@ class ProfileController extends Controller
                 return back();
             }
         }
-        return view('profile.my_profile', array(
-            'user' => $user,
-            'date' => $date,
-            'startDate' => $weekPlan->start_date,
-            'weekPlanId' => $weekPlan->id));
+
+        if(isset($weekPlan)) {
+            return view('profile.my_profile', array(
+                'user' => $user,
+                'date' => $date,
+                'startDate' => $weekPlan->start_date,
+                'weekPlanId' => $weekPlan->id));
+        } else {
+            return view('profile.add_new_week');
+        }
     }
 
     public function dayView($weekPlanId, $dayIndex)
@@ -58,8 +63,11 @@ class ProfileController extends Controller
     }
 
     public function addNewWeek() {
-
         return view('profile.add_new_week');
+    }
+
+    public function freshPicks() {
+        return view('profile.fresh_picks');
     }
 
     public function allWeeks() {
@@ -79,8 +87,14 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->weight = $request->weight;
         $user->save();
-        $date = new \DateTime($latestWeek->end_date);
-        $date2 = new \DateTime($latestWeek->end_date);
+        if(isset($latestWeek)) {
+            $date = new \DateTime($latestWeek->end_date);
+            $date2 = new \DateTime($latestWeek->end_date);
+        } else {
+            $date = new \DateTime();
+            $date2 = new \DateTime();
+        }
+
         $startOfNewWeek = $date->modify('+1 day');
         $endOfNewWeek = $date2->modify('+8 days');
         $goal = $user->fresh()->calculateBMR() + (int) $request->lose;

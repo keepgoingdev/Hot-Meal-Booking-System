@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+    <script src="https://fast.wistia.com/embed/medias/nbm4bg47gb.jsonp" async></script>
+    <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
     <div class="header-hotmeal">
         <a href="/"><img src="img/logo.png" alt="" class="img-responsive"></a>
     </div>
@@ -98,7 +100,12 @@
                             @endif
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default btn-block btn-lg box-form-btn-green">
+                    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+                        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                            <div class="wistia_embed wistia_async_nbm4bg47gb videoFoam=true" style="height:100%;width:100%">&nbsp;</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-block btn-lg box-form-btn-green" style="margin-top: 10px">
                         Go
                     </button>
                 </form>

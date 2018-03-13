@@ -103,7 +103,7 @@ class ProfileController extends Controller
         }
 
         $startOfNewWeek = $date->modify('+1 day');
-        $endOfNewWeek = $date2->modify('+8 days');
+        $endOfNewWeek = $date2->modify('+7 days');
         $goal = $user->fresh()->calculateBMR() + (int) $request->lose;
         $newWeek = WeekPlan::create([
             'user_id' => Auth::id(),
@@ -294,7 +294,7 @@ class ProfileController extends Controller
 
     public function markMealAsFavorite($id) {
         Auth::user()->favoriteMeals()->toggle($id);
-        return response('OK!', 200);
+        return response()->json(['message' => 'OK!'], 200);
     }
 
     public function cancelSubscription(){

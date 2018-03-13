@@ -9,7 +9,7 @@
  <div>
         <div class="col-lg-12 hidden-print" id="box-show-steps-caption" style="margin-top: 50px;padding-top: 0">
             <h3 class="text-center">Favorite Meals</h3>
-            <h4 class="text-center">This list shows meals you have marked as your favorites. They were appear more frequently in your daily plans.</h4>
+            <h4 class="text-center">This list shows meals you have marked as your favorites. They will appear more frequently in your daily plans.</h4>
         </div>
         <div class="col-lg-12 col-xs-12 col-sm-12 hidden-print" id="box-menu-profile" style="padding-bottom: 5px">
             <div class="col-lg-3">
@@ -36,6 +36,7 @@
                                         <th class="text-center">MEAL</th>
                                         <th class="text-center hidden-sm hidden-xs">NAME</th> <th class="text-center hidden-sm hidden-xs"> SERVING SIZE</th>
                                         <th class="text-center hidden-sm hidden-xs">CALORIES</th>
+                                        <th class="text-center hidden-sm hidden-xs">FAVORITE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,12 +46,14 @@
                                                 <p class="visible-xs visible-sm">{{$meal->name}} </p>
                                                 <p class="visible-xs visible-sm">{{$meal->serving_size}}</p>
                                                 <p class="visible-xs visible-sm">{{$meal->calories}}</p>
+                                                <p class="visible-xs visible-sm"><a class="togglemeal" href="/intapi/mark-meal-as-favorite/{{$meal->id}}"><i class="fa fa-2x fa-heart"></i></a></p>
                                             </td>
 
 
                                             <td class="text-center hidden-xs hidden-sm">{{$meal->name}}</td>
                                             <td class="text-center hidden-xs hidden-sm">{{$meal->serving_size}}</td>
                                             <td class="text-center hidden-xs hidden-sm">{{$meal->calories}}</td>
+                                            <td class="text-center hidden-xs hidden-sm"><a class="togglemeal" href="/intapi/mark-meal-as-favorite/{{$meal->id}}"><i class="fa fa-2x fa-heart"></i></a></td>
                                         </tr>
                                     @endforeach
                                  </tbody>
@@ -61,6 +64,32 @@
         </div>
     </div>
 </div>
-
-
+<script>
+	$('.togglemeal').click(function(e) {
+	    e.preventDefault();
+            var a = $(this);
+            var link = a.attr('href');
+            $.ajax({
+                url: link,
+                type: 'POST',
+                dataType: 'JSON',
+                
+                success: function (d) {
+                    var icon = a.find('i');
+                    if(icon.hasClass('fa-heart-o')) {
+                        icon.removeClass('fa-heart-o').addClass('fa-heart');
+                    } else if (icon.hasClass('fa-heart')) {
+                    	icon.removeClass('fa-heart').addClass('fa-heart-o');
+                    }
+                    
+                },
+                error: function (d) {
+                    console.log('error');
+                }
+            });
+	
+	
+	
+	});
+</script>
 @endsection

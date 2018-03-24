@@ -19,8 +19,9 @@ class UserController extends Controller
         foreach($users->items() as $user) {
             $coupon = DiscountCode::where('activated_by', $user->id)
                         ->where('is_activated', 1)->first();
-            $user->coupon_code = isset($coupon) ? $coupon->code : '';
-            $user->subscription = isset($coupon) ? $coupon->name : '';
+            $subs = \App\Subscription::where('user_id', $user->id)->first();
+	     $user->coupon_code = isset($coupon) ? $coupon->code : '';
+            $user->subscription = isset($subs) ? $subs->braintree_plan : '';
         }
 
         return view('users.index', compact('users'));

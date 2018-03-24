@@ -265,13 +265,19 @@ class ProfileController extends Controller
         if($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
+        $user = Auth::user();
         if($request->has('old_password')) {
             if (!Hash::check($request->old_password, Auth::user()->password)) {
                 $validator->errors()->add('old_password', 'You did not type in the correct old password');
                 return redirect()->back();
+                
             }
+            $user->password = \Hash::make($request->password);
         }
-
+        
+        $user->first_name= $request->first_name;
+        $user->last_name= $request->last_name;
+        $user->save();
         session()->flash('message', 'You have updated your details.');
         return redirect()->back();
     }

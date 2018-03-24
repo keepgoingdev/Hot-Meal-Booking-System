@@ -135,7 +135,7 @@ class RegisterController extends Controller
             $user->save();
             return redirect(route('login'))->with('status', 'Your activation is completed');
         }
-        return redirect(route('confirmation-error'))->with('status', 'Something went wrong.');
+        return redirect(route('login'))->with('status', 'Token not found.');
     }
 
 }

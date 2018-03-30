@@ -116,8 +116,9 @@ class RegisterController extends Controller
             if($discountCode){
                 $discountCode->activate($user->id);
             }
-            $user->newSubscription('main', $plan->braintree_plan)->create($request->payment_method_nonce);
-
+            $user->newSubscription('main', $plan->braintree_plan)
+                ->trialDays(14)
+                ->create($request->payment_method_nonce);
 
             Mail::to($data['email'])->send(new AccountConfirmation($data));
 

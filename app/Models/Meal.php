@@ -115,8 +115,7 @@ class Meal extends Model
 
                 $meal = Meal::where('is_enabled', true)->where('calories', '<=', ($maxCalories - $mealCalories))
                     ->where('is_snack', $isSnack)
-                    ->whereNotIn('id', $ignoredMealIds)
-                    ->whereNotIn('id', $bannedMealIds)
+                    ->whereNotIn('id', array_merge($ignoredMealIds, $bannedMealIds))
                     ->with('condiment')
                     ->inRandomOrder()->first();
 

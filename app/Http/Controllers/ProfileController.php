@@ -97,14 +97,23 @@ class ProfileController extends Controller
         if(isset($latestWeek)) {
             $date = new \DateTime($latestWeek->end_date);
             $date2 = new \DateTime($latestWeek->end_date);
+            $startOfNewWeek = $date->modify('+1 day');
+            $endOfNewWeek = $date2->modify('+7 days');
         } else {
             $date = new \DateTime();
             $date2 = new \DateTime();
+            $startOfNewWeek = $date;
+            $endOfNewWeek = $date2->modify('+6 days');
         }
 
-        $startOfNewWeek = $date->modify('+1 day');
-        $endOfNewWeek = $date2->modify('+7 days');
+
         $goal = $user->fresh()->calculateBMR() + (int) $request->lose;
+        if($goal < 1000 && $user->gender == 'F') {
+        	$goal = 1000;
+        }
+        if($goal < 1200 && $user->gender == 'M') {
+        	$goal = 1200;
+        }
         $newWeek = WeekPlan::create([
             'user_id' => Auth::id(),
             'start_date' => $startOfNewWeek,
@@ -329,7 +338,20 @@ class ProfileController extends Controller
         if(is_null($weekPlan)){
             return response()->json(array('message' => 'You have not planned any meals for current week'));
         }
-        $groceryList = \App\Models\GroceryList::getCurrentList(\Auth::id(), $weekPlan);
-        return view('profile.grocery_list', compact('groceryList'));
+        
+        $mealIds = [];
+        $count = [];
+        $meals =  \App\Models\DayMenu::where('week_plan_id', $weekPlanId)->select(\DB::raw('meal_id, COUNT(meal_id) as mc'))->groupBy('meal_id')->orderBy('mc', 'DESC')->get();
+        //dd($meals);
+        foreach($meals as $m) {
+         $mealIds[] = $m->meal_id;
+         $count[$m->meal_id] = $m->mc;
+        }
+        $groceryList = \App\Models\Meal::whereIn('id', $mealIds)->get();
+        foreach($groceryList as &$g) {
+        	$g->quantity = $count[$g->id];
+        }
+        $groceryList = $groceryList->sortByDesc('quantity');
+        return view('profile.grocery_list', compact('groceryList', 'count'));
     }
 }

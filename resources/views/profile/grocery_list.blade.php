@@ -38,26 +38,27 @@
                                     <th class="text-center hidden-print hidden-xs hidden-sm">STORE</th>
                                 </tr>
                                 </thead>
+                              
                                 @foreach($groceryList as $item)
-                                
+                                 
 				                                 <tr class="tr-detail-meals">
 
 				            <td class="td-meal-image hidden-print"><img
-				                    src="{{$item->meal->image}}" style="margin: 0px auto;display:block" 
+				                    src="{{$item->image}}" style="margin: 0px auto;display:block" 
 				                    alt="" class="img-responsive">
-				                    <center><h5 class="visible-xs visible-sm">{{$item->meal->name}}</h5></center>
-				                    <center><h5 class="visible-xs visible-sm"><b>Total Servings: </b>{{$item->quantity}}</h5></center>
-				                    <center><h5 class="visible-xs visible-sm"><b>Serving Size: </b>{{$item->meal->serving_size}}</h5></center>
+				                    <center><h5 class="visible-xs visible-sm">{{$item->name}}</h5></center>
+				                    <center><h5 class="visible-xs visible-sm"><b>Total Servings: </b>{{$count[$item->id]}}</h5></center>
+				                    <center><h5 class="visible-xs visible-sm"><b>Serving Size: </b>{{$item->serving_size}}</h5></center>
 				                    <center><h5 class="visible-xs visible-sm"><b>Store: </b>Trader Joe's</h5></center>
 				                    </td>
 				            <td class="semi-top hidden-xs hidden-sm">
-				                <center><h5>{{$item->meal->name}}</h5></center>
+				                <center><h5>{{$item->name}}</h5></center>
 				            </td>
 				            <td class="semi-top hidden-xs hidden-sm">
-				                <center><h5>{{$item->quantity}}</h5></center>
+				                <center><h5>{{$count[$item->id]}}</h5></center>
 				            </td>
 				            <td class="semi-top hidden-xs hidden-sm">
-				                <center><h5>{{$item->meal->serving_size}}</h5></center>
+				                <center><h5>{{$item->serving_size}}</h5></center>
 				            </td>
 				            <td class="semi-top hidden-print hidden-xs hidden-sm">
 				                <center><h5>Trader Joe's</h5></center>

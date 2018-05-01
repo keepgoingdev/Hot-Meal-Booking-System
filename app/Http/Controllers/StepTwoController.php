@@ -30,7 +30,7 @@ class StepTwoController extends Controller
         return response('OK')->cookie('goal' , $calorieGoal , 120);
     }
 
-    public function generate(Request $request){
+    public function generate(Request $request){/*
         $this->validate($request, [
             'gender' => 'required|not_in:0',
             'age' => 'required|numeric',
@@ -40,6 +40,6 @@ class StepTwoController extends Controller
         ]);
         $formdata = $request->all();
         $bmr = self::calculateBMR($formdata);
-        return redirect('/step-two')->cookie('bmr', $bmr, 120)->cookie('formdata', serialize($formdata), 120);
+        return redirect('/step-two')->cookie('bmr', $bmr, 120)->cookie('formdata', serialize($formdata), 120);*/
     }
 }

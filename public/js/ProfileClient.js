@@ -28522,7 +28522,7 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
+                class: [_vm.meal.favorite ? "fa-heart fa-mob" : "fa-heart-o fa-mob"]
               })
             ]
           )
@@ -28543,7 +28543,7 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: ["fa-ban"]
+                class: ["fa-ban fa-mob"]
               })
             ]
           )

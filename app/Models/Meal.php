@@ -131,6 +131,7 @@ class Meal extends Model
                 break;
             }
         }
+  
         return array($meals, $mealCalories, $ignoredMealIds);
     }
 

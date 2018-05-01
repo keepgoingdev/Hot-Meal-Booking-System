@@ -116,9 +116,11 @@ class ProfileController extends Controller
         $goal = $user->fresh()->calculateBMR() + (int) $request->lose;
         if($goal < 1000 && $user->gender == 'F') {
         	$goal = 1000;
+        	$modifiedGoal = 1080;
         }
         if($goal < 1200 && $user->gender == 'M') {
         	$goal = 1200;
+        	$modifiedGoal = 1280;
         }
         $newWeek = WeekPlan::create([
             'user_id' => Auth::id(),
@@ -129,10 +131,11 @@ class ProfileController extends Controller
         ]);
 
         $calorieGoal = $newWeek->calory_goal;
+        
         $dayMenus = [];
         $ignoredMealIds = [];
         for ($index = 0; $index < 7; $index++) {
-            list($dayMenu, $ignoredMealIds) = Meal::generateMealsForOneDay($calorieGoal, $ignoredMealIds);
+            list($dayMenu, $ignoredMealIds) = Meal::generateMealsForOneDay($modifiedGoal, $ignoredMealIds);
             $dayMenus[$index] = $dayMenu;
             if ($index % 2 === 0) {
                 $ignoredMealIds = [];

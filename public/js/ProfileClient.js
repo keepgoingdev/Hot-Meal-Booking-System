@@ -28507,7 +28507,31 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
-        _c("div", { staticClass: "col-xs-5" }, [
+        _c("div", { staticClass: "col-xs-3" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleFavorite(_vm.meal.id)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-2x",
+                class: [_vm.meal.notes ? "fa-sticky-note" : ""],
+                attrs: {
+                  "data-toggle": "tooltip",
+                  title: _vm.meal.notes
+                }
+              })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-xs-3" }, [
           _c(
             "a",
             {
@@ -28528,7 +28552,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-xs-2" }, [
+        _c("div", { staticClass: "col-xs-3" }, [
           _c(
             "a",
             {
@@ -28549,7 +28573,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-xs-5" }, [
+        _c("div", { staticClass: "col-xs-3" }, [
           _c(
             "div",
             {
@@ -28605,6 +28629,35 @@ var render = function() {
               _c("p", [_vm._v(_vm._s(_vm.meal.condiment.serving_size))])
             ])
           : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top  hidden-sm hidden-xs",
+        class: { hidden: _vm.isUser != 1 }
+      },
+      [
+        _c("center", [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-2x",
+                class: [_vm.meal.notes ? "fa-sticky-note" : ""],
+                attrs: {
+                  "data-toggle": "tooltip",
+                  title: _vm.meal.notes
+                }
+              })
+            ]
+          )
+        ])
       ],
       1
     ),

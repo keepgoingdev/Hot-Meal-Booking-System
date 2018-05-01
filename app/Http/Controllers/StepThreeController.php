@@ -57,11 +57,7 @@ class StepThreeController extends Controller
         if(!in_array($dayMenuName, Meal::$types)){
             return response('Bad request', 400);
         }
-        $isSnack = false;
-        if($dayMenuName == Meal::$types[Meal::SNACKS]){
-            $isSnack = true;
-        }
-        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], $isSnack);
+        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], Meal::$indexes[$dayMenuName]);
         $dayMenus = session('dayMenus');
         if(is_array($dayMenus)) {
             $index = Meal::$indexes[$dayMenuName];

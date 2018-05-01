@@ -45,10 +45,12 @@ class MealController extends Controller
         ]);
 
         $meal = new Meal();
-        if($request->has('is_snack')) {
-            $request->merge(['is_snack' => true]);
-        } else {
-            $request->merge(['is_snack' => false]);
+        foreach(Meal::$isFields as $field) {
+            if($request->has($field)) {
+                $request->merge([$field => true]);
+            } else {
+                $request->merge([$field => false]);
+            }
         }
         $meal->fill($request->all());
         try {
@@ -103,15 +105,12 @@ class MealController extends Controller
             'image'  => 'nullable|image'
         ]);
 
-        if($request->has('is_snack')) {
-            $request->merge(['is_snack' => true]);
-        } else {
-            $request->merge(['is_snack' => false]);
-        }
-        if($request->has('is_enabled')) {
-            $request->merge(['is_enabled' => true]);
-        } else {
-            $request->merge(['is_enabled' => false]);
+        foreach(array_merge(Meal::$isFields, ['is_enabled']) as $field) {
+            if($request->has($field)) {
+                $request->merge([$field => true]);
+            } else {
+                $request->merge([$field => false]);
+            }
         }
         $meal->fill($request->all());
         

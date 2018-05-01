@@ -109,6 +109,39 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="is_breakfast" class="col-md-4 control-label">Is Breakfast?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_breakfast" type="checkbox" @if($meal->is_breakfast == true) checked="checked" @endif name="is_breakfast">
+                            @if ($errors->has('is_breakfast'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_breakfast') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_lunch" class="col-md-4 control-label">Is Lunch?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_lunch" type="checkbox" @if($meal->is_lunch == true) checked="checked" @endif name="is_lunch">
+                            @if ($errors->has('is_lunch'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_lunch') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_dinner" class="col-md-4 control-label">Is Dinner?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_dinner" type="checkbox" @if($meal->is_dinner == true) checked="checked" @endif name="is_dinner">
+                            @if ($errors->has('is_dinner'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_dinner') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="image" class="col-md-4 control-label">Is Enabled?</label>
                         <div class="col-md-6 text-center">
                             <input id="image" type="checkbox" @if($meal->is_enabled == true) checked="checked" @endif name="is_enabled">

@@ -163,10 +163,6 @@ class ProfileController extends Controller
         if(!in_array($dayMenuName, Meal::$types)){
             return response('Bad request', 400);
         }
-        $isSnack = false;
-        if($dayMenuName == Meal::$types[Meal::SNACKS]){
-            $isSnack = true;
-        }
         #$alreadyAte = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $dayOfWeek)->first();
         $otherMeals = DayMenu::where('week_plan_id', $weekPlanId)
             ->where('day', $dayOfWeek)
@@ -177,7 +173,7 @@ class ProfileController extends Controller
         if($maxCalories < 0 || $maxCalories > $weekPlan->calory_goal / 3.5) { //adjust for users who already had the error
             $maxCalories = 600;
         }
-        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], $isSnack);
+        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], Meal::$indexes[$dayMenuName]);
         $dayMenus = DayMenu::where('day', $dayOfWeek)->where('time_of_day', $dayMenuName)->where('week_plan_id', $weekPlanId)->delete();
         foreach($meals as $meal) {
             DayMenu::create([

@@ -107,6 +107,39 @@
                                 @endif
                             </div>
                         </div>
+                    <div class="form-group">
+                        <label for="is_breakfast" class="col-md-4 control-label">Is Breakfast?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_breakfast" type="checkbox" name="is_breakfast">
+                            @if ($errors->has('is_breakfast'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_breakfast') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_lunch" class="col-md-4 control-label">Is Lunch?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_lunch" type="checkbox" name="is_lunch">
+                            @if ($errors->has('is_lunch'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_lunch') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_dinner" class="col-md-4 control-label">Is Dinner?</label>
+                        <div class="col-md-6 text-center">
+                            <input id="is_dinner" type="checkbox" name="is_dinner">
+                            @if ($errors->has('is_dinner'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('is_dinner') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
                         <br/>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">

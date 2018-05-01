@@ -23,10 +23,17 @@ class Meal extends Model
         'Lunch' => self::LUNCH,
         'Dinner' => self::DINNER,
         'Snacks' => self::SNACKS
-        ];
+    ];
+
+    public static $isFields = [
+        self::BREAKFAST => 'is_breakfast',
+        self::LUNCH => 'is_lunch',
+        self::DINNER => 'is_dinner',
+        self::SNACKS => 'is_snack',
+    ];
 
     protected $fillable = [
-        'name', 'serving_size', 'calories', 'image', 'notes', 'is_snack', 'store', 'is_enabled'
+        'name', 'serving_size', 'calories', 'image', 'notes', 'is_snack', 'is_breakfast', 'is_lunch', 'is_dinner', 'store', 'is_enabled'
     ];
     public $timestamps = false;
     protected $casts = [
@@ -77,10 +84,10 @@ class Meal extends Model
         $DinnerMaxCalories = $calorieGoal * 0.3;
         $snacksMaxCalories = $calorieGoal * 0.2;
 
-        list($breakfastMeals, $breakfastCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($breakfastMaxCalories, $ignoredMealIds, false);
-        list($lunchMeals, $lunchCalories,$ignoredMealIds) = self::getMealsForTimeOfDay($LunchMaxCalories, $ignoredMealIds, false);
-        list($dinnerMeals, $dinnerCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($DinnerMaxCalories, $ignoredMealIds, false);
-        list($snacksMeals, $snacksCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($snacksMaxCalories, $ignoredMealIds, true);
+        list($breakfastMeals, $breakfastCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($breakfastMaxCalories, $ignoredMealIds, self::BREAKFAST);
+        list($lunchMeals, $lunchCalories,$ignoredMealIds) = self::getMealsForTimeOfDay($LunchMaxCalories, $ignoredMealIds, self::LUNCH);
+        list($dinnerMeals, $dinnerCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($DinnerMaxCalories, $ignoredMealIds, self::DINNER);
+        list($snacksMeals, $snacksCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($snacksMaxCalories, $ignoredMealIds, self::SNACKS);
 
         if (!empty($breakfastMeals)) {
             $dayMenu[0]['name'] = 'Breakfast';
@@ -105,7 +112,7 @@ class Meal extends Model
         return array($dayMenu, $ignoredMealIds);
     }
 
-    public static function getMealsForTimeOfDay($maxCalories, $ignoredMealIds, $isSnack)
+    public static function getMealsForTimeOfDay($maxCalories, $ignoredMealIds, $type)
     {
         $user = \Auth::user();
         $bannedMealIds = $user ? $user->bannedMeals->pluck('id')->toArray() : [];
@@ -114,7 +121,7 @@ class Meal extends Model
         while ($mealCalories < $maxCalories) {
 
                 $meal = Meal::where('is_enabled', true)->where('calories', '<=', ($maxCalories - $mealCalories))
-                    ->where('is_snack', $isSnack)
+                    ->where(self::$isFields[$type], true)
                     ->whereNotIn('id', array_merge($ignoredMealIds, $bannedMealIds))
                     ->with('condiment')
                     ->inRandomOrder()->first();

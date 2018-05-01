@@ -2,6 +2,11 @@
 
 Auth::routes();
 
+Route::post(
+    'braintree/webhook',
+    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+);
+
 // Upload
 Route::get('/upload', 'HomeController@uploadView');
 Route::get('/braintree/token', 'BraintreeTokenController@token');

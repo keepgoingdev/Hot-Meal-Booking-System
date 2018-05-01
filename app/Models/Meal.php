@@ -107,6 +107,8 @@ class Meal extends Model
 
     public static function getMealsForTimeOfDay($maxCalories, $ignoredMealIds, $isSnack)
     {
+        $user = \Auth::user();
+        $bannedMealIds = $user ? $user->bannedMeals->pluck('id')->toArray() : [];
         $meals = [];
         $mealCalories = 0;
         while ($mealCalories < $maxCalories) {
@@ -114,6 +116,7 @@ class Meal extends Model
                 $meal = Meal::where('is_enabled', true)->where('calories', '<=', ($maxCalories - $mealCalories))
                     ->where('is_snack', $isSnack)
                     ->whereNotIn('id', $ignoredMealIds)
+                    ->whereNotIn('id', $bannedMealIds)
                     ->with('condiment')
                     ->inRandomOrder()->first();
 
@@ -134,9 +137,11 @@ class Meal extends Model
     public static function getMealByIds($mealIds, $weekPlanId, $day)
     {
         //return self::whereIn('meals.id', $mealIds)->get();
-
+        $user = \Auth::user();
+        $bannedMealIds = $user ? $user->bannedMeals->pluck('id')->toArray() : [];
         $s = self::select(\DB::raw('distinct meals.*, day_menus.meal_completed'))
             ->whereIn('meals.id', $mealIds)
+            ->whereNotIn('meals.id', $bannedMealIds)
             ->leftJoin('day_menus', 'meals.id', '=', 'day_menus.meal_id')
             ->where('week_plan_id', $weekPlanId)
             ->where('day', $day)

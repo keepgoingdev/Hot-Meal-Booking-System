@@ -77,6 +77,12 @@ class ProfileController extends Controller
         return view('profile.fav_meals', compact('user', 'favoriteMeals'));
     }
 
+    public function bannedMeals() {
+        $user = Auth::user();
+        $bannedMeals = $user->bannedMeals()->get();
+        return view('profile.banned_meals', compact('user', 'bannedMeals'));
+    }
+
     public function allWeeks() {
         $allweeks = WeekPlan::where('user_id', Auth::id())->orderBy('end_date','desc')->get();
         return view('profile.all_weeks', compact('allweeks'));
@@ -309,6 +315,11 @@ class ProfileController extends Controller
 
     public function markMealAsFavorite($id) {
         Auth::user()->favoriteMeals()->toggle($id);
+        return response()->json(['message' => 'OK!'], 200);
+    }
+
+    public function banMeal($id) {
+        Auth::user()->bannedMeals()->toggle($id);
         return response()->json(['message' => 'OK!'], 200);
     }
 

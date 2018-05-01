@@ -70,6 +70,10 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\Models\Meal', 'user_favorite_meals', 'user_id', 'meal_id');
     }
 
+    public function bannedMeals() {
+        return $this->belongsToMany('\App\Models\Meal', 'user_banned_meals', 'user_id', 'meal_id');
+    }
+
     public function calculateBMR($weight = null){
         if($weight == null) {
             $weight = $this->weight;

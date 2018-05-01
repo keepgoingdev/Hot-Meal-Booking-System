@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth', 'has-paid']], function () {
     Route::post('add-new-week', 'ProfileController@getMealsForNewWeek');
     Route::get('/fresh-picks', 'ProfileController@freshPicks')->name('fresh-picks');
     Route::get('/favorite-meals', 'ProfileController@favoriteMeals');
+    Route::get('/banned-meals', 'ProfileController@bannedMeals');
 });
 
 
@@ -72,6 +73,7 @@ Route::group(['prefix' => 'intapi'], function() {
     Route::get('grocery-list/{weekPlanId?}', 'GroceryListController@getGroceryList');
     Route::get('week-plans/{weekPlanId}', 'ProfileController@getMealsByDayIndex');
     Route::post('mark-meal-as-favorite/{meal}', 'ProfileController@markMealAsFavorite');
+    Route::post('ban-meal/{meal}', 'ProfileController@banMeal');
     Route::get('cancel-subscription', 'ProfileController@cancelSubscription');
     Route::get('resume-subscription', 'ProfileController@resumeSubscription');
 });

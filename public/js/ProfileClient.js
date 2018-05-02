@@ -28512,17 +28512,11 @@ var render = function() {
             "a",
             {
               attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleFavorite(_vm.meal.id)
-                }
-              }
             },
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: [_vm.meal.notes ? "fa-sticky-note" : ""],
+                class: [_vm.meal.notes ? "fa-bell" : ""],
                 attrs: {
                   "data-toggle": "tooltip",
                   title: _vm.meal.notes
@@ -28648,8 +28642,8 @@ var render = function() {
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x",
-                class: [_vm.meal.notes ? "fa-sticky-note" : ""],
+                staticClass: "fa fa-2x fa-blue",
+                class: [_vm.meal.notes ? "fa-bell" : ""],
                 attrs: {
                   "data-toggle": "tooltip",
                   title: _vm.meal.notes

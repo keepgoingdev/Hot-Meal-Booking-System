@@ -116,9 +116,11 @@ class ProfileController extends Controller
         $goal = $user->fresh()->calculateBMR() + (int) $request->lose;
         if($goal < 1000 && $user->gender == 'F') {
         	$goal = 1000;
+        	$modifiedGoal = 1080;
         }
         if($goal < 1200 && $user->gender == 'M') {
         	$goal = 1200;
+        	$modifiedGoal = 1280;
         }
         $newWeek = WeekPlan::create([
             'user_id' => Auth::id(),
@@ -133,7 +135,7 @@ class ProfileController extends Controller
         $dayMenus = [];
         $ignoredMealIds = [];
         for ($index = 0; $index < 7; $index++) {
-            list($dayMenu, $ignoredMealIds) = Meal::generateMealsForOneDay($goal, $ignoredMealIds);
+            list($dayMenu, $ignoredMealIds) = Meal::generateMealsForOneDay($modifiedGoal, $ignoredMealIds);
             $dayMenus[$index] = $dayMenu;
             if ($index % 2 === 0) {
                 $ignoredMealIds = [];
@@ -166,12 +168,15 @@ class ProfileController extends Controller
             ->where('day', $dayOfWeek)
             ->where('time_of_day', '!=', $dayMenuName)
             ->select('meal_id')->get()->pluck('meal_id')->toArray();
+            $othMealArray = $otherMeals;
         $otherMeals = Meal::whereIn('id', $otherMeals)->sum('calories');
+        
+        \Log::info($otherMeals);
         $maxCalories = ($weekPlan->calory_goal - (int)$otherMeals);
         if($maxCalories < 0 || $maxCalories > $weekPlan->calory_goal / 3.5) { //adjust for users who already had the error
             $maxCalories = 600;
         }
-        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, [], Meal::$indexes[$dayMenuName]);
+        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, $othMealArray , Meal::$indexes[$dayMenuName]);
         $dayMenus = DayMenu::where('day', $dayOfWeek)->where('time_of_day', $dayMenuName)->where('week_plan_id', $weekPlanId)->delete();
         foreach($meals as $meal) {
             DayMenu::create([

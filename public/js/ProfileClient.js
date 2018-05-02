@@ -28511,11 +28511,11 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: { href: "#" },
+              attrs: { href: "javascript:;" },
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x",
+                staticClass: "fa fa-2x fa-blue",
                 class: [_vm.meal.notes ? "fa-bell" : ""],
                 attrs: {
                   "data-toggle": "tooltip",
@@ -28539,8 +28539,8 @@ var render = function() {
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x",
-                class: [_vm.meal.favorite ? "fa-heart fa-mob" : "fa-heart-o fa-mob"]
+                staticClass: "fa fa-2x fa-mob",
+                class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
               })
             ]
           )
@@ -28560,8 +28560,7 @@ var render = function() {
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x",
-                class: ["fa-ban"]
+                staticClass: "fa fa-2x fa-ban fa-grey",
               })
             ]
           )
@@ -28638,7 +28637,7 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: { href: "#" },
+              attrs: { href: "javascript:;" },
             },
             [
               _c("i", {
@@ -28708,8 +28707,7 @@ var render = function() {
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x",
-                class: ["fa-ban"]
+                staticClass: "fa fa-2x fa-ban",
               })
             ]
           )

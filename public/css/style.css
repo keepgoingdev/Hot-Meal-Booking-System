@@ -2247,13 +2247,13 @@ input[type=number]::-webkit-outer-spin-button {
 		background-color: red !important;
 	}
 }
-.fa-mob {
+.fa-mob, .fa-grey {
     color: #C4C9CA;
 }
-.fa-mob:hover, .fa-mob:focus {
+.fa-blue, .semi-top i.fa-blue {
+    color: #23527c;
+}
+.fa-mob:hover, .fa-mob:focus , .fa-blue:hover, .fa-blue:focus {
     color: #FB7E4F;
     transition: 0.2s ease-in-out;
-}
-.semi-top i.fa-blue {
-    color: #23527c;
 }

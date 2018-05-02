@@ -28561,7 +28561,7 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: ["fa-ban fa-mob"]
+                class: ["fa-ban"]
               })
             ]
           )

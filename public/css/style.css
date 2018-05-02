@@ -2251,9 +2251,12 @@ input[type=number]::-webkit-outer-spin-button {
     color: #C4C9CA;
 }
 .fa-blue, .semi-top i.fa-blue {
-    color: #23527c;
+    color: #337ab7;
 }
-.fa-mob:hover, .fa-mob:focus , .fa-blue:hover, .fa-blue:focus {
+.fa-mob:hover, .fa-mob:focus {
     color: #FB7E4F;
     transition: 0.2s ease-in-out;
+}
+.fa-orange {
+    color: #FB7E4F;
 }

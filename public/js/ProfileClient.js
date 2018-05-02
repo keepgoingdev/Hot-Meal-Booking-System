@@ -28519,8 +28519,10 @@ var render = function() {
                 class: [_vm.meal.notes ? "fa-bell" : ""],
                 attrs: {
                   "data-toggle": "tooltip",
-                  title: _vm.meal.notes
-                }
+                  "data-trigger": "click",
+                  title: _vm.meal.notes,
+                  "onclick": "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                },
               })
           ])
         ]),
@@ -28645,8 +28647,10 @@ var render = function() {
                 class: [_vm.meal.notes ? "fa-bell" : ""],
                 attrs: {
                   "data-toggle": "tooltip",
-                  title: _vm.meal.notes
-                }
+                  "data-trigger": "click",
+                  title: _vm.meal.notes,
+                  "onclick": "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                },
               })
             ]
           )

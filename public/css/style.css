@@ -2257,6 +2257,6 @@ input[type=number]::-webkit-outer-spin-button {
     color: #FB7E4F;
     transition: 0.2s ease-in-out;
 }
-semi-top i.fa-orange, .fa-orange {
+.semi-top i.fa-orange, .fa-orange {
     color: #FB7E4F;
 }

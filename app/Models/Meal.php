@@ -79,15 +79,34 @@ class Meal extends Model
 
     public static function generateMealsForOneDay($calorieGoal, $ignoredMealIds)
     {
+     	$origGoal = $calorieGoal;
+     	$calorieGoal = $calorieGoal+60;
+     	
         $breakfastMaxCalories = $calorieGoal * 0.2;
         $LunchMaxCalories = $calorieGoal * 0.3;
         $DinnerMaxCalories = $calorieGoal * 0.3;
         $snacksMaxCalories = $calorieGoal * 0.2;
-
+        $triedTimes = 0;
+        $currentCal = 0;
+        
         list($breakfastMeals, $breakfastCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($breakfastMaxCalories, $ignoredMealIds, self::BREAKFAST);
         list($lunchMeals, $lunchCalories,$ignoredMealIds) = self::getMealsForTimeOfDay($LunchMaxCalories, $ignoredMealIds, self::LUNCH);
         list($dinnerMeals, $dinnerCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($DinnerMaxCalories, $ignoredMealIds, self::DINNER);
         list($snacksMeals, $snacksCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($snacksMaxCalories, $ignoredMealIds, self::SNACKS);
+	
+	$currentCal = $breakfastCalories + $lunchCalories + $dinnerCalories + $snacksCalories;
+	\Log::info('current cal is '. $currentCal);
+	 
+	while($currentCal < $origGoal && $triedTimes <= 20) {
+	        list($breakfastMeals, $breakfastCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($breakfastMaxCalories, $ignoredMealIds, self::BREAKFAST);
+        	list($lunchMeals, $lunchCalories,$ignoredMealIds) = self::getMealsForTimeOfDay($LunchMaxCalories, $ignoredMealIds, self::LUNCH);
+        	list($dinnerMeals, $dinnerCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($DinnerMaxCalories, $ignoredMealIds, self::DINNER);
+        	list($snacksMeals, $snacksCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($snacksMaxCalories, $ignoredMealIds, self::SNACKS);
+		$currentCal = $breakfastCalories + $lunchCalories + $dinnerCalories + $snacksCalories;
+		
+		$triedTimes++;
+		\Log::info($triedTimes.' attempt- current cal is '. $currentCal);
+	}
 
         if (!empty($breakfastMeals)) {
             $dayMenu[0]['name'] = 'Breakfast';

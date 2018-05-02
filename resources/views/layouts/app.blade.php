@@ -42,7 +42,7 @@ margin-top: 50px
     </style>   
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css?v1')}}">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css?v2')}}">
     <link rel="stylesheet" href="{{ URL::asset('css/steps.css')}}">
     <link rel="stylesheet" href="{{ URL::asset('css/steps.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">

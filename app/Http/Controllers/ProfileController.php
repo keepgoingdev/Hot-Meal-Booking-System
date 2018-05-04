@@ -353,7 +353,9 @@ class ProfileController extends Controller
         
         $mealIds = [];
         $count = [];
-        $meals =  \App\Models\DayMenu::where('week_plan_id', $weekPlanId)->select(\DB::raw('meal_id, COUNT(meal_id) as mc'))->groupBy('meal_id')->orderBy('mc', 'DESC')->get();
+        $banned = [];
+        $banned = \Auth::user()->bannedMeals->pluck('id')->toArray();
+        $meals =  \App\Models\DayMenu::where('week_plan_id', $weekPlanId)->whereNotIn('meal_id', $banned)->select(\DB::raw('meal_id, COUNT(meal_id) as mc'))->groupBy('meal_id')->orderBy('mc', 'DESC')->get();
         //dd($meals);
         foreach($meals as $m) {
          $mealIds[] = $m->meal_id;

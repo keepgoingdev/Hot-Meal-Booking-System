@@ -5,7 +5,7 @@
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-user-profile">
             <div class="col-lg-6 col-xs-12 col-sm-6">
                 <h2>Hi, {{$user->first_name}}</h2>
-                <h5>Daily Calorie Goal: {{$user->calorie_goal}} Calories per day</h5>
+                <h5>Daily Calorie Goal: {{$weekPlan->calory_goal}} Calories per day</h5>
                 <h5 style="color:#7FD220">Customer Service Representative - <b>Tara</b>. <br>Email -  <a style="color:#FB7E4F" href="mailto:tara@thehotmeal.com">tara@thehotmeal.com</a></h5>
             </div>
             <div class="col-lg-6 col-xs-12 col-sm-6">
@@ -84,7 +84,7 @@
         window.gender = '{{ Auth::user()->gender }}';
         window.startDate = '{{$startDate}}';
         window.weekPlanId = '{{$weekPlanId}}';
-        window.caloryGoal = '{{ Auth::user()->calorie_goal }}';
+        window.caloryGoal = '{{ $weekPlan->calory_goal }}';
     </script>
     <script src="{{ URL::asset('js/ProfileClient.js?v6.0.1')}}"></script>
 

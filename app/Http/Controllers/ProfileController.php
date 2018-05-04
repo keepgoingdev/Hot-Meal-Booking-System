@@ -37,6 +37,7 @@ class ProfileController extends Controller
             return view('profile.my_profile', array(
                 'user' => $user,
                 'date' => $date,
+                'weekPlan' => $weekPlan,
                 'startDate' => $weekPlan->start_date,
                 'weekPlanId' => $weekPlan->id));
         } else {

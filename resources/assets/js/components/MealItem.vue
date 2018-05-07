@@ -6,6 +6,11 @@
             <p class="visible-sm visible-xs" >{{meal.serving_size}}</p>
             <div class="row visible-sm visible-xs">
                 <div class="col-xs-2">
+                    <!--<a href="#" @click.prevent="toggleBanned(meal.id)">
+                        <i class="fa fa-2x fa-ban"></i>
+                    </a>-->
+                </div>
+                <div class="col-xs-2">
                     <a href="javascript:;"
                        v-show="meal.notes"
                        data-toggle="tooltip"
@@ -20,11 +25,6 @@
                 <div class="col-xs-4">
                     <a href="#" @click.prevent="toggleFavorite(meal.id)">
                         <i class="fa fa-2x" v-bind:class="[  meal.favorite ? 'fa-heart' : 'fa-heart-o' ]"></i>
-                    </a>
-                </div>
-                <div class="col-xs-2">
-                    <a href="#" @click.prevent="toggleBanned(meal.id)">
-                        <i class="fa fa-2x fa-ban"></i>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -45,6 +45,9 @@
             <p>{{meal.serving_size}}</p>
             <p v-if="meal.condiment">{{meal.condiment.serving_size}}</p>
         </td>
+                <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
+           <!-- <a href="#"  @click.prevent="toggleBanned(meal.id)"><i class="fa fa-2x fa-ban"></i></a> -->
+        </td>
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
             <a href="javascript:;"
                v-show="meal.notes"
@@ -60,9 +63,7 @@
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
             <a href="#"  @click.prevent="toggleFavorite(meal.id)"><i class="fa fa-2x" v-bind:class="[  meal.favorite ? 'fa-heart fa-mob' : 'fa-heart-o fa-mob' ]"></i></a>
         </td>
-        <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
-            <a href="#"  @click.prevent="toggleBanned(meal.id)"><i class="fa fa-2x fa-ban"></i></a>
-        </td>
+
         <td class="semi-top text-center hidden-sm hidden-xs" v-bind:class="{'hidden': isUser != 1}" style="min-width: 40px" id="right-border-table">
                 <div class="checkbox checkbox-info">
                     <input :id="'check'+parseInt(meal.id)" class="mycheck" type="checkbox" v-bind:checked="meal.meal_completed == '1' || meal.meal_completed == true" @click="mealCompleted(meal.id)">

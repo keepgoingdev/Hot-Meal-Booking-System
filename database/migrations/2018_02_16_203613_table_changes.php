@@ -20,8 +20,8 @@ class TableChanges extends Migration
             $table->boolean('is_enabled')->default(true)->after('is_snack');
         });
         Schema::table('week_plans', function (Blueprint $table) {
-            $table->integer('calory_goal');
-            $table->integer('weight');
+            $table->integer('calory_goal')->nullable();
+            $table->integer('weight')->nullable();
         });
     }
 

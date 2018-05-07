@@ -75,7 +75,7 @@
                         <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume subscription</a>
                         <br>
                     @else
-                        Next Billing: <span class="label label-success">{{$subscription->nextBillingDate->format('d F Y')}}</span>
+                        Next Billing: <span class="label label-success">{{($subscription && $subscription->nextBillingDate ) ? $subscription->nextBillingDate->format('d F Y') : ''}}</span>
                     @endif
                         <br><br>
 

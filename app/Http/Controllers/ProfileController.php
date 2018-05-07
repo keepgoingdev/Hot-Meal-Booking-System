@@ -163,17 +163,19 @@ class ProfileController extends Controller
             return response('Bad request', 400);
         }
         #$alreadyAte = DailyAdditional::where('week_plan_id', $weekPlanId)->where('day', $dayOfWeek)->first();
+        $bannedMealIds = \Auth::user()->bannedMeals->pluck('id')->toArray();
         $otherMeals = DayMenu::where('week_plan_id', $weekPlanId)
             ->where('day', $dayOfWeek)
             ->where('time_of_day', '!=', $dayMenuName)
+            ->whereNotIn('meal_id', $bannedMealIds)
             ->select('meal_id')->get()->pluck('meal_id')->toArray();
             $othMealArray = $otherMeals;
         $otherMeals = Meal::whereIn('id', $otherMeals)->sum('calories');
         
-        \Log::info($otherMeals);
+        
         $maxCalories = ($weekPlan->calory_goal - (int)$otherMeals);
-        if($maxCalories < 0 || $maxCalories > $weekPlan->calory_goal / 3.5) { //adjust for users who already had the error
-            $maxCalories = 600;
+        if($maxCalories < 0) { 
+            $maxCalories = 300;
         }
         list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, $othMealArray , Meal::$indexes[$dayMenuName]);
         $dayMenus = DayMenu::where('day', $dayOfWeek)->where('time_of_day', $dayMenuName)->where('week_plan_id', $weekPlanId)->delete();

@@ -28778,6 +28778,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(3);
 
@@ -28835,6 +28843,31 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
+        _c("div", { staticClass: "col-xs-2" }, [
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.meal.notes,
+                  expression: "meal.notes"
+                }
+              ],
+              attrs: {
+                href: "javascript:;",
+                "data-toggle": "tooltip",
+                "data-trigger": "click",
+                title: _vm.meal.notes,
+                onclick:
+                  "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+              }
+            },
+            [_c("i", { staticClass: "fa fa-2x fa-bell fa-blue" })]
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "col-xs-4" }, [
           _c(
             "a",
@@ -28868,23 +28901,7 @@ var render = function() {
                 }
               }
             },
-            [_c("i", { staticClass: "fa fa-ban" })]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-2" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleBanned(_vm.meal.id)
-                }
-              }
-            },
-            [_c("i", { staticClass: "fa fa-bell" })]
+            [_c("i", { staticClass: "fa fa-2x fa-ban" })]
           )
         ]),
         _vm._v(" "),
@@ -28937,12 +28954,9 @@ var render = function() {
         _c("p", [_vm._v(_vm._s(_vm.meal.serving_size))]),
         _vm._v(" "),
         _vm.meal.condiment
-          ? _c("center", [
-              _c("p", [_vm._v(_vm._s(_vm.meal.condiment.serving_size))])
-            ])
+          ? _c("p", [_vm._v(_vm._s(_vm.meal.condiment.serving_size))])
           : _vm._e()
-      ],
-      1
+      ]
     ),
     _vm._v(" "),
     _c(

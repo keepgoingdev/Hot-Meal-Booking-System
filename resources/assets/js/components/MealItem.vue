@@ -5,17 +5,25 @@
             <p class="visible-sm visible-xs">{{meal.name}}</p>
             <p class="visible-sm visible-xs" >{{meal.serving_size}}</p>
             <div class="row visible-sm visible-xs">
-                <div class="col-xs-4">
-                    <a href="#" class="" @click.prevent="toggleFavorite(meal.id)"><i class="fa fa-2x" v-bind:class="[  meal.favorite ? 'fa-heart' : 'fa-heart-o' ]"></i></a>
-                </div>
                 <div class="col-xs-2">
-                    <a href="#" @click.prevent="toggleBanned(meal.id)">
-                        <i class="fa fa-ban"></i>
+                    <a href="javascript:;"
+                       v-show="meal.notes"
+                       data-toggle="tooltip"
+                       data-trigger="click"
+                       :title="meal.notes"
+                       onclick="if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                    >
+                        <i class="fa fa-2x fa-bell fa-blue"></i>
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a href="#" @click.prevent="toggleFavorite(meal.id)">
+                        <i class="fa fa-2x" v-bind:class="[  meal.favorite ? 'fa-heart' : 'fa-heart-o' ]"></i>
                     </a>
                 </div>
                 <div class="col-xs-2">
                     <a href="#" @click.prevent="toggleBanned(meal.id)">
-                        <i class="fa fa-bell"></i>
+                        <i class="fa fa-2x fa-ban"></i>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -34,7 +42,7 @@
         </td>
         <td class="semi-top hidden-sm hidden-xs text-center" style="width:150px;">
             <p>{{meal.serving_size}}</p>
-            <center v-if="meal.condiment"><p>{{meal.condiment.serving_size}}</p></center>
+            <p v-if="meal.condiment">{{meal.condiment.serving_size}}</p>
         </td>
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
             <a href="javascript:;"

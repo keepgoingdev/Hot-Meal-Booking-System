@@ -28477,6 +28477,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 var ApiUtil = __webpack_require__(3);
 
@@ -28550,12 +28552,18 @@ var render = function() {
                 href: "javascript:;",
                 "data-toggle": "tooltip",
                 "data-trigger": "click",
-                title: _vm.meal.notes,
-                onclick:
-                  "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                title: _vm.meal.notes
               }
             },
-            [_c("i", { staticClass: "fa fa-2x fa-bell fa-blue" })]
+            [
+              _c("i", {
+                staticClass: "fa fa-2x fa-sticky-note fa-blue",
+                attrs: {
+                  onclick:
+                    "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                }
+              })
+            ]
           )
         ]),
         _vm._v(" "),
@@ -28672,12 +28680,18 @@ var render = function() {
               href: "javascript:;",
               "data-toggle": "tooltip",
               "data-trigger": "click",
-              title: _vm.meal.notes,
-              onclick:
-                "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+              title: _vm.meal.notes
             }
           },
-          [_c("i", { staticClass: "fa fa-2x fa-bell fa-blue" })]
+          [
+            _c("i", {
+              staticClass: "fa fa-2x fa-sticky-note fa-blue",
+              attrs: {
+                onclick:
+                  "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+              }
+            })
+          ]
         )
       ]
     ),

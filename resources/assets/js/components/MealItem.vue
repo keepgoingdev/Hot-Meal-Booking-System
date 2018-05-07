@@ -11,9 +11,10 @@
                        data-toggle="tooltip"
                        data-trigger="click"
                        :title="meal.notes"
-                       onclick="if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
                     >
-                        <i class="fa fa-2x fa-bell fa-blue"></i>
+                        <i class="fa fa-2x fa-sticky-note fa-blue"
+                           onclick="if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                        ></i>
                     </a>
                 </div>
                 <div class="col-xs-4">
@@ -50,9 +51,10 @@
                data-toggle="tooltip"
                data-trigger="click"
                :title="meal.notes"
-               onclick="if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
             >
-                <i class="fa fa-2x fa-bell fa-blue"></i>
+                <i class="fa fa-2x fa-sticky-note fa-blue"
+                   onclick="if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+                ></i>
             </a>
         </td>
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">

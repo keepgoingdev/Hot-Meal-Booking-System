@@ -28762,6 +28762,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var ApiUtil = __webpack_require__(3);
 
@@ -28792,7 +28808,6 @@ var ApiUtil = __webpack_require__(3);
             this.$emit('meal-completed', mealId);
         }
     }
-
 });
 
 /***/ }),
@@ -28820,7 +28835,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
-        _c("div", { staticClass: "col-xs-5" }, [
+        _c("div", { staticClass: "col-xs-4" }, [
           _c(
             "a",
             {
@@ -28841,7 +28856,39 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-xs-5" }, [
+        _c("div", { staticClass: "col-xs-2" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleBanned(_vm.meal.id)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-ban" })]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-xs-2" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleBanned(_vm.meal.id)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-bell" })]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-xs-4" }, [
           _c(
             "div",
             {
@@ -28870,43 +28917,24 @@ var render = function() {
               _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
             ]
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-2" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleBanned(_vm.meal.id)
-                }
-              }
-            },
-            [_c("i", { staticClass: "fa fa-ban" })]
-          )
         ])
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "td",
-      { staticClass: "semi-top hidden-xs hidden-sm" },
-      [_c("center", [_c("h5", [_vm._v(_vm._s(_vm.meal.name))])])],
-      1
-    ),
+    _c("td", { staticClass: "semi-top hidden-xs hidden-sm text-center" }, [
+      _c("h5", [_vm._v(_vm._s(_vm.meal.name))])
+    ]),
     _vm._v(" "),
     _c("td", { staticClass: "semi-top hidden-sm hidden-xs" }),
     _vm._v(" "),
     _c(
       "td",
       {
-        staticClass: "semi-top hidden-sm hidden-xs",
+        staticClass: "semi-top hidden-sm hidden-xs text-center",
         staticStyle: { width: "150px" }
       },
       [
-        _c("center", [_c("p", [_vm._v(_vm._s(_vm.meal.serving_size))])]),
+        _c("p", [_vm._v(_vm._s(_vm.meal.serving_size))]),
         _vm._v(" "),
         _vm.meal.condiment
           ? _c("center", [
@@ -28920,74 +28948,123 @@ var render = function() {
     _c(
       "td",
       {
-        staticClass: "semi-top  hidden-sm hidden-xs",
+        staticClass: "semi-top hidden-sm hidden-xs text-center",
         class: { hidden: _vm.isUser != 1 }
       },
       [
-        _c("center", [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleFavorite(_vm.meal.id)
-                }
+        _c(
+          "a",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.meal.notes,
+                expression: "meal.notes"
               }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-2x",
-                class: [
-                  _vm.meal.favorite ? "fa-heart fa-mob" : "fa-heart-o fa-mob"
-                ]
-              })
-            ]
-          )
-        ])
-      ],
-      1
+            ],
+            attrs: {
+              href: "javascript:;",
+              "data-toggle": "tooltip",
+              "data-trigger": "click",
+              title: _vm.meal.notes,
+              onclick:
+                "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
+            }
+          },
+          [_c("i", { staticClass: "fa fa-2x fa-bell fa-blue" })]
+        )
+      ]
     ),
     _vm._v(" "),
     _c(
       "td",
       {
-        staticClass: "semi-top  hidden-sm hidden-xs",
+        staticClass: "semi-top hidden-sm hidden-xs text-center",
+        class: { hidden: _vm.isUser != 1 }
+      },
+      [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.toggleFavorite(_vm.meal.id)
+              }
+            }
+          },
+          [
+            _c("i", {
+              staticClass: "fa fa-2x",
+              class: [
+                _vm.meal.favorite ? "fa-heart fa-mob" : "fa-heart-o fa-mob"
+              ]
+            })
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top hidden-sm hidden-xs text-center",
+        class: { hidden: _vm.isUser != 1 }
+      },
+      [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.toggleBanned(_vm.meal.id)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-2x fa-ban" })]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top text-center hidden-sm hidden-xs",
         class: { hidden: _vm.isUser != 1 },
         staticStyle: { "min-width": "40px" },
         attrs: { id: "right-border-table" }
       },
       [
-        _c("center", [
-          _c("div", { staticClass: "checkbox checkbox-info" }, [
-            _c("input", {
-              staticClass: "mycheck",
-              attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
-              domProps: {
-                checked:
-                  _vm.meal.meal_completed == "1" ||
-                  _vm.meal.meal_completed == true
-              },
-              on: {
-                click: function($event) {
-                  _vm.mealCompleted(_vm.meal.id)
-                }
+        _c("div", { staticClass: "checkbox checkbox-info" }, [
+          _c("input", {
+            staticClass: "mycheck",
+            attrs: { id: "check" + parseInt(_vm.meal.id), type: "checkbox" },
+            domProps: {
+              checked:
+                _vm.meal.meal_completed == "1" ||
+                _vm.meal.meal_completed == true
+            },
+            on: {
+              click: function($event) {
+                _vm.mealCompleted(_vm.meal.id)
               }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
-          ]),
+            }
+          }),
           _vm._v(" "),
-          _c("br"),
-          _vm.meal.meal_completed == "0" || _vm.meal.meal_completed == false
-            ? _c("small", { staticClass: "text-muted" }, [
-                _vm._v("Check to mark meal as completed.")
-              ])
-            : _vm._e()
-        ])
-      ],
-      1
+          _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm.meal.meal_completed == "0" || _vm.meal.meal_completed == false
+          ? _c("small", { staticClass: "text-muted" }, [
+              _vm._v("Check to mark meal as completed.")
+            ])
+          : _vm._e()
+      ]
     )
   ])
 }

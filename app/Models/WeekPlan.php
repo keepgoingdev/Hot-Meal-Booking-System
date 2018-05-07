@@ -15,7 +15,7 @@ class WeekPlan extends Model
         return $this->hasMany('App\Models\DayMenu');
     }
 
-    public function dayMenu($index){
+    public function dayMenu($index = null){
         return $this->hasMany('App\Models\DayMenu')->where('day', $index)->get();
     }
 

@@ -262,10 +262,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $isGrace = false;
-        if ($user->subscription('main')->onGracePeriod()) {
+        if ($user->subscription('main') && $user->subscription('main')->onGracePeriod()) {
             $isGrace = true;
         }
-        $subscription = $user->subscription('main')->asBraintreeSubscription();
+        $subscription = $user->subscription('main') ? $user->subscription('main')->asBraintreeSubscription() : null;
         return view('profile.account_settings',array(
             'subscription' => $subscription,
             'user' => $user,

@@ -16,9 +16,9 @@ class FoodTables extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('serving_size');
-            $table->integer('calories');
-            $table->string('image');
+            $table->string('serving_size')->nullable();
+            $table->integer('calories')->nullable();
+            $table->string('image')->nullable();
             $table->string('notes')->nullable();
             $table->boolean('is_snack')->default(false);
             $table->string('store')->nullable();

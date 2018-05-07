@@ -28450,6 +28450,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 var ApiUtil = __webpack_require__(3);
 
@@ -28464,11 +28467,12 @@ var ApiUtil = __webpack_require__(3);
                 console.log(data.meal_completed);
             });
         },
+
         toggleBanned: function toggleBanned(index) {
             //this.meal.banned = !this.meal.banned;
             var url = '/intapi/ban-meal/' + index;
             var _this = this;
-            if(confirm('Are you sure you want to ban this meal?')) {
+            if (confirm('Are you sure you want to ban this meal?')) {
                 ApiUtil.postToApi(url).then(function (data) {
                     _this.$el.remove();
                 });
@@ -28507,27 +28511,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
-        _c("div", { staticClass: "col-xs-3" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "javascript:;" },
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-2x fa-blue",
-                class: [_vm.meal.notes ? "fa-bell" : ""],
-                attrs: {
-                  "data-toggle": "tooltip",
-                  "data-trigger": "click",
-                  title: _vm.meal.notes,
-                  "onclick": "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
-                },
-              })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-3" }, [
+        _c("div", { staticClass: "col-xs-5" }, [
           _c(
             "a",
             {
@@ -28541,34 +28525,14 @@ var render = function() {
             },
             [
               _c("i", {
-                staticClass: "fa fa-2x fa-mob",
+                staticClass: "fa fa-2x",
                 class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
               })
             ]
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-xs-3" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleBanned(_vm.meal.id)
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-2x fa-ban fa-grey",
-              })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-3" }, [
+        _c("div", { staticClass: "col-xs-5" }, [
           _c(
             "div",
             {
@@ -28596,6 +28560,22 @@ var render = function() {
               _vm._v(" "),
               _c("label", { attrs: { for: "check" + parseInt(_vm.meal.id) } })
             ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-xs-2" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleBanned(_vm.meal.id)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-ban" })]
           )
         ])
       ])
@@ -28639,37 +28619,6 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: { href: "javascript:;" },
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-2x fa-blue",
-                class: [_vm.meal.notes ? "fa-bell" : ""],
-                attrs: {
-                  "data-toggle": "tooltip",
-                  "data-trigger": "click",
-                  title: _vm.meal.notes,
-                  "onclick": "if($(this).hasClass('fa-blue')) { $(this).removeClass('fa-blue');$(this).addClass('fa-orange'); } else { $(this).removeClass('fa-orange');$(this).addClass('fa-blue'); }"
-                },
-              })
-            ]
-          )
-        ])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      {
-        staticClass: "semi-top  hidden-sm hidden-xs",
-        class: { hidden: _vm.isUser != 1 }
-      },
-      [
-        _c("center", [
-          _c(
-            "a",
-            {
               attrs: { href: "#" },
               on: {
                 click: function($event) {
@@ -28681,37 +28630,9 @@ var render = function() {
             [
               _c("i", {
                 staticClass: "fa fa-2x",
-                class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
-              })
-            ]
-          )
-        ])
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      {
-        staticClass: "semi-top  hidden-sm hidden-xs",
-        class: { hidden: _vm.isUser != 1 }
-      },
-      [
-        _c("center", [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleBanned(_vm.meal.id)
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "fa fa-2x fa-ban",
+                class: [
+                  _vm.meal.favorite ? "fa-heart fa-mob" : "fa-heart-o fa-mob"
+                ]
               })
             ]
           )

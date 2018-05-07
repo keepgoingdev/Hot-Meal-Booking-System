@@ -118,7 +118,7 @@ class RegisterController extends Controller
             }
             $subscription = $user->newSubscription('main', $plan->braintree_plan);
             if(!$plan->is_discount) {
-                $subscription = $subscription->trialDays(14);
+             //   $subscription = $subscription->trialDays(14);
             }
             $subscription->create($request->payment_method_nonce);
 

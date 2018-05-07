@@ -166,18 +166,21 @@ class ProfileController extends Controller
         $bannedMealIds = \Auth::user()->bannedMeals->pluck('id')->toArray();
         $otherMeals = DayMenu::where('week_plan_id', $weekPlanId)
             ->where('day', $dayOfWeek)
-            ->where('time_of_day', '!=', $dayMenuName)
+            ->where('time_of_day', '=', $dayMenuName)
             ->whereNotIn('meal_id', $bannedMealIds)
             ->select('meal_id')->get()->pluck('meal_id')->toArray();
-            $othMealArray = $otherMeals;
-        $otherMeals = Meal::whereIn('id', $otherMeals)->sum('calories');
         
-        
-        $maxCalories = ($weekPlan->calory_goal - (int)$otherMeals);
-        if($maxCalories < 0) { 
-            $maxCalories = 300;
+        $maxCalories = Meal::whereIn('id', $otherMeals)->sum('calories');
+  
+        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories+5, $otherMeals, Meal::$indexes[$dayMenuName]);
+        \Log::info('regen - current cal is '. $mealCalories. ' - min is - ' . $maxCalories);
+
+        $triedTimes = 0;
+        while($mealCalories < $maxCalories && $triedTimes <= 10) {
+            list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories+5, $otherMeals, Meal::$indexes[$dayMenuName]);
+            $triedTimes++;
+            \Log::info($triedTimes.' attempt - regen current cal is '. $mealCalories . ' - min is - ' . $maxCalories);
         }
-        list($meals, $mealCalories, $ignoredMealIds) = Meal::getMealsForTimeOfDay($maxCalories, $othMealArray , Meal::$indexes[$dayMenuName]);
         $dayMenus = DayMenu::where('day', $dayOfWeek)->where('time_of_day', $dayMenuName)->where('week_plan_id', $weekPlanId)->delete();
         foreach($meals as $meal) {
             DayMenu::create([

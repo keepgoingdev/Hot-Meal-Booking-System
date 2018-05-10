@@ -1,1 +1,86 @@
 [18-Feb-2018 22:54:59 CST6CDT] PHP Fatal error:  require(): Failed opening required '/home/thehotne/public_html/thehotmeal.com/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/php72/pear') in /home/thehotne/public_html/thehotmeal.com/bootstrap/autoload.php on line 17
+[10-May-2018 10:47:10 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:52:52 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:52:52 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:53:15 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:53:15 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:54:18 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:54:18 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:54:40 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:54:40 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:55:58 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:55:58 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:57:27 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalThrowableError::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#2 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalThrowableError))
+#3 {main}
+  thrown in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52
+[10-May-2018 10:57:27 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined method Symfony\Component\Debug\Exception\FatalErrorException::getHeaders() in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php:52
+Stack trace:
+#0 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(112): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#1 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(89): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#2 /home/thehotne/public_html/thehotmeal.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(123): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Symfony\Component\Debug\Exception\FatalErrorException))
+#3 [internal function]: Illuminate\Founda in /home/thehotne/public_html/thehotmeal.com/app/Exceptions/Handler.php on line 52

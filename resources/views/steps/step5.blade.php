@@ -96,7 +96,7 @@
                                     <div class="input-group">
                                         <input id="coupon" type="text" class="form-control" name="coupon" value="">
                                         <span id="validate-coupon"
-                                              class="input-group-addon btn btn-primary">Refresh</span>
+                                              class="input-group-addon btn btn-primary">Apply Coupon</span>
                                         <input style="display:none; visibility: hidden" id="coupon-validation"
                                                type="text" class="form-control" name="coupon-validation" value="">
                                     </div>

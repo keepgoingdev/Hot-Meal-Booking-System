@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Condiment;
 use App\Models\Meal;
+use App\Plan;
 use Illuminate\Http\Request;
 
 use Mail;
@@ -27,7 +28,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+
+        $plans = Plan::where('is_discount', false)
+            ->where('show_on_homepage', true)
+            ->orderBy('month')
+            ->get();
+
+        return view('welcome', [
+            'plans' => $plans
+        ]);
     }
     
     public function contact(Request $request) {

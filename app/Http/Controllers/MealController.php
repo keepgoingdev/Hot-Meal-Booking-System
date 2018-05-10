@@ -85,7 +85,8 @@ class MealController extends Controller
      */
     public function edit(Meal $meal)
     {
-        return view('meals.edit', compact('meal'));
+        $redirect = \URL::previous();
+        return view('meals.edit', compact('meal', 'redirect'));
     }
 
     /**
@@ -128,7 +129,7 @@ class MealController extends Controller
         } 
         $meal->save();
         session()->flash('message', 'Saved!');
-        return redirect('/admin/meals');
+        return redirect()->to($request->redirect_to);
     }
 
     /**

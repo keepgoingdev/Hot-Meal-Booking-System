@@ -28479,6 +28479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 var ApiUtil = __webpack_require__(3);
 
@@ -28536,6 +28537,8 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
+        _c("div", { staticClass: "col-xs-2" }),
+        _vm._v(" "),
         _c("div", { staticClass: "col-xs-2" }, [
           _c(
             "a",
@@ -28585,22 +28588,6 @@ var render = function() {
                 class: [_vm.meal.favorite ? "fa-heart" : "fa-heart-o"]
               })
             ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-2" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.toggleBanned(_vm.meal.id)
-                }
-              }
-            },
-            [_c("i", { staticClass: "fa fa-2x fa-ban" })]
           )
         ]),
         _vm._v(" "),
@@ -28657,6 +28644,11 @@ var render = function() {
           : _vm._e()
       ]
     ),
+    _vm._v(" "),
+    _c("td", {
+      staticClass: "semi-top hidden-sm hidden-xs text-center",
+      class: { hidden: _vm.isUser != 1 }
+    }),
     _vm._v(" "),
     _c(
       "td",
@@ -28722,29 +28714,6 @@ var render = function() {
               ]
             })
           ]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "td",
-      {
-        staticClass: "semi-top hidden-sm hidden-xs text-center",
-        class: { hidden: _vm.isUser != 1 }
-      },
-      [
-        _c(
-          "a",
-          {
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.toggleBanned(_vm.meal.id)
-              }
-            }
-          },
-          [_c("i", { staticClass: "fa fa-2x fa-ban" })]
         )
       ]
     ),
@@ -29174,6 +29143,7 @@ var timeOfDay = __webpack_require__(133);
             ApiUtil.postToApi('/intapi/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
+            this.showAdditionalFood = false;
         },
         updateExercise: function updateExercise() {
             var formData = new FormData();
@@ -29181,6 +29151,7 @@ var timeOfDay = __webpack_require__(133);
             ApiUtil.postToApi('/intapi/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
+            this.showExercise = false;
         }
     }
 });

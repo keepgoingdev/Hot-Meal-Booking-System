@@ -57,7 +57,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first-name' => 'required|string|max:50',
             'last-name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users|confirmed',
             'password' => 'required|string|min:6',
         ]);
     }
@@ -118,7 +118,7 @@ class RegisterController extends Controller
             }
             $subscription = $user->newSubscription('main', $plan->braintree_plan);
             if(!$plan->is_discount) {
-                $subscription = $subscription->trialDays(14);
+             //   $subscription = $subscription->trialDays(14);
             }
             $subscription->create($request->payment_method_nonce);
 

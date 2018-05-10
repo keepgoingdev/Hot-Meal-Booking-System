@@ -1906,6 +1906,12 @@ input[type=number]::-webkit-outer-spin-button {
 			display: inline !important;
 			max-width: 300px;
 		}
+
+	}
+	@media(max-height: 970px) {
+		.box-form {
+			margin-top:60px !important;
+		}
 	}
 	.box-detail-meal{
 		padding-top: 50px;

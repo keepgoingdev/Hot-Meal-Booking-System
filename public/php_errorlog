@@ -1,1 +1,0 @@
-[18-Feb-2018 22:54:59 CST6CDT] PHP Fatal error:  require(): Failed opening required '/home/thehotne/public_html/thehotmeal.com/bootstrap/../vendor/autoload.php' (include_path='.:/usr/local/php72/pear') in /home/thehotne/public_html/thehotmeal.com/bootstrap/autoload.php on line 17

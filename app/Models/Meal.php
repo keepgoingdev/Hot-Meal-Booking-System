@@ -79,6 +79,7 @@ class Meal extends Model
 
     public static function generateMealsForOneDay($calorieGoal, $ignoredMealIds)
     {
+        $savedIgnored = $ignoredMealIds;
      	$origGoal = $calorieGoal;
      	$calorieGoal = $calorieGoal+60;
      	
@@ -98,6 +99,7 @@ class Meal extends Model
 	\Log::info('current cal is '. $currentCal);
 	 
 	while($currentCal < $origGoal && $triedTimes <= 20) {
+            $ignoredMealIds = $savedIgnored;
 	        list($breakfastMeals, $breakfastCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($breakfastMaxCalories, $ignoredMealIds, self::BREAKFAST);
         	list($lunchMeals, $lunchCalories,$ignoredMealIds) = self::getMealsForTimeOfDay($LunchMaxCalories, $ignoredMealIds, self::LUNCH);
         	list($dinnerMeals, $dinnerCalories, $ignoredMealIds) = self::getMealsForTimeOfDay($DinnerMaxCalories, $ignoredMealIds, self::DINNER);

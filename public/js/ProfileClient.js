@@ -29143,6 +29143,7 @@ var timeOfDay = __webpack_require__(133);
             ApiUtil.postToApi('/intapi/add-additional/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
+            this.showAdditionalFood = false;
         },
         updateExercise: function updateExercise() {
             var formData = new FormData();
@@ -29150,6 +29151,7 @@ var timeOfDay = __webpack_require__(133);
             ApiUtil.postToApi('/intapi/add-exercise/' + weekPlanId + '/' + this.dayOfWeek, formData).then(function () {
                 //this.totalCalories += this.additional;
             });
+            this.showExercise = false;
         }
     }
 });

@@ -20,7 +20,7 @@
                 <a href="/favorite-meals" class="btn btn-block btn-default" id="btn-list-picks">Favorite Meals <i class="fa fa-heart" style="color: #82c91e"></i></a>
             </div>
             <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3">
-                <a href="/banned-meals" class="btn btn-block btn-default" id="btn-list-picks">Banned Meals <i class="fa fa-ban" style="color: #82c91e"></i></a>
+                @php /*<a href="/banned-meals" class="btn btn-block btn-default" id="btn-list-picks">Banned Meals <i class="fa fa-ban" style="color: #82c91e"></i></a>*/@endphp
             </div>
         </div>
         <div class="col-lg-12 col-xs-12 col-sm-12" id="box-menu-profile" style="z-index: 100;">
@@ -86,6 +86,6 @@
         window.weekPlanId = '{{$weekPlanId}}';
         window.caloryGoal = '{{ $weekPlan->calory_goal }}';
     </script>
-    <script src="{{ URL::asset('js/ProfileClient.js?v6.0.1')}}"></script>
+    <script src="{{ URL::asset('js/ProfileClient.js?v6.1')}}"></script>
 
 @endsection

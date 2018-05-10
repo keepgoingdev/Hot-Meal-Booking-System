@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'postmaster@mg.savamarkovic.com'),
+    'username' => env('MAIL_USERNAME', 'postmaster@mg.thehotmeal.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', 'f296679f01dfedae8bcfc6e1542e8618'),
+    'password' => env('MAIL_PASSWORD', 'c2b850fe27041c0260e5f9994b11b43b-97923b2d-c58682d6'),
 
     /*
     |--------------------------------------------------------------------------

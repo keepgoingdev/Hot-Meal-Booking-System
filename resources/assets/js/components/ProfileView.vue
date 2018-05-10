@@ -145,6 +145,7 @@
                 ApiUtil.postToApi('/intapi/add-additional/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
                     //this.totalCalories += this.additional;
                 });
+                this.showAdditionalFood = false;
             },
             updateExercise() {
                 let formData = new FormData();
@@ -152,6 +153,8 @@
                 ApiUtil.postToApi('/intapi/add-exercise/'+weekPlanId+'/'+this.dayOfWeek, formData).then(() => {
                     //this.totalCalories += this.additional;
                 });
+                this.showExercise = false;
+
             }
             }
     }

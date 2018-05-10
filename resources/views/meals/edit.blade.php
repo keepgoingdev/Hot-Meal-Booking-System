@@ -15,6 +15,7 @@
                 <form enctype="multipart/form-data" class="form-horizontal"  action="{{ route('meals.update', $meal->id) }}" method="POST">
                     {{csrf_field()}}
                     {{ method_field('PUT') }}
+                    <input type="hidden" name="redirect_to" value="{{ $redirect }}">
 
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="col-md-4 control-label">Name</label>

@@ -41,7 +41,7 @@
                 <img src="/img/logo.png" style="margin: 0 auto;display: block">
                 <div class="title">There was an error.</div>
                     <h3>
-                        <a href="/home">Click here to go to homepage.</a>
+                        <a href="/">Click here to go to homepage.</a>
                     </h3>
             </div>
         </div>

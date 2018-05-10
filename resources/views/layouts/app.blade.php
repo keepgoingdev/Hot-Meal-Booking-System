@@ -74,6 +74,7 @@ margin-top: 50px
         <noscript><div class="statcounter"><a title="Web Analytics Made Easy - StatCounter" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11641315/0/8b437437/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
         <!-- End of StatCounter Code for Default Guide -->
     @endif
-@yield('braintree')
+@yield('stripe')
+{{--@yield('braintree')--}}
 </body>
 </html>

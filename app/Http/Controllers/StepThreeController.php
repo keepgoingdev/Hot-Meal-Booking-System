@@ -19,12 +19,12 @@ class StepThreeController extends Controller
         $calorieGoal = intval($calorieGoal);
         $discount = false;
         $plans = Plan::orderBy('cost')->get();
-        $braintreeToken = Braintree_ClientToken::generate();
+        //$braintreeToken = Braintree_ClientToken::generate();
         return view('steps.step3', array(
                 'calorieGoal' => $calorieGoal,
                 'plans' => $plans,
                 'discount' => $discount,
-                'braintreeToken' => $braintreeToken
+                'braintreeToken' => ''
             )
         );
     }

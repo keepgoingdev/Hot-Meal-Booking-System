@@ -18,9 +18,9 @@ class StepFiveController extends Controller
     {
         $discount = false;
         $plans = Plan::orderBy('cost')->get();
-        $braintreeToken = Braintree_ClientToken::generate();
+        //$braintreeToken = Braintree_ClientToken::generate();
 
-        return view('steps.step5')->with(['plans' => $plans, 'discount' => $discount, 'braintreeToken' => $braintreeToken]);
+        return view('steps.step5')->with(['plans' => $plans, 'discount' => $discount, 'braintreeToken' => null]);
     }
 
     public function validateCoupon(Request $request){

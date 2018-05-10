@@ -53,7 +53,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="{{ $errors->has('age') ? ' has-error' : '' }}">
                                 <label for="age">Age</label>
-                                <input type="number" class="form-control" name="age" id="age" value="{{ old('age') }}">
+                                <input type="number" class="form-control" min="12" max="120" name="age" id="age" value="{{ old('age') }}">
                             </div>
                             @if ($errors->has('age'))
                                 <span class="help-block">
@@ -66,7 +66,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="{{ $errors->has('weight-pounds') ? ' has-error' : '' }}">
                                 <label for="weight-pounds">Weight(Pounds)</label>
-                                <input type="number" class="form-control" name="weight-pounds" id="weight-pounds"
+                                <input type="number" class="form-control" min="60" name="weight-pounds" id="weight-pounds"
                                        value="{{ old('weight-pounds') }}">
                             </div>
                             @if ($errors->has('weight-pounds'))
@@ -78,7 +78,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="{{ $errors->has('height-feet') ? ' has-error' : '' }}">
                                 <label for="height-feet">Height(Feet)</label>
-                                <input type="number" class="form-control" name="height-feet" id="height-inches"
+                                <input type="number" class="form-control" min="0" name="height-feet" id="height-inches"
                                        value="{{ old('height-inches') }}">
                             </div>
                             @if ($errors->has('height-feet'))
@@ -90,7 +90,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="{{ $errors->has('height-inches') ? ' has-error' : '' }}">
                                 <label for="height-inches">Height(inches)</label>
-                                <input type="number" class="form-control" name="height-inches" id="height-inches"
+                                <input type="number" class="form-control" min="0" name="height-inches" id="height-inches"
                                        value="{{ old('height-inches') }}">
                             </div>
                             @if ($errors->has('height-inches'))

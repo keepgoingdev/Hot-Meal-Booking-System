@@ -2137,6 +2137,7 @@ input[type=number]::-webkit-outer-spin-button {
 	}
 
 }
+
 @media (max-width: 1024px) {
 	/** INDEX **/
 
@@ -2222,6 +2223,7 @@ input[type=number]::-webkit-outer-spin-button {
 		z-index: 1000;
 	}
 }
+
 @media (min-width: 1200px) {
 	/* MY PROFILE */
 	#box-archives-profile{
@@ -2265,4 +2267,285 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .semi-top i.fa-orange, .fa-orange {
     color: #FB7E4F;
+}
+
+.block-prices {
+	position: relative;
+	overflow: hidden;
+	padding: 172px 0;
+	display: block;
+	font-weight: 500;
+}
+.block-prices .wrap {
+	width: 83%;
+	margin: 0 auto;
+}
+.block-prices .container {
+	margin: 0 auto;
+	padding: 0 15px;
+	width: 100%;
+	max-width: 1170px;
+}
+.block-prices h2 {
+	font-size: 54px;
+	line-height: 60px;
+	color: #394a4e;
+	margin: 0 0 34px;
+}
+.block-prices .block-head {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	font-size: 28px;
+	line-height: 32px;
+	color: #fa7d4f;
+	margin: 0 0 128px;
+}
+.block-prices .block-head p {
+	margin: 0 0 10px;
+}
+.block-prices .box-area {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #324348;
+	text-align: center;
+	flex-wrap: wrap;
+}
+.block-prices .box {
+	transition: all 0.4s ease;
+	width: 33%;
+	border: 2px solid #f5f5f5;
+}
+.block-prices .box.recommended,
+.block-prices .box:hover {
+	transform: scale(1.05);
+	background: #fff;
+	position: relative;
+	z-index: 2;
+	box-shadow: -2px 0px 8px 2px rgba(0,0,0,0.2);
+}
+.block-prices .box.recommended .box-head {
+	background: #f8f8f8;
+}
+.block-prices .box {
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+	position: relative;
+}
+.block-prices .box-head {
+	background: #f8f8f8;
+	padding: 32px 20px;
+	text-align: center;
+}
+.block-prices .box-head .title {
+	display: block;
+	text-align: center;
+	font-size: 22px;
+	line-height: 28px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	margin: 0 0 1px;
+	text-transform: uppercase;
+}
+.block-prices .info {
+	display: block;
+	text-align: center;
+	color: #657376;
+	margin: 0 0 3px;
+}
+.block-prices .price {
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	font-size: 20px;
+	line-height: 24px;
+	color: #2a3c41;
+	font-weight: 400;
+}
+.block-prices .val {
+	font-size: 104px;
+	line-height: 104px;
+	color: #fa7d4f;
+	font-weight: 700;
+	padding: 0 40px 0 20px;
+}
+.block-prices .dollar {
+	position: absolute;
+	left: -9px;
+	top: 11px;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+}
+.block-prices .sub-amount {
+	color: #fa7d4f;
+	font-size: 28px;
+	line-height: 32px;
+	font-weight: 700;
+	position: absolute;
+	right: -4px;
+	top: 13px;
+}
+.block-prices .duration {
+	position: absolute;
+	right: -7px;
+	bottom: 12px;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 28px;
+}
+.block-prices .box .body-area {
+	padding: 57px 30px 126px;
+}
+.block-prices .box .btn {
+	background: #fa7d4f;
+	color: #fff;
+	padding: 17px 15px;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 17px;
+	line-height: 24px;
+	border-radius: 30px;
+	text-decoration: none;
+	font-weight: 700;
+	position: absolute;
+	bottom: 45px;
+	left: 30px;
+	right: 30px;
+	transition: all 0.4s ease;
+}
+.block-prices .box .btn:hover {
+	background: #c85930;
+}
+.block-prices .plan-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: #4c5c5f;
+	font-weight: 500;
+	position: relative;
+	overflow: hidden;
+}
+.block-prices .plan-list li {
+	margin: 0 0 23px;
+}
+.block-prices .image-holder {
+	padding: 6px 0 0;
+	width: 145px;
+	display: block;
+	margin: 0 auto;
+}
+.block-prices img {
+	width: 100%;
+	height: auto;
+	vertical-align: top;
+}
+.block-prices .old-val {
+	position: relative;
+	padding: 0 2px 0 6px;
+}
+.block-prices .old-val:after {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 3px;
+	transform: rotate(-26deg);
+	background: #fa7e51;
+	content: '';
+	top: 50%;
+}
+
+@media (max-width: 1199px) {
+	.block-prices {
+		padding: 100px 0;
+	}
+	.block-prices h2 {
+		font-size: 40px;
+		line-height: 44px;
+		margin: 0 0 10px;
+	}
+	.block-prices .block-head {
+		margin: 0 0 100px;
+	}
+	.block-prices .wrap .wrap {
+		width: 100%;
+	}
+}
+@media (max-width: 1023px) {
+	.block-prices {
+		padding: 60px 0;
+	}
+	.block-prices h2 {
+		font-size: 34px;
+		line-height: 38px;
+		margin: 0 0 10px;
+	}
+	.block-prices .block-head {
+		margin: 0 0 60px;
+		font-size: 20px;
+		line-height: 24px;
+	}
+	.block-prices .val {
+		font-size: 84px;
+		line-height: 84px;
+	}
+	.block-prices .dollar {
+		left: 0;
+		top: 4px;
+	}
+	.block-prices .sub-amount {
+		font-size: 20px;
+		line-height: 24px;
+		top: 6px;
+		right: 5px;
+	}
+	.block-prices .duration {
+		font-size: 20px;
+		line-height: 24px;
+		right: -2px;
+	}
+	.block-prices .box-head .title {
+		font-size: 18px;
+		line-height: 22px;
+	}
+	.block-prices .box .body-area {
+		padding: 30px 15px 100px;
+	}
+	.block-prices .plan-list li {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	.block-prices .box .btn {
+		left: 15px;
+		right: 15px;
+		padding: 10px;
+	}
+}
+
+@media (max-width: 767px) {
+	.block-prices {
+		padding: 30px 0;
+	}
+	.block-prices h2 {
+		font-size: 26px;
+		line-height: 32px;
+	}
+	.block-prices .block-head {
+		font-size: 18px;
+		line-height: 22px;
+	}
+	.block-prices .block-head {
+		margin: 0 0 30px;
+	}
+	.block-prices .box {
+		width: 100%;
+		margin: 0 0 15px;
+	}
+	.block-prices .box.recommended {
+		transform: none;
+	}
+	.block-prices .box .btn {
+		bottom: 25px;
+	}
 }

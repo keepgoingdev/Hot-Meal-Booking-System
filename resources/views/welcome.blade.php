@@ -27,37 +27,37 @@
                                         STARTED</a></li>
                                 <li><a href="{{route('login')}}" class="btn btn-default" id="btn-login-nav">LOGIN</a>
                                 </li>
-                                @else
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                           aria-expanded="false">
-                                            {{Auth::user()->first_name}}
-                                            <span class="caret"></span>
-                                        </a>
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false">
+                                        {{Auth::user()->first_name}}
+                                        <span class="caret"></span>
+                                    </a>
 
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{{ route('my-profile') }}">
-                                                    Profile
-                                                </a>
-                                                <a href="{{ route('account-settings') }}">
-                                                    Account settings
-                                                </a>
-                                            <li>
-                                                <a href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ route('my-profile') }}">
+                                                Profile
+                                            </a>
+                                            <a href="{{ route('account-settings') }}">
+                                                Account settings
+                                            </a>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                    Logout
-                                                </a>
+                                                Logout
+                                            </a>
 
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                      style="display: none;">
-                                                    {{ csrf_field() }}
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    @endguest
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
@@ -192,11 +192,65 @@
         </div>
     </div>
 
+    <section class="block-prices">
+        <div class="container">
+            <header class="block-head">
+                <h2>Try our intelligent meal planner now</h2>
+                <p>Plan your meals using Trader Joe's Groceries</p>
+            </header>
+            <div class="box-area">
+                @foreach($plans as $plan)
+                    <div class="box">
+                        <header class="box-head">
+                            <strong class="title">{{$plan->homepage_name}}</strong>
+                            <span class="info">{{$plan->month}}-month subscription</span>
+                            <div class="price">
+                                <span class="dollar">$</span>
+                                <span class="amount">
+                                <span class="val">{{floor($plan->monthly_cost)}}</span>
+                                <span class="sub-amount">.{{@explode('.',(string)$plan->monthly_cost)[1] ?: '00'}}</span>
+                                <span class="duration">/mo</span>
+                            </span>
+                            </div>
+                        </header>
+                        <div class="body-area">
+                            <ul class="plan-list">
+                                @if($plan->month === 1)
+                                    <li><strong class="title">Plan meals: </strong>Save time &amp; money</li>
+                                    <li><strong class="title">Take meal plans </strong>to Trader Joe's</li>
+                                    <li><strong class="title">Archive </strong>past meal plans</li>
+                                    <li><strong class="title">Track starting </strong>weight &amp; weight loss</li>
+                                    <li><strong class="title">Lose up to </strong>2 pounds weekly</li>
+                                    <li><strong class="title">Eat yummy </strong>recommended calories</li>
+                                @else
+                                    <li>
+                                        <stron class="old-val">${{$plan->month * $plans->first()->cost}}</stron>
+                                        <strong class="title"> ${{$plan->cost}} total </strong>for {{$plan->month}}
+                                        months
+                                    </li>
+                                    <li>
+                                        Every feature <strong class="title">plus
+                                            save {{$plan->getSavingPercent($plans->first()->cost)}}%</strong>
+                                    </li>
+                                @endif
+                            </ul>
+                            @if($plan->month === 12)
+                                <div class="image-holder"><img src="{{asset('images/best-deal.png')}}" alt="be"></div>
+                            @endif
+                            <a href="{{route('step-one', ['plan' => $plan->slug])}}" class="btn">get started</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <div class="container" id="container-whyitworks">
         <div class="col-lg-offset-1 col-sm-offset-1 col-lg-10 col-sm-10" style="line-height: 2.2;">
             <h1 class="text-whyitworks">Why it works</h1>
             <div class="row color-gray">
-                <div class="col-lg-offset-1 col-lg-6 col-md-7 col-xs-12 font-size-17 color-gray" style="text-align: left">
+                <div class="col-lg-offset-1 col-lg-6 col-md-7 col-xs-12 font-size-17 color-gray"
+                     style="text-align: left">
                     <p>If your body needs just 1,200 calories a day, and you're eating 3,000 calories a day, for
                         example, then you're eating 1,800 more calories than you need. Each day that you consume those
                         extra 1,800 calories a day, adds up over time, leaving you with a surplus of pounds. It takes
@@ -221,9 +275,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-offset-1 col-lg-10">
-                    <img class="box-shadow hidden-xs" width="100%" style="margin-bottom: 80px;" src="/img/comparison.png"/>
-                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 10px;" src="/img/comparison_left.jpg"/>
-                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 80px;" src="/img/comparison_right.jpg"/>
+                    <img class="box-shadow hidden-xs" width="100%" style="margin-bottom: 80px;"
+                         src="/img/comparison.png"/>
+                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 10px;"
+                         src="/img/comparison_left.jpg"/>
+                    <img class="box-shadow visible-xs" width="100%" style="margin-bottom: 80px;"
+                         src="/img/comparison_right.jpg"/>
 
                 </div>
             </div>
@@ -235,27 +292,24 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
-            $('.testimonials').on('init', function () {
-                $('.testimonials').css({visibility: 'visible'});
-            });
-
-            $('.testimonials').slick({
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    lazyLoad: 'ondemand',
-                    arrows: true,
-                    dots: true,
-                    infinite: false,
-                    autoplay: true,
-                    autoplaySpeed: 2000,
-                    speed: 300,
-                    adaptiveHeight: false,
-                }
-            )
-            ;
+      $(document).ready(function () {
+        $('.testimonials').on('init', function () {
+          $('.testimonials').css({visibility: 'visible'});
         });
 
+        $('.testimonials').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          lazyLoad: 'ondemand',
+          arrows: true,
+          dots: true,
+          infinite: false,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          speed: 300,
+          adaptiveHeight: false,
+        });
+      });
     </script>
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>

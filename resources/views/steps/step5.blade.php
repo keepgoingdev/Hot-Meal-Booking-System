@@ -109,7 +109,7 @@
                                     <div class="input-group">
                                         <input id="coupon" type="text" class="form-control" name="coupon" value="">
                                         <span id="validate-coupon"
-                                              class="input-group-addon btn btn-primary">Refresh</span>
+                                              class="input-group-addon btn btn-primary">Apply Coupon</span>
                                         <input style="display:none; visibility: hidden" id="coupon-validation"
                                                type="text" class="form-control" name="coupon-validation" value="">
                                     </div>
@@ -140,6 +140,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div id="card-errors"></div>
                                 <div id="dropin-container"></div>
                                 <h3 class="hidden" id="total-cost" style="font-weight: bold">Total cost:
                                     ${{$plans->where('is_discount', false)->first()->cost}}</h3>
@@ -202,6 +203,71 @@
                 $('#total-cost').text('Total cost: $' + price);
             }
         })
+    </script>
+@endsection
+
+@section('stripe')
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript">
+    var stripe = Stripe('{{config('services.stripe.key')}}');
+    var elements = stripe.elements();
+    var style = {
+      base: {
+        // Add your base input styles here. For example:
+        fontSize: '16px',
+        color: "#32325d",
+      }
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#dropin-container');
+    $('#total-cost').removeClass('hidden');
+
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+        $('#payment-button').addClass('hidden');
+      } else {
+        displayError.textContent = '';
+        $('#payment-button').removeClass('hidden');
+      }
+    });
+
+    //Step 3: Create a token to securely transmit card information
+    // Create a token or display an error when the form is submitted.
+    var form = document.getElementById('dropin-container');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the customer that there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server.
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    //Step 4: Submit the token and the rest of your form to your server
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('dropin-container');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      // Submit the form
+      form.submit();
+    }
     </script>
 @endsection
 

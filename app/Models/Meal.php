@@ -130,7 +130,7 @@ class Meal extends Model
             $dayMenu[3]['calories'] = $snacksCalories;
             $dayMenu[3]['meals'] = $snacksMeals;
         }
-        return array($dayMenu, $ignoredMealIds);
+        return array(@$dayMenu ?: [], $ignoredMealIds);
     }
 
     public static function getMealsForTimeOfDay($maxCalories, $ignoredMealIds, $type)

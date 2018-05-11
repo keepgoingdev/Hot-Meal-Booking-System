@@ -24,6 +24,11 @@ class Plan extends Model
         'cost' => 'float',
     ];
 
+    public function getStripePlanAttribute()
+    {
+        return $this->braintree_plan;
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

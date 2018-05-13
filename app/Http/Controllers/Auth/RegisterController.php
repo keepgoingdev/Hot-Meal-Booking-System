@@ -103,11 +103,14 @@ class RegisterController extends Controller
         }
 
         if($validator->passes()) {
+            \Log::debug($request->all());
             $formData = unserialize($request->cookie('formdata'));
+            \Log::debug($formData);
             $goal = $request->cookie('goal');
             $data = $this->create($input, $formData, $goal);
             $data = $data->toArray();
             $data['token'] = str_random(50);
+
             $user = User::find($data['id']);
             $user->confirmation_token = $data['token'];
             $user->save();
@@ -116,11 +119,12 @@ class RegisterController extends Controller
             if($discountCode){
                 $discountCode->activate($user->id);
             }
-            $subscription = $user->newSubscription('main', $plan->braintree_plan);
+            \Log::debug($plan);
+            $subscription = $user->newSubscription('main', $plan->stripe_plan);
             if(!$plan->is_discount) {
              //   $subscription = $subscription->trialDays(14);
             }
-            $subscription->create($request->payment_method_nonce);
+            $subscription->create($request->stripeToken);
 
             Mail::to($data['email'])->send(new AccountConfirmation($data));
 

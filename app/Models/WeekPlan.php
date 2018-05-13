@@ -32,12 +32,14 @@ class WeekPlan extends Model
             'weight' => $weight
         ));
         $weekPlan->save();
-        foreach ($dayMenus as $index => $dayMenu){
-            DailyAdditional::create([
-                'week_plan_id' => $weekPlan->id,
-                'day' => $index
-            ]);
-            DayMenu::addNewMenuFromSession($dayMenu, $index, $weekPlan->id);
+        if ($dayMenus) {
+            foreach ($dayMenus as $index => $dayMenu){
+                DailyAdditional::create([
+                    'week_plan_id' => $weekPlan->id,
+                    'day' => $index
+                ]);
+                DayMenu::addNewMenuFromSession($dayMenu, $index, $weekPlan->id);
+            }
         }
     }
 

@@ -41,7 +41,7 @@
 
                             </div>
                         @endif
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}" autocomplete="off">
+                        <form class="form-horizontal dropin-container" id="dropin-container" method="POST" action="{{ route('register') }}" autocomplete="off">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -139,13 +139,30 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div id="card-errors"></div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <label for="first-name">Card Number</label>
+                                            <div id="example2-card-number"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-6 col-sm-12">
+                                            <label for="first-name">Expiry</label>
+                                            <div id="example2-card-expiry"></div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <label for="first-name">Cvc</label>
+                                            <div id="example2-card-cvc"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="card-errors"></div>
-                                <div id="dropin-container"></div>
+
                                 <h3 class="hidden" id="total-cost" style="font-weight: bold">Total cost:
                                     ${{$plans->where('is_discount', false)->first()->cost}}</h3>
                                 <button id="payment-button"
-                                        class="btn btn-default btn-block btn-lg hidden box-form-btn-green"
+                                        class="btn btn-default btn-block btn-lg box-form-btn-green"
+                                        disabled
                                         type="submit">Payment
                                 </button>
                             </div>
@@ -219,21 +236,52 @@
       }
     };
 
-    // Create an instance of the card Element.
-    var card = elements.create('card', {style: style});
+    var cardNumber = elements.create('cardNumber', {
+      classes: {
+        'base': 'form-control'
+      },
+    });
+    cardNumber.mount('#example2-card-number');
+    
 
+    var cardExpiry = elements.create('cardExpiry', {
+      classes: {
+        'base': 'form-control'
+      },
+    });
+    cardExpiry.mount('#example2-card-expiry');
+
+    var cardCvc = elements.create('cardCvc', {
+      classes: {
+        'base': 'form-control'
+      },
+    });
+    cardCvc.mount('#example2-card-cvc');
+
+    var elements = [
+      'cardNumber',
+      'cardCvc',
+      'cardExpiry',
+    ]
+    // Create an instance of the card Element.
+    //var card = elements.create(['cardNumber', 'cardExpiry', 'cardCvc'], {style: style});
+    //console.log('card', card)
     // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#dropin-container');
+    //card.mount('#dropin-container');
+    //console.log('card-mount', card)
     $('#total-cost').removeClass('hidden');
 
-    card.addEventListener('change', function(event) {
+    cardNumber.addEventListener('change', function(event) {
+      console.log('change-card', event)
       var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-        $('#payment-button').addClass('hidden');
+      if (event.error || event.empty == true || event.complete == false) {
+        if(event.error.message){
+          displayError.textContent = event.error.message;
+        }
+        $('#payment-button').attr('disabled', 'disabled');
       } else {
         displayError.textContent = '';
-        $('#payment-button').removeClass('hidden');
+        $('#payment-button').removeAttr('disabled');
       }
     });
 
@@ -242,8 +290,10 @@
     var form = document.getElementById('dropin-container');
     form.addEventListener('submit', function(event) {
       event.preventDefault();
+      console.log('eventttt', event)
 
-      stripe.createToken(card).then(function(result) {
+      stripe.createToken(cardNumber).then(function(result) {
+        console.log('token-createToken', result)
         if (result.error) {
           // Inform the customer that there was an error.
           var errorElement = document.getElementById('card-errors');
@@ -257,6 +307,7 @@
 
     //Step 4: Submit the token and the rest of your form to your server
     function stripeTokenHandler(token) {
+      console.log('token', token)
       // Insert the token ID into the form so it gets submitted to the server
       var form = document.getElementById('dropin-container');
       var hiddenInput = document.createElement('input');
@@ -265,6 +316,7 @@
       hiddenInput.setAttribute('value', token.id);
       form.appendChild(hiddenInput);
 
+      console.log(form)
       // Submit the form
       form.submit();
     }

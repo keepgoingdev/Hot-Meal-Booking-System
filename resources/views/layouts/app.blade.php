@@ -75,6 +75,5 @@ margin-top: 50px
         <!-- End of StatCounter Code for Default Guide -->
     @endif
 @yield('stripe')
-{{--@yield('braintree')--}}
 </body>
 </html>

@@ -270,21 +270,3 @@
     }
     </script>
 @endsection
-
-@section('braintree')
-    <script src="https://js.braintreegateway.com/js/braintree-2.30.0.min.js"></script>
-
-    <script>
-        $.ajax({
-            url: '{{ url('braintree/token') }}'
-        }).done(function (response) {
-            braintree.setup(response.data.token, 'dropin', {
-                container: 'dropin-container',
-                onReady: function () {
-                    $('#total-cost').removeClass('hidden');
-                    $('#payment-button').removeClass('hidden');
-                }
-            });
-        });
-    </script>
-@endsection

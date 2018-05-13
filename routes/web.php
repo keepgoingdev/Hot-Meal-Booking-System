@@ -3,17 +3,12 @@
 Auth::routes();
 
 Route::post(
-    'braintree/webhook',
-    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
-);
-Route::post(
     'stripe/webhook',
     '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
 );
 
 // Upload
 Route::get('/upload', 'HomeController@uploadView');
-Route::get('/braintree/token', 'BraintreeTokenController@token');
 // Register
 Route::get('/register', 'StepFiveController@index')->name('register');
 Route::get('privacy-policy', function() {

@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <p>First month is free! 100% Money-Back Guarantee.</p>
+                                    {{--<p>First month is free! 100% Money-Back Guarantee.</p>--}}
                                     <p>Refunds Processed By Request for Any Months not used.</p>
                                 </div>
                             </div>

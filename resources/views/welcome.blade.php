@@ -192,58 +192,56 @@
         </div>
     </div>
 
-    <section class="block-prices">
-        <div class="container">
-            <header class="block-head">
-                <h2>Try our intelligent meal planner now</h2>
-                <p>Plan your meals using Trader Joe's Groceries</p>
-            </header>
-            <div class="box-area">
-                @foreach($plans as $plan)
-                    <div class="box">
-                        <header class="box-head">
-                            <strong class="title">{{$plan->homepage_name}}</strong>
-                            <span class="info">{{$plan->month}}-month subscription</span>
-                            <div class="price">
-                                <span class="dollar">$</span>
-                                <span class="amount">
+    <div class="container block-prices">
+        <header class="block-head">
+            <h2>Try our intelligent meal planner now</h2>
+            <p>Plan your meals using Trader Joe's Groceries</p>
+        </header>
+        <div class="box-area">
+            @foreach($plans as $plan)
+                <div class="box">
+                    <header class="box-head">
+                        <strong class="title">{{$plan->homepage_name}}</strong>
+                        <span class="info">{{$plan->month}}-month subscription</span>
+                        <div class="price">
+                            <span class="dollar">$</span>
+                            <span class="amount">
                                 <span class="val">{{floor($plan->monthly_cost)}}</span>
                                 <span class="sub-amount">.{{@explode('.',(string)$plan->monthly_cost)[1] ?: '00'}}</span>
                                 <span class="duration">/mo</span>
                             </span>
-                            </div>
-                        </header>
-                        <div class="body-area">
-                            <ul class="plan-list">
-                                @if($plan->month === 1)
-                                    <li><strong class="title">Plan meals: </strong>Save time &amp; money</li>
-                                    <li><strong class="title">Take meal plans </strong>to Trader Joe's</li>
-                                    <li><strong class="title">Archive </strong>past meal plans</li>
-                                    <li><strong class="title">Track starting </strong>weight &amp; weight loss</li>
-                                    <li><strong class="title">Lose up to </strong>2 pounds weekly</li>
-                                    <li><strong class="title">Eat yummy </strong>recommended calories</li>
-                                @else
-                                    <li>
-                                        <stron class="old-val">${{$plan->month * $plans->first()->cost}}</stron>
-                                        <strong class="title"> ${{$plan->cost}} total </strong>for {{$plan->month}}
-                                        months
-                                    </li>
-                                    <li>
-                                        Every feature <strong class="title">plus
-                                            save {{$plan->getSavingPercent($plans->first()->cost)}}%</strong>
-                                    </li>
-                                @endif
-                            </ul>
-                            @if($plan->month === 12)
-                                <div class="image-holder"><img src="{{asset('images/best-deal.png')}}" alt="be"></div>
-                            @endif
-                            <a href="{{route('step-one', ['plan' => $plan->slug])}}" class="btn">get started</a>
                         </div>
+                    </header>
+                    <div class="body-area">
+                        <ul class="plan-list">
+                            @if($plan->month === 1)
+                                <li><strong class="title">Plan meals: </strong>Save time &amp; money</li>
+                                <li><strong class="title">Take meal plans </strong>to Trader Joe's</li>
+                                <li><strong class="title">Archive </strong>past meal plans</li>
+                                <li><strong class="title">Track starting </strong>weight &amp; weight loss</li>
+                                <li><strong class="title">Lose up to </strong>2 pounds weekly</li>
+                                <li><strong class="title">Eat yummy </strong>recommended calories</li>
+                            @else
+                                <li>
+                                    <stron class="old-val">${{$plan->month * $plans->first()->cost}}</stron>
+                                    <strong class="title"> ${{floor($plan->cost)}} total </strong>for {{$plan->month}}
+                                    months
+                                </li>
+                                <li>
+                                    Every feature <strong class="title">plus
+                                        save {{floor($plan->getSavingPercent($plans->first()->cost))}}%</strong>
+                                </li>
+                            @endif
+                        </ul>
+                        @if($plan->month === 12)
+                            <div class="image-holder"><img src="{{asset('images/best-deal.png')}}" alt="be"></div>
+                        @endif
+                        <a href="{{route('step-one', ['plan' => $plan->slug])}}" class="btn">get started</a>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
-    </section>
+    </div>
 
     <div class="container" id="container-whyitworks">
         <div class="col-lg-offset-1 col-sm-offset-1 col-lg-10 col-sm-10" style="line-height: 2.2;">

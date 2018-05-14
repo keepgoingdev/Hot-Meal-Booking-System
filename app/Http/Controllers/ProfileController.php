@@ -268,7 +268,15 @@ class ProfileController extends Controller
         if ($user->subscription('main') && $user->subscription('main')->onGracePeriod()) {
             $isGrace = true;
         }
-        $subscription = $user->subscription('main') ? $user->subscription('main')->asBraintreeSubscription() : null;
+
+        $subscription = null;
+        try{
+            $subscription = $user->subscription('main') ? $user->subscription('main')->asStripeSubscription() : null;
+        } catch (\Exception $exception) {
+            \Log::error($exception);
+        }
+
+
         return view('profile.account_settings',array(
             'subscription' => $subscription,
             'user' => $user,

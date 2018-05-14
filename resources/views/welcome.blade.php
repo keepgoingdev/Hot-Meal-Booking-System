@@ -204,7 +204,7 @@
                         <header class="box-head">
                             <strong class="title">{{$plan->homepage_name}}</strong>
                             <span class="info">{{$plan->month}}-month subscription</span>
-                            <div/> class="price">
+                            <div class="price">
                                 <span class="dollar">$</span>
                                 <span class="amount">
                                 <span class="val">{{floor($plan->monthly_cost)}}</span>

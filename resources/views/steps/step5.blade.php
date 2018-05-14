@@ -141,18 +141,27 @@
                                     </div>
                                     <div id="card-errors"></div>
                                     <div class="form-group">
-                                        <div class="col-lg-12">
-                                            <label for="first-name">Card Number</label>
+                                        <div class="col-lg-7 col-sm-7 col-md-7">
+                                            <label for="example2-card-number">Credit card info</label>
+                                            {{--<input type="email" class="form-control" id="exampleInputEmail1">--}}
                                             <div id="example2-card-number"></div>
+                                        </div>
+                                        <div class="col-lg-5 col-sm-5 col-md-5">
+                                            <div class="box-credit-card">
+                                                <img src="/img/visa.png" alt="" class="img-responsive">
+                                                <img src="/img/master.png" alt="" class="img-responsive">
+                                                <img src="/img/master2.png" alt="" class="img-responsive">
+                                                {{--<img src="/img/paypal.png" alt="" class="img-responsive">--}}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-6 col-sm-12">
-                                            <label for="first-name">Expiry</label>
+                                            <label for="example2-card-expiry">Exp</label>
                                             <div id="example2-card-expiry"></div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
-                                            <label for="first-name">Cvc</label>
+                                            <label for="example2-card-cvc">CVC</label>
                                             <div id="example2-card-cvc"></div>
                                         </div>
                                     </div>

@@ -28,7 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $plans = Plan::where('is_discount', false)
             ->where('show_on_homepage', true)
             ->orderBy('month')

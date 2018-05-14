@@ -17,10 +17,22 @@ class StepFiveController extends Controller
     public function index(Request $request)
     {
         $discount = false;
-        $plans = Plan::orderBy('cost')->get();
+        //$plans = Plan::orderBy('cost')->get();
+
+        $plans = Plan::where('is_discount', false)
+            ->where('show_on_homepage', true)
+            ->orderBy('month')
+            ->get();
+
+        $selectedPlan = $request->query->get('plan') ?? $plans->last()->id;
+
         //$braintreeToken = Braintree_ClientToken::generate();
 
-        return view('steps.step5')->with(['plans' => $plans, 'discount' => $discount, 'braintreeToken' => null]);
+        return view('steps.step5')->with([
+            'plans' => $plans,
+            'selectedPlan' => $selectedPlan,
+            'discount' => $discount,
+        ]);
     }
 
     public function validateCoupon(Request $request){

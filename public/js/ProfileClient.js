@@ -28537,7 +28537,21 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row visible-sm visible-xs" }, [
-        _c("div", { staticClass: "col-xs-2" }),
+        _c("div", { staticClass: "col-xs-2" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.toggleBanned(_vm.meal.id)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-2x fa-ban" })]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-xs-2" }, [
           _c(
@@ -28645,10 +28659,28 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("td", {
-      staticClass: "semi-top hidden-sm hidden-xs text-center",
-      class: { hidden: _vm.isUser != 1 }
-    }),
+    _c(
+      "td",
+      {
+        staticClass: "semi-top hidden-sm hidden-xs text-center",
+        class: { hidden: _vm.isUser != 1 }
+      },
+      [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.toggleBanned(_vm.meal.id)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-2x fa-ban" })]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c(
       "td",

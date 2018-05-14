@@ -2283,14 +2283,13 @@ input[type=number]::-webkit-outer-spin-button {
 .block-prices .container {
 	margin: 0 auto;
 	padding: 0 15px;
-	width: 100%;
-	max-width: 1170px;
 }
 .block-prices h2 {
 	font-size: 54px;
 	line-height: 60px;
 	color: #394a4e;
 	margin: 0 0 34px;
+	font-weight: 700;
 }
 .block-prices .block-head {
 	position: relative;

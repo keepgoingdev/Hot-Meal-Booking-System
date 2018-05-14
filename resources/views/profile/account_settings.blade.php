@@ -11,9 +11,10 @@
             <div class="col-lg-12">
                 <div class="box-form">
                     @if(session('message'))
-                        <div class="alert alert-success">{{ session('message') }}</div>
+                        <div class="alert alert-{{@session('message')['type'] ?: 'success'}}">{{ @session('message')['message'] ?: session('message') }}</div>
                     @endif
-                    <form class="form-horizontal" method="POST" action="{{ route('update-user-data') }}" autocomplete="off">
+                    <form class="form-horizontal" method="POST" action="{{ route('update-user-data') }}"
+                          autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -25,7 +26,8 @@
                                     <span class="help-block">
                                         <strong>{{ $errors->first('first_name') }}</strong>
                                     </span>
-                                @endif                                </div>
+                                @endif
+                            </div>
                             <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('last_name') ? ' has-error' : '' }}">
                                 <label for="last_name">Last Name</label>
                                 <input id="last_name" type="text" class="form-control" name="last_name"
@@ -39,7 +41,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                        <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('old_password') ? ' has-error' : '' }}">
+                            <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('old_password') ? ' has-error' : '' }}">
                                 <label for="email">Old password</label>
                                 <input id="password" type="password" class="form-control" name="old_password" value="">
 
@@ -71,17 +73,20 @@
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
                     @if($isGrace)
-                        On grace period, valid to: <span class="label label-success">{{$subscription && $subscription->paidThroughDate ? ($subscription->paidThroughDate)->format('d F Y') : ''}}</span>
-                        <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume subscription</a>
+                        On grace period, valid to: <span
+                                class="label label-success">{{$subscription && $subscription->paidThroughDate ? ($subscription->paidThroughDate)->format('d F Y') : ''}}</span>
+                        <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume
+                            subscription</a>
                         <br>
                     @else
-                        Next Billing: <span class="label label-success">{{$subscription && $subscription->nextBillingDate ? ($subscription->nextBillingDate)->format('d F Y') : ''}}</span>
+                        Next Billing: <span
+                                class="label label-success">{{$subscription && $subscription->nextBillingDate ? ($subscription->nextBillingDate)->format('d F Y') : ''}}</span>
                     @endif
-                        <br><br>
+                    <br><br>
 
                     @if(!$isGrace)
                         <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel subscription</a>
-                            <br><br>
+                        <br><br>
                     @endif
                 </div>
             </div>

@@ -103,7 +103,19 @@
       }
     }
   },
-
+  "1059558353": {
+    "id": "cus_CrYdjNEeWSENFh",
+    "cards": {
+      "6tknf9w": {
+        "id": "card_1CRpWJHszZl5zG5ZIrts0rk0",
+        "fingerprint": "4FYQhVTDBxKHlRYP",
+        "last4": "3669",
+        "exp_month": 12,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  },
   "1055919203": {
     "id": "cus_CrYdbEWWMGAp8y",
     "cards": {

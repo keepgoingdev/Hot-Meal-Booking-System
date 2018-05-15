@@ -48,47 +48,47 @@ class BraintreeToStripeCommand extends Command
         $this->info('There is '.\count($content).' migration user');
         foreach ($content as $braintreeId => $data) {
             $this->info($braintreeId.' goes to '.$data['id']);
-            $userId = \DB::table('users')
+            /*$userId = \DB::table('users')
                 ->whereRaw('braintree_id = "'.$braintreeId.'"')
                 ->first()
                 ->id ?? null;
-            $this->info('userId from query builder: '.$userId);
+            $this->info('userId from query builder: '.$userId);*/
 
-            $user = User::where('braintree_id', $braintreeId);
+            $user = User::whereRaw('braintree_id = "'.$braintreeId.'"');
             $this->info($user->toSql());
             $this->info(json_encode($user->getBindings()));
             $user = $user->first();
             $this->info('user found: '.($user->id ?? '--no'));
-//            if ($user) {
-//                $user->stripe_id = $data['id'];
-//                //$user->stripe_id = 'cus_Cr2lZCZazNPikC';
-//                $user->save();
-//
-//                /** @var \Laravel\Cashier\Subscription|Subscription $subscription */
-//                $oldSubscription = $user->subscription('main');
-//
-//                $plan = Plan::where('braintree_plan', $oldSubscription->stripe_plan ?: $oldSubscription->braintree_plan)
-//                    ->first();
-//                $trialUntil = (new Carbon($oldSubscription->created_at))->addMonth($plan->month);
+            if ($user) {
+                $user->stripe_id = $data['id'];
+                //$user->stripe_id = 'cus_Cr2lZCZazNPikC';
+                $user->save();
+
+                /** @var \Laravel\Cashier\Subscription|Subscription $subscription */
+                $oldSubscription = $user->subscription('main');
+
+                $plan = Plan::where('braintree_plan', $oldSubscription->stripe_plan ?: $oldSubscription->braintree_plan)
+                    ->first();
+                $trialUntil = (new Carbon($oldSubscription->created_at))->addMonth($plan->month);
 
 
-//                if (!$oldSubscription->ends_at) {
-//
-//                    $subscription = $user->newSubscription('main', $plan->braintree_plan ?: $plan->stripe_plan);
-//
-//                    /** @var Carbon $createdAt */
-//                    $createdAt = $oldSubscription->created_at;
-//
-//                    $subscription->trialUntil($trialUntil);
-//                    $subscription = $subscription->create(null, [
-//                        'created' => $createdAt->getTimestamp(),
-//                    ]);
-//                    $subscription->created_at = $createdAt;
-//                    $subscription->save();
-//                } else {
-//
-//                }
-//            }
+                if (!$oldSubscription->ends_at) {
+
+                    $subscription = $user->newSubscription('main', $plan->braintree_plan ?: $plan->stripe_plan);
+
+                    /** @var Carbon $createdAt */
+                    $createdAt = $oldSubscription->created_at;
+
+                    $subscription->trialUntil($trialUntil);
+                    $subscription = $subscription->create(null, [
+                        'created' => $createdAt->getTimestamp(),
+                    ]);
+                    $subscription->created_at = $createdAt;
+                    $subscription->save();
+                } else {
+
+                }
+            }
         }
 
         //\DB::statement('UPDATE subscriptions SET stripe_plan = braintree_plan');

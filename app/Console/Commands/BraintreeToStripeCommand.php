@@ -49,7 +49,10 @@ class BraintreeToStripeCommand extends Command
         foreach ($content as $braintreeId => $data) {
             $this->info($braintreeId.' goes to '.$data['id']);
             $user = User::where('braintree_id', $braintreeId)
-                ->whereNull('stripe_id')
+                ->where(function($m){
+                    $m->whereNull('stripe_id')
+                        ->orWhere('stripe_id','');
+                })
                 ->first();
             $this->info('user found: '.($user->id ?? '--no'));
 //            if ($user) {

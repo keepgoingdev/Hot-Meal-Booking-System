@@ -48,11 +48,7 @@ class BraintreeToStripeCommand extends Command
         $this->info('There is '.\count($content).' migration user');
         foreach ($content as $braintreeId => $data) {
             $this->info($braintreeId.' goes to '.$data['id']);
-            $user = User::where('braintree_id', $braintreeId)
-                ->where(function($m){
-                    $m->whereNull('stripe_id')
-                        ->orWhere('stripe_id','');
-                });
+            $user = User::where('braintree_id', $braintreeId);
             $this->info($user->toSql());
             $this->info(json_encode($user->getBindings()));
             $user = $user->first();

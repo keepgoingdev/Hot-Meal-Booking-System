@@ -165,12 +165,12 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="form-group">
+                            {{--<div class="form-group">
                                 <div class="col-lg-12">
-                                    {{--<p>First month is free! 100% Money-Back Guarantee.</p>--}}
-                                    <p>Refunds Processed By Request for Any Months not used.</p>
+                                    --}}{{--<p>First month is free! 100% Money-Back Guarantee.</p>--}}{{--
+                                    --}}{{--<p>Refunds Processed By Request for Any Months not used.</p>--}}{{--
                                 </div>
-                            </div>
+                            </div>--}}
                             <button type="submit" class="btn btn-default btn-block btn-lg box-form-btn-green"
                                     id="payment-button"
                                     disabled

@@ -47,10 +47,11 @@ class BraintreeToStripeCommand extends Command
         $content = json_decode($content, true);
         foreach ($content as $braintreeId => $data) {
             $user = User::where('braintree_id', $braintreeId)
+                ->whereNull('stripe_id')
                 ->first();
             if ($user) {
-                //$user->stripe_id = $data['id'];
-                $user->stripe_id = 'cus_Cr2lZCZazNPikC';
+                $user->stripe_id = $data['id'];
+                //$user->stripe_id = 'cus_Cr2lZCZazNPikC';
                 $user->save();
 
                 /** @var \Laravel\Cashier\Subscription|Subscription $subscription */

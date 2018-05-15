@@ -1,0 +1,289 @@
+{
+  "4318879003": {
+    "id": "cus_CrYd5GkdNQmxnE",
+    "cards": {
+      "955y2vb": {
+        "id": "card_1CRpWHHszZl5zG5Z9SarNOjg",
+        "fingerprint": "FTOiqLpYz78gGYSk",
+        "last4": "8836",
+        "exp_month": 1,
+        "exp_year": 2022,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "1827238071": {
+    "id": "cus_CrYdi8BtrfD7M2",
+    "cards": {
+      "g8kd6s2": {
+        "id": "card_1CRpWHHszZl5zG5ZZ0duWPQ2",
+        "fingerprint": "r5IKlyeBZpXrYA0n",
+        "last4": "2125",
+        "exp_month": 4,
+        "exp_year": 2019,
+        "brand": "Visa"
+      }
+    }
+  },
+  "5385200934": {
+    "id": "cus_CrYd3N6dNIgsGG",
+    "cards": {
+      "bhpb886": {
+        "id": "card_1CRpWHHszZl5zG5ZJiH7eKZS",
+        "fingerprint": "1cjk5eKGeldqCDkK",
+        "last4": "2018",
+        "exp_month": 11,
+        "exp_year": 2022,
+        "brand": "American Express"
+      }
+    }
+  },
+  "1591265099": {
+    "id": "cus_CrYdS6LkQYMnqe",
+    "cards": {
+      "cfmcn8r": {
+        "id": "card_1CRpWIHszZl5zG5Z4jOasfdq",
+        "fingerprint": "C7xbcmF21Y0h48Qd",
+        "last4": "8314",
+        "exp_month": 1,
+        "exp_year": 2021,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "5962982681": {
+    "id": "cus_CrYdv9F09Vea4x",
+    "cards": {
+      "f5hd2pr": {
+        "id": "card_1CRpWIHszZl5zG5ZBwRWc59d",
+        "fingerprint": "GtOqggl2bTNXmTnw",
+        "last4": "6951",
+        "exp_month": 3,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  },
+  "5158171549": {
+    "id": "cus_CrYdlqBRjyxFIv",
+    "cards": {
+      "jh6dpyr": {
+        "id": "card_1CRpWIHszZl5zG5ZRG3RUx3c",
+        "fingerprint": "f7XRJYYtaEldBKvh",
+        "last4": "4007",
+        "exp_month": 6,
+        "exp_year": 2022,
+        "brand": "American Express"
+      }
+    }
+  },
+  "5987191101": {
+    "id": "cus_CrYdN0LRpyEuTk",
+    "cards": {
+      "5zfxhx2": {
+        "id": "card_1CRpWIHszZl5zG5ZamqzxMLH",
+        "fingerprint": "VJiGtLZl25uOG20j",
+        "last4": "8714",
+        "exp_month": 8,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  },
+  "8091041446": {
+    "id": "cus_CrYdPnQiLv6AbB",
+    "cards": {
+      "2pfmrcm": {
+        "id": "card_1CRpWIHszZl5zG5ZIJ3aFvAC",
+        "fingerprint": "WEVgEo3PiamnaQT3",
+        "last4": "4661",
+        "exp_month": 9,
+        "exp_year": 2020,
+        "brand": "Visa"
+      }
+    }
+  },
+
+  "1055919203": {
+    "id": "cus_CrYdbEWWMGAp8y",
+    "cards": {
+      "p2mggzw": {
+        "id": "card_1CRpWJHszZl5zG5ZCNAiHK55",
+        "fingerprint": "hKAu16OEZGf6UW66",
+        "last4": "5018",
+        "exp_month": 2,
+        "exp_year": 2021,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "6912941764": {
+    "id": "cus_CrYdjeWuuMPJyy",
+    "cards": {
+      "2ndm4wg": {
+        "id": "card_1CRpWJHszZl5zG5ZTPBXxVxl",
+        "fingerprint": "JyK9JnR2bBanFV12",
+        "last4": "0865",
+        "exp_month": 3,
+        "exp_year": 2020,
+        "brand": "Visa"
+      }
+    }
+  },
+  "5247798366": {
+    "id": "cus_CrYdTXBRPBQlLJ",
+    "cards": {
+      "g82f9qb": {
+        "id": "card_1CRpWJHszZl5zG5ZBKmNyeAz",
+        "fingerprint": "fQjT2ZfnEHh08qyd",
+        "last4": "7607",
+        "exp_month": 11,
+        "exp_year": 2018,
+        "brand": "Visa"
+      }
+    }
+  },
+  "6378227366": {
+    "id": "cus_CrYdMRO7zNuGGn",
+    "cards": {
+      "hc4jszb": {
+        "id": "card_1CRpWJHszZl5zG5ZKuuz35jb",
+        "fingerprint": "RUsSeeBN0Bvu2W0W",
+        "last4": "2177",
+        "exp_month": 1,
+        "exp_year": 2021,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "4209154264": {
+    "id": "cus_CrYdG3tTtimHBP",
+    "cards": {
+      "8dqf96g": {
+        "id": "card_1CRpWJHszZl5zG5ZG4974pcE",
+        "fingerprint": "YHA2pE6P7f4y68fB",
+        "last4": "7545",
+        "exp_month": 3,
+        "exp_year": 2019,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "5087817894": {
+    "id": "cus_CrYdB8JniBA8zq",
+    "cards": {
+      "cbvgpcm": {
+        "id": "card_1CRpWKHszZl5zG5ZLnirgn6J",
+        "fingerprint": "JX5YPVxUnPHGTufR",
+        "last4": "1186",
+        "exp_month": 6,
+        "exp_year": 2018,
+        "brand": "Visa"
+      }
+    }
+  },
+  "5125715646": {
+    "id": "cus_CrYdGKWFJNiZXy",
+    "cards": {
+      "g98rd72": {
+        "id": "card_1CRpWKHszZl5zG5ZCRW86xfF",
+        "fingerprint": "UQVEfgOo4SBa97yq",
+        "last4": "4989",
+        "exp_month": 10,
+        "exp_year": 2019,
+        "brand": "Visa"
+      }
+    }
+  },
+  "6441620083": {
+    "id": "cus_CrYd6cClOPzzRL",
+    "cards": {
+      "2nv38cm": {
+        "id": "card_1CRpWKHszZl5zG5ZDWMrtfBF",
+        "fingerprint": "E07Gl1D780stwrls",
+        "last4": "8977",
+        "exp_month": 12,
+        "exp_year": 2020,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "1465231121": {
+    "id": "cus_CrYdAgggsf5Uc6",
+    "cards": {
+      "j6w46t6": {
+        "id": "card_1CRpWKHszZl5zG5ZXGxG6nw7",
+        "fingerprint": "spfF6QL2SrT2ikjA",
+        "last4": "3724",
+        "exp_month": 9,
+        "exp_year": 2021,
+        "brand": "MasterCard"
+      }
+    }
+  },
+  "6884450549": {
+    "id": "cus_CrYdJGwf1OySDZ",
+    "cards": {
+      "mqj5gqw": {
+        "id": "card_1CRpWKHszZl5zG5ZO6Q5YhrA",
+        "fingerprint": "5YMgoz9qC38IBVqt",
+        "last4": "4230",
+        "exp_month": 2,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  },
+  "1840051981": {
+    "id": "cus_CrYdAjGG4Bz26d",
+    "cards": {
+      "2mj344r": {
+        "id": "card_1CRpWLHszZl5zG5ZM3I8D3Df",
+        "fingerprint": "ELA9mbTRlAPjVGAJ",
+        "last4": "5757",
+        "exp_month": 6,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  },
+  "6494255851": {
+    "id": "cus_CrYdTCdzD8jxZv",
+    "cards": {
+      "ff9sffb": {
+        "id": "card_1CRpWLHszZl5zG5ZgKcAIcr7",
+        "fingerprint": "X2IKVT2ZsPIx6KzJ",
+        "last4": "3367",
+        "exp_month": 2,
+        "exp_year": 2020,
+        "brand": "Visa"
+      }
+    }
+  },
+  "6100661271": {
+    "id": "cus_CrYd1qwJLWBl5W",
+    "cards": {
+      "6h97sjr": {
+        "id": "card_1CRpWLHszZl5zG5ZZWcYnfzQ",
+        "fingerprint": "uTVSE8oYKWwQs0LJ",
+        "last4": "2737",
+        "exp_month": 1,
+        "exp_year": 2023,
+        "brand": "Visa"
+      }
+    }
+  },
+  "1689680496": {
+    "id": "cus_CrYdR62bLFQwWa",
+    "cards": {
+      "3f6bt4r": {
+        "id": "card_1CRpWLHszZl5zG5Z3hcoHSmW",
+        "fingerprint": "IgXCkPRFR3MZ7C8p",
+        "last4": "8136",
+        "exp_month": 2,
+        "exp_year": 2021,
+        "brand": "Visa"
+      }
+    }
+  }
+}

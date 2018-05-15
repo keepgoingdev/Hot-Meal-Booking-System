@@ -42,7 +42,7 @@ class BraintreeToStripeCommand extends Command
      */
     public function handle()
     {
-        $content = \File::get(storage_path('braintree_to_stripe.json'));
+        $content = \File::get(database_path('braintree_to_stripe.json'));
 
         $content = json_decode($content, true);
         foreach ($content as $braintreeId => $data) {

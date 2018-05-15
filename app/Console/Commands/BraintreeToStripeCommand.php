@@ -49,7 +49,7 @@ class BraintreeToStripeCommand extends Command
         foreach ($content as $braintreeId => $data) {
             $this->info($braintreeId.' goes to '.$data['id']);
             $userId = \DB::table('users')
-                ->where('braintree_id', $braintreeId)
+                ->whereRaw('braintree_id = "'.$braintreeId.'"')
                 ->first()
                 ->id ?? null;
             $this->info('userId from query builder: '.$userId);

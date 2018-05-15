@@ -20,7 +20,7 @@ class StepFiveController extends Controller
         //$plans = Plan::orderBy('cost')->get();
 
         $plans = Plan::where('is_discount', false)
-            ->where('show_on_homepage', true)
+            //->where('show_on_homepage', true)
             ->orderBy('month')
             ->get();
 

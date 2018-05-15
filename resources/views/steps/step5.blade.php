@@ -150,7 +150,7 @@
                                         $id = '-two';
                                     }
                                     ?>
-                                    <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="col-lg-3 col-sm-6 col-md-3">
                                         <a href="javascript:;"
                                            onclick="selectPlan({{$plan->id}})"
                                            class="btn btn-default plan_selector plan_selector_{{$plan->id}}"

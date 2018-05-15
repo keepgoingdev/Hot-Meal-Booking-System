@@ -157,7 +157,7 @@
                                            id="btn-subscribe{{$id}}">
                                             <h3>${{$plan->cost/ $plan->month}}/mo.</h3>
                                             @if($k != 0)
-                                                <p>${{floor($plan->cost)}} total for {{$plan->month}} months <br>
+                                                <p>${{($plan->cost)}} total for {{$plan->month}} months <br>
                                                     (save {{floor($plan->getSavingPercent($plans->first()->cost))}}
                                                     %)</p>
                                             @endif

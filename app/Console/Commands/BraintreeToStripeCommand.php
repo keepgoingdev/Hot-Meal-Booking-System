@@ -45,10 +45,13 @@ class BraintreeToStripeCommand extends Command
         $content = \File::get(database_path('braintree_to_stripe.json'));
 
         $content = json_decode($content, true);
+        $this->info('There is '.\count($content).' migration user');
         foreach ($content as $braintreeId => $data) {
+            $this->info($braintreeId.' goes to '.$data['id']);
             $user = User::where('braintree_id', $braintreeId)
                 ->whereNull('stripe_id')
                 ->first();
+            $this->info('user found: '.($user->id ?? '--no'));
             if ($user) {
                 $user->stripe_id = $data['id'];
                 //$user->stripe_id = 'cus_Cr2lZCZazNPikC';
@@ -57,11 +60,12 @@ class BraintreeToStripeCommand extends Command
                 /** @var \Laravel\Cashier\Subscription|Subscription $subscription */
                 $oldSubscription = $user->subscription('main');
 
-                $plan = Plan::where('braintree_plan', $oldSubscription->stripe_plan ?: $oldSubscription->braintree_plan)->first();
+                $plan = Plan::where('braintree_plan', $oldSubscription->stripe_plan ?: $oldSubscription->braintree_plan)
+                    ->first();
                 $trialUntil = (new Carbon($oldSubscription->created_at))->addMonth($plan->month);
                 if (!$oldSubscription->ends_at) {
 
-                    $subscription = $user->newSubscription('main', $plan->brantree_plan ?: $plan->stripe_plan);
+                    $subscription = $user->newSubscription('main', $plan->braintree_plan ?: $plan->stripe_plan);
 
                     /** @var Carbon $createdAt */
                     $createdAt = $oldSubscription->created_at;

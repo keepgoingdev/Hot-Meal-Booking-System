@@ -52,8 +52,10 @@ class BraintreeToStripeCommand extends Command
                 ->where(function($m){
                     $m->whereNull('stripe_id')
                         ->orWhere('stripe_id','');
-                })
-                ->first();
+                });
+            $this->info($user->toSql());
+            $this->info(json_encode($user->getBindings()));
+            $user = $user->first();
             $this->info('user found: '.($user->id ?? '--no'));
 //            if ($user) {
 //                $user->stripe_id = $data['id'];

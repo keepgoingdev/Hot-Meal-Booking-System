@@ -76,7 +76,7 @@
                         An error occured while fetching subscription.
                         Please contact with support team. #9001-{{str_random(6)}}
                     @else
-                        @if(!$subscription->stripe_plan)
+                        @if(!$subscription->plan->id)
 
                             An error occured while fetching subscription.
                             Please contact with support team. #9002-{{str_random(6)}}

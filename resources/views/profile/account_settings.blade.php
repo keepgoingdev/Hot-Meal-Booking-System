@@ -72,34 +72,51 @@
             </div>
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
-                    @if(!$subscription)
+                    @if(!$user->subscription('main'))
                         An error occured while fetching subscription.
-                        Please contact with support team. #9001-{{str_random(6)}}
+                        There is no active subscription on our database.
+                        Please contact with support team. #9000
                     @else
-                        @if(!$subscription->plan->id)
-
+                        @if(!$user->stripe_id)
                             An error occured while fetching subscription.
-                            Please contact with support team. #9002-{{str_random(6)}}
-                        @else
-                            @if($isGrace)
-                                On grace period, valid to: <span
-                                        class="label label-success">
+                            Please contact with support team.  #8001
+                        @elseif($user->stripe_id)
+                            @if(!$user->subscription('main')->stripe_id)
+                                An error occured while fetching subscription. #8000-{{str_random(6)}}
+                            @elseif($user->subscription('main')->stripe_id)
+                                @if(!$subscription)
+                                    An error occured while fetching subscription.
+                                    Please contact with support team. #9001-{{str_random(6)}}
+                                @else
+                                    @if(!$subscription->plan->id)
+                                        An error occured while fetching subscription.
+                                        Please contact with support team. #9002-{{str_random(6)}}
+                                    @else
+                                        @if($isGrace)
+                                            On grace period, valid to: <span
+                                                    class="label label-success">
                                     {{$subscription->current_period_end ? ( date('d F Y',$subscription->current_period_end)) : ''}}
                                 </span>
-                                <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume
-                                    subscription</a>
-                                <br>
-                            @else
-                                Next Billing:
-                                <span class="label label-success">{{$subscription->current_period_end ? ( date('d F Y',$subscription->current_period_end)) : ''}}</span>
-                            @endif
-                            <br><br>
+                                            <a class="btn btn-success" style="margin-top: 5px"
+                                               href="/intapi/resume-subscription">Resume
+                                                subscription</a>
+                                            <br>
+                                        @else
+                                            Next Billing:
+                                            <span class="label label-success">{{$subscription->current_period_end ? ( date('d F Y',$subscription->current_period_end)) : ''}}</span>
+                                        @endif
+                                        <br><br>
 
-                            @if(!$isGrace)
-                                <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel subscription</a>
-                                <br><br>
+                                        @if(!$isGrace)
+                                            <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel
+                                                subscription</a>
+                                            <br><br>
+                                        @endif
+                                    @endif
+                                @endif
                             @endif
                         @endif
+
                     @endif
                 </div>
             </div>

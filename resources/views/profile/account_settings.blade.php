@@ -72,21 +72,32 @@
             </div>
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
-                    @if($isGrace)
-                        On grace period, valid to: <span
-                                class="label label-success">{{$subscription && $subscription->paidThroughDate ? ($subscription->paidThroughDate)->format('d F Y') : ''}}</span>
-                        <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume
-                            subscription</a>
-                        <br>
+                    @if(!$subscription)
+                        An error occured while fetching subscription.
+                        Please contact with support team. #9001-{{str_random(6)}}
                     @else
-                        Next Billing: <span
-                                class="label label-success">{{$subscription && $subscription->nextBillingDate ? ($subscription->nextBillingDate)->format('d F Y') : ''}}</span>
-                    @endif
-                    <br><br>
+                        @if(!$subscription->stripe_plan)
 
-                    @if(!$isGrace)
-                        <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel subscription</a>
-                        <br><br>
+                            An error occured while fetching subscription.
+                            Please contact with support team. #9002-{{str_random(6)}}
+                        @else
+                            @if($isGrace)
+                                On grace period, valid to: <span
+                                        class="label label-success">{{$subscription->paidThroughDate ? ($subscription->paidThroughDate)->format('d F Y') : ''}}</span>
+                                <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume
+                                    subscription</a>
+                                <br>
+                            @else
+                                Next Billing: <span
+                                        class="label label-success">{{$subscription->nextBillingDate ? ($subscription->nextBillingDate)->format('d F Y') : ''}}</span>
+                            @endif
+                            <br><br>
+
+                            @if(!$isGrace)
+                                <a class="btn btn-warning" href="/intapi/cancel-subscription">Cancel subscription</a>
+                                <br><br>
+                            @endif
+                        @endif
                     @endif
                 </div>
             </div>

@@ -367,7 +367,11 @@ class ProfileController extends Controller
 
         try {
             if ($user->subscription('main')->onGracePeriod()) {
-                $user->subscription('main')->resume();
+                $subscription = $user->subscription('main');
+                if (!$subscription->stripe_plan) {
+
+                }
+                $subscription->resume();
             }
         } catch (\Exception $exception) {
             \Log::error($exception);

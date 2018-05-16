@@ -369,6 +369,7 @@ class ProfileController extends Controller
             if ($user->subscription('main')->onGracePeriod()) {
                 $subscription = $user->subscription('main');
                 if (!$subscription->stripe_plan) {
+                    //todo: if discounted, make not discounted
                     $subscription->stripe_plan = $subscription->plan->id ?? null;
                 }
                 $subscription->resume();

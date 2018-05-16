@@ -88,8 +88,8 @@
                                     subscription</a>
                                 <br>
                             @else
-                                Next Billing: <span
-                                        class="label label-success">{{$subscription->nextBillingDate ? ($subscription->nextBillingDate)->format('d F Y') : ''}}</span>
+                                Next Billing:
+                                <span class="label label-success">{{$subscription->current_period_end ? ( date('d F Y',$subscription->current_period_end)) : ''}}</span>
                             @endif
                             <br><br>
 

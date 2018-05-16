@@ -83,7 +83,9 @@
                         @else
                             @if($isGrace)
                                 On grace period, valid to: <span
-                                        class="label label-success">{{$subscription->paidThroughDate ? ($subscription->paidThroughDate)->format('d F Y') : ''}}</span>
+                                        class="label label-success">
+                                    {{$subscription->current_period_end ? ( date('d F Y',$subscription->current_period_end)) : ''}}
+                                </span>
                                 <a class="btn btn-success" style="margin-top: 5px" href="/intapi/resume-subscription">Resume
                                     subscription</a>
                                 <br>

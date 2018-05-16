@@ -54,7 +54,8 @@ class BraintreeToStripeCommand extends Command
                 ->id ?? null;
             $this->info('userId from query builder: '.$userId);*/
 
-            $user = User::whereRaw('braintree_id = "'.$braintreeId.'"');
+            $user = User::whereRaw('braintree_id = "'.$braintreeId.'"')
+            ->whereNull('stripe_id');
             $this->info($user->toSql());
             $this->info(json_encode($user->getBindings()));
             $user = $user->first();

@@ -79,7 +79,20 @@
                                     </span>
                                     @endif
                                 </div>
-                                <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('email_confirmation') ? ' has-error' : '' }}">
+                                    <label for="email">Confirm Email address</label>
+                                    <input id="email" type="email" class="form-control" name="email_confirmation"
+                                           value="{{ old('email_confirmation') }}" required autofocus>
+
+                                    @if ($errors->has('email_confirmation'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('email_confirmation') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12 col-sm-12 col-md-12{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="email">Password</label>
                                     <input id="password" type="password" class="form-control" name="password" value=""
                                            required autofocus>

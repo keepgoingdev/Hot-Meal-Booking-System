@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
+use Stripe\Error\Card;
 
 class RegisterController extends Controller
 {
@@ -122,11 +123,11 @@ class RegisterController extends Controller
                     //   $subscription = $subscription->trialDays(14);
                 }
                 $subscription->create($request->stripeToken);
-            } catch (\Exception $exception) {
+            }  catch (\Exception $exception) {
                 \Sentry::captureException($exception);
                 \Log::debug($exception);
 
-                return redirect(route('register'))->with('status', 'Payment error: ' . $exception->getMessage())->withInput();
+                return redirect(route('register'))->with('error', 'Payment error: ' . $exception->getMessage())->withInput();
             }
             if ($discountCode) {
                 $discountCode->activate($user->id);

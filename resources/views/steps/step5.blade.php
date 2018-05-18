@@ -41,6 +41,13 @@
 
                             </div>
                         @endif
+                        @if($error = Session::get('error'))
+                            <div class="alert alert-danger">
+                                <ul>
+                                    <li>{{$error}}</li>
+                                </ul>
+                            </div>
+                        @endif
                         <form class="form-horizontal dropin-container" id="dropin-container" method="POST"
                               action="{{ route('register') }}" autocomplete="off">
                             {{ csrf_field() }}
@@ -339,7 +346,7 @@
           if (result.error) {
             // Inform the customer that there was an error.
             var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
+            errorElement.textContent = '<div class="alert alert-info">'+result.error.message+'</div>';
           } else {
             // Send the token to your server.
             stripeTokenHandler(result.token);

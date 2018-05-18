@@ -49,7 +49,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -65,7 +65,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
     protected function create(array $data, $formData, $goal)
@@ -86,23 +86,22 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         $dayMenus = session('dayMenus');
-       // $startingDate = session('starting-date');
+        // $startingDate = session('starting-date');
         $startingDate = date('Y-m-d');
         $discountCode = false;
         $input = $request->all();
         $validator = $this->validator($input);
         $plan = Plan::findOrFail($input['plan']);
 
-        if($plan->is_discount){
+        if ($plan->is_discount) {
             $couponCode = $input['coupon'];
             $discountCode = DiscountCode::validateCode($couponCode);
-            if($discountCode->is_activated || $discountCode->plan_id != $plan->id) {
-
+            if ($discountCode->is_activated || $discountCode->plan_id != $plan->id) {
                 return redirect(route('register'))->with('status', $validator->errors())->withInput();
             }
         }
 
-        if($validator->passes()) {
+        if ($validator->passes()) {
             \Log::debug($request->all());
             $formData = unserialize($request->cookie('formdata'));
             \Log::debug($formData);
@@ -116,15 +115,19 @@ class RegisterController extends Controller
             $user->save();
 
             $s = WeekPlan::storeSessionDataInTable($dayMenus, $startingDate, $goal, $formData['weight-pounds'], $user->id);
-            if($discountCode){
+
+            try {
+                $subscription = $user->newSubscription('main', $plan->stripe_plan);
+                if (!$plan->is_discount) {
+                    //   $subscription = $subscription->trialDays(14);
+                }
+                $subscription->create($request->stripeToken);
+            } catch (\Exception $exception) {
+                return redirect(route('register'))->with('status', 'Payment error: ' . $exception->getMessage())->withInput();
+            }
+            if ($discountCode) {
                 $discountCode->activate($user->id);
             }
-            \Log::debug($plan);
-            $subscription = $user->newSubscription('main', $plan->stripe_plan);
-            if(!$plan->is_discount) {
-             //   $subscription = $subscription->trialDays(14);
-            }
-            $subscription->create($request->stripeToken);
 
             Mail::to($data['email'])->send(new AccountConfirmation($data));
 
@@ -133,10 +136,11 @@ class RegisterController extends Controller
         return redirect(route('register'))->with('status', $validator->errors())->withInput();
     }
 
-    public function confirmation($token){
+    public function confirmation($token)
+    {
         $user = User::where('confirmation_token', $token)->first();
 
-        if(!is_null($user)){
+        if (!is_null($user)) {
             $user->confirmed = true;
             $user->confirmation_token = '';
             $user->save();
@@ -144,5 +148,4 @@ class RegisterController extends Controller
         }
         return redirect(route('login'))->with('status', 'Token not found.');
     }
-
 }

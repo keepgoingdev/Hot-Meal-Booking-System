@@ -29,7 +29,7 @@ class StepFiveController extends Controller
         //$braintreeToken = Braintree_ClientToken::generate();
 
         return view('steps.step5')->with([
-            'plans' => $plans,
+            'thehotmealPlans' => $plans,
             'selectedPlan' => $selectedPlan,
             'discount' => $discount,
         ]);

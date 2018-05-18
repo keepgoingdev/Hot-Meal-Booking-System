@@ -148,12 +148,13 @@
                                     <span id="discount-message" style="font-weight: bold"></span>
                                 </div>
                             </div>
-                            <div class="form-group plans">
+                            @if($thehotmealPlans)
+                                <div class="form-group plans">
                                 <div class="col-lg-12">
                                     <label for="exampleInputEmail1">Choose subscription</label>
                                     <input type="hidden" name="plan" id="plan-input" value="{{$selectedPlan}}">
                                 </div>
-                                @foreach($plans as $k=>$plan)
+                                @foreach($thehotmealPlans as $k=>$plan)
                                     <?php
                                     if ($k == 0) {
                                         $id = '';
@@ -171,13 +172,14 @@
                                             <h3>${{$plan->cost/ $plan->month}}/mo.</h3>
                                             @if($k != 0)
                                                 <p>${{($plan->cost)}} total for {{$plan->month}} months <br>
-                                                    (save {{floor($plan->getSavingPercent($plans->first()->cost))}}
+                                                    (save {{floor($plan->getSavingPercent($thehotmealPlans->first()->cost))}}
                                                     %)</p>
                                             @endif
                                         </a>
                                     </div>
                                 @endforeach
                             </div>
+                            @endif
                             {{--<div class="form-group">
                                 <div class="col-lg-12">
                                     --}}{{--<p>First month is free! 100% Money-Back Guarantee.</p>--}}{{--
@@ -191,7 +193,7 @@
                             </button>
 
                             {{--<h3 class="hidden" id="total-cost" style="font-weight: bold">Total cost:
-                                ${{$plans->where('is_discount', false)->first()->cost}}</h3>--}}
+                                ${{$thehotmealPlans->where('is_discount', false)->first()->cost}}</h3>--}}
                         </form>
                     </div>
                 </div>

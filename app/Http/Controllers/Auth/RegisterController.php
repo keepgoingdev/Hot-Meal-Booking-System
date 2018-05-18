@@ -124,6 +124,7 @@ class RegisterController extends Controller
                 $subscription->create($request->stripeToken);
             } catch (\Exception $exception) {
                 \Sentry::captureException($exception);
+                \Log::debug($exception);
 
                 return redirect(route('register'))->with('status', 'Payment error: ' . $exception->getMessage())->withInput();
             }

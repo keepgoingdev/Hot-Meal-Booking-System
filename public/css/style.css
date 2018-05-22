@@ -221,7 +221,8 @@ input[type=number]::-webkit-outer-spin-button {
 	border:1px solid #FB7E4F;
 	font-size: 13px;
 }
-#container-whyitworks{
+#container-whyitworks,
+#container-prices {
 	width: 90%;
 }
 .text-whyitworks{
@@ -1456,7 +1457,8 @@ input[type=number]::-webkit-outer-spin-button {
 	.text-whyitworks{
 		font-size: 24px;
 	}
-	#container-whyitworks{
+	#container-whyitworks,
+	#container-prices{
 		width: 100%;
 	}
 	.box-white-whyitworks{
@@ -1761,7 +1763,8 @@ input[type=number]::-webkit-outer-spin-button {
 	.text-whyitworks{
 		font-size: 24px;
 	}
-	#container-whyitworks{
+	#container-whyitworks,
+	#container-prices{
 		width: 100%;
 	}
 	.box-white-whyitworks{
@@ -2256,17 +2259,17 @@ input[type=number]::-webkit-outer-spin-button {
 	}
 }
 .fa-mob, .fa-grey {
-    color: #C4C9CA;
+	color: #C4C9CA;
 }
 .fa-blue, .semi-top i.fa-blue {
-    color: #337ab7;
+	color: #337ab7;
 }
 .fa-mob:hover, .fa-mob:focus {
-    color: #FB7E4F;
-    transition: 0.2s ease-in-out;
+	color: #FB7E4F;
+	transition: 0.2s ease-in-out;
 }
 .semi-top i.fa-orange, .fa-orange {
-    color: #FB7E4F;
+	color: #FB7E4F;
 }
 
 .block-prices {
@@ -2486,8 +2489,8 @@ input[type=number]::-webkit-outer-spin-button {
 		line-height: 24px;
 	}
 	.block-prices .val {
-		font-size: 84px;
-		line-height: 84px;
+		font-size: 64px;
+		line-height: 74px;
 	}
 	.block-prices .dollar {
 		left: 0;
@@ -2505,7 +2508,7 @@ input[type=number]::-webkit-outer-spin-button {
 		right: -2px;
 	}
 	.block-prices .box-head .title {
-		font-size: 18px;
+		font-size: 15px;
 		line-height: 22px;
 	}
 	.block-prices .box .body-area {

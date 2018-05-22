@@ -4,11 +4,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114111647-2"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'UA-114111647-2');
+      gtag('config', 'UA-114111647-2');
     </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,28 +21,28 @@
     <!-- Scripts -->
     <script src="https://thehotmeal.com/js/jquery-3.3.1.min.js"></script>
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
     </script>
     <style>
-    #bs-example-navbar-collapse-1 {
-    margin-bottom: -50px;
-    
-    }
-    .slick-next { 
-    right: -5px !important;
-    }
-#box-user-profile {
-padding-top: 0 !important;
-margin-top: 50px
-}
-    </style>   
+        #bs-example-navbar-collapse-1 {
+            margin-bottom: -50px;
+
+        }
+        .slick-next {
+            right: -5px !important;
+        }
+        #box-user-profile {
+            padding-top: 0 !important;
+            margin-top: 50px
+        }
+    </style>
     <!-- Styles -->
     <link rel="stylesheet" href="https://thehotmeal.com/css/bootstrap.css">
-    <link rel="stylesheet" href="https://thehotmeal.com/css/style.css?v2">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://thehotmeal.com/css/steps.css">
     <link rel="stylesheet" href="https://thehotmeal.com/css/steps.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
@@ -50,10 +50,10 @@ margin-top: 50px
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    </head>
+</head>
 <body>
 <div id="app">
-            <div class="container-fluid" id="container-bg">
+    <div class="container-fluid" id="container-bg">
         <div class="container">
             <nav class="[ navbar-bootsnipp-index animate ]" role="navigation">
                 <div class="[ container ]">
@@ -75,11 +75,11 @@ margin-top: 50px
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
                         <ul class="[ nav navbar-nav navbar-right ]">
-                                                            <li><a href="https://thehotmeal.com/step-one" class="btn btn-default" id="btn-trial-nav">GET
-                                        STARTED</a></li>
-                                <li><a href="https://thehotmeal.com/login" class="btn btn-default" id="btn-login-nav">LOGIN</a>
-                                </li>
-                                                    </ul>
+                            <li><a href="https://thehotmeal.com/step-one" class="btn btn-default" id="btn-trial-nav">GET
+                                STARTED</a></li>
+                            <li><a href="https://thehotmeal.com/login" class="btn btn-default" id="btn-login-nav">LOGIN</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -125,7 +125,7 @@ margin-top: 50px
                         <div class="col-lg-10 col-xs-12 col-sm-10">
                             <h4 class="font-bold color-light-black">Generate a plan, just for you</h4>
                             <p class="font-size-17 color-gray">We'll generate a grocery list & meal plan <br
-                                        class="hidden-md"> for you.</p>
+                                class="hidden-md"> for you.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xs-12 col-sm-12 col-md-6" id="box-services">
@@ -145,7 +145,7 @@ margin-top: 50px
                         <div class="col-lg-10 col-xs-12 col-sm-10">
                             <h4 class="font-bold color-light-black">Rock the world</h4>
                             <p class="font-size-17 color-gray">Stick to the meal plan & your waist line <br
-                                        class="hidden-md"> will thank you.</p>
+                                class="hidden-md"> will thank you.</p>
                         </div>
                     </div>
                 </div>
@@ -213,55 +213,57 @@ margin-top: 50px
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="container">
-            <div class="block-prices">
-                <header class="block-head">
-                    <h2>Try our intelligent meal planner now</h2>
-                    <p>Plan your meals using Trader Joe's Groceries</p>
-                </header>
-                <div class="box-area">
-                                            <div class="box">
-                            <header class="box-head">
-                                <strong class="title">STARTER</strong>
-                                <span class="info">1-month subscription</span>
-                                <div class="price">
-                                    <span class="dollar">$</span>
-                                    <span class="amount">
-                                <span class="val">10</span>
-                                <span class="sub-amount">.00</span>
-                                <span class="duration">/mo</span>
-                            </span>
-                                </div>
-                            </header>
-                            <div class="body-area">
-                                <ul class="plan-list">
-                                                                            <li><strong class="title">Plan meals: </strong>Save time &amp; money</li>
+    <div id="container-prices" class="container">
+        <div class="col-lg-offset-1 col-sm-offset-1 col-lg-10 col-sm-10">
+            <div class="row">
+                <div class="col-lg-offset-1 col-lg-10 font-size-17 color-gray">
+                    <div class="block-prices">
+                        <header class="block-head">
+                            <h2>Try our intelligent meal planner now</h2>
+                            <p>Plan your meals using Trader Joe's Groceries</p>
+                        </header>
+                        <div class="box-area">
+                            <div class="box">
+                                <header class="box-head">
+                                    <strong class="title">STARTER</strong>
+                                    <span class="info">1-month subscription</span>
+                                    <div class="price">
+                                        <span class="dollar">$</span>
+                                        <span class="amount">
+                                        <span class="val">10</span>
+                                        <span class="sub-amount">.00</span>
+                                        <span class="duration">/mo</span>
+                                    </span>
+                                    </div>
+                                </header>
+                                <div class="body-area">
+                                    <ul class="plan-list">
+                                        <li><strong class="title">Plan meals: </strong>Save time &amp; money</li>
                                         <li><strong class="title">Take meal plans </strong>to Trader Joe's</li>
                                         <li><strong class="title">Archive </strong>past meal plans</li>
                                         <li><strong class="title">Track starting </strong>weight &amp; weight loss</li>
                                         <li><strong class="title">Lose up to </strong>2 pounds weekly</li>
                                         <li><strong class="title">Eat yummy </strong>recommended calories</li>
-                                                                    </ul>
-                                                                <a href="https://thehotmeal.com/step-one?plan=one-month" class="btn">get started</a>
-                            </div>
-                        </div>
-                                            <div class="box">
-                            <header class="box-head">
-                                <strong class="title">PREMIUM</strong>
-                                <span class="info">3-month subscription</span>
-                                <div class="price">
-                                    <span class="dollar">$</span>
-                                    <span class="amount">
-                                <span class="val">7</span>
-                                <span class="sub-amount">.95</span>
-                                <span class="duration">/mo</span>
-                            </span>
+                                    </ul>
+                                    <a href="https://thehotmeal.com/step-one?plan=one-month" class="btn">get started</a>
                                 </div>
-                            </header>
-                            <div class="body-area">
-                                <ul class="plan-list">
-                                                                            <li>
+                            </div>
+                            <div class="box">
+                                <header class="box-head">
+                                    <strong class="title">PREMIUM</strong>
+                                    <span class="info">3-month subscription</span>
+                                    <div class="price">
+                                        <span class="dollar">$</span>
+                                        <span class="amount">
+                                        <span class="val">7</span>
+                                        <span class="sub-amount">.95</span>
+                                        <span class="duration">/mo</span>
+                                    </span>
+                                    </div>
+                                </header>
+                                <div class="body-area">
+                                    <ul class="plan-list">
+                                        <li>
                                             <stron class="old-val">$30</stron>
                                             <strong class="title"> $23
                                                 total </strong>for 3
@@ -269,28 +271,28 @@ margin-top: 50px
                                         </li>
                                         <li>
                                             Every feature <strong class="title">plus
-                                                save 20%</strong>
+                                            save 20%</strong>
                                         </li>
-                                                                    </ul>
-                                                                <a href="https://thehotmeal.com/step-one?plan=three-months" class="btn">get started</a>
-                            </div>
-                        </div>
-                                            <div class="box">
-                            <header class="box-head">
-                                <strong class="title">RECOMMENDED</strong>
-                                <span class="info">12-month subscription</span>
-                                <div class="price">
-                                    <span class="dollar">$</span>
-                                    <span class="amount">
-                                <span class="val">4</span>
-                                <span class="sub-amount">.95</span>
-                                <span class="duration">/mo</span>
-                            </span>
+                                    </ul>
+                                    <a href="https://thehotmeal.com/step-one?plan=three-months" class="btn">get started</a>
                                 </div>
-                            </header>
-                            <div class="body-area">
-                                <ul class="plan-list">
-                                                                            <li>
+                            </div>
+                            <div class="box">
+                                <header class="box-head">
+                                    <strong class="title">RECOMMENDED</strong>
+                                    <span class="info">12-month subscription</span>
+                                    <div class="price">
+                                        <span class="dollar">$</span>
+                                        <span class="amount">
+                                        <span class="val">4</span>
+                                        <span class="sub-amount">.95</span>
+                                        <span class="duration">/mo</span>
+                                    </span>
+                                    </div>
+                                </header>
+                                <div class="body-area">
+                                    <ul class="plan-list">
+                                        <li>
                                             <stron class="old-val">$120</stron>
                                             <strong class="title"> $59
                                                 total </strong>for 12
@@ -298,15 +300,17 @@ margin-top: 50px
                                         </li>
                                         <li>
                                             Every feature <strong class="title">plus
-                                                save 50%</strong>
+                                            save 50%</strong>
                                         </li>
-                                                                    </ul>
-                                                                    <div class="image-holder"><img src="https://thehotmeal.com/images/best-deal.png" alt="be">
+                                    </ul>
+                                    <div class="image-holder"><img src="https://thehotmeal.com/images/best-deal.png" alt="be">
                                     </div>
-                                                                <a href="https://thehotmeal.com/step-one?plan=twelve-months" class="btn">get started</a>
+                                    <a href="https://thehotmeal.com/step-one?plan=twelve-months" class="btn">get started</a>
+                                </div>
                             </div>
                         </div>
-                                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -403,19 +407,19 @@ margin-top: 50px
     }
 </style><!-- Scripts -->
 <script src="/js/bootstrap.js"></script>
-    <script>
-        $('#myModal').modal('show');
+<script>
+  $('#myModal').modal('show');
 
-    </script>
-            <!-- Start of StatCounter Code for Default Guide -->
-        <script type="text/javascript">
-            var sc_project=11641315;
-            var sc_invisible=1;
-            var sc_security="8b437437";
-        </script>
-        <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
-        <noscript><div class="statcounter"><a title="Web Analytics Made Easy - StatCounter" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11641315/0/8b437437/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
-        <!-- End of StatCounter Code for Default Guide -->
-    </body>
+</script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+  var sc_project=11641315;
+  var sc_invisible=1;
+  var sc_security="8b437437";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics Made Easy - StatCounter" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11641315/0/8b437437/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</body>
 </html>
 

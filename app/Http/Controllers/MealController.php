@@ -12,9 +12,17 @@ class MealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $meals = Meal::paginate(30);
+        $search = $request->query->get('s');
+
+        $meals = Meal::query();
+
+        if($search){
+            $meals->where('name','LIKE','%'.$search.'%');
+        }
+
+        $meals = $meals->paginate(30);
         return view('meals.index', compact('meals'));
     }
 

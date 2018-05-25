@@ -288,6 +288,8 @@ class ProfileController extends Controller
             \Log::error($exception);
         }
 
+        //dd(session('message'));
+
 
         return view('profile.account_settings', array(
             'subscription' => $subscription,
@@ -364,7 +366,6 @@ class ProfileController extends Controller
     public function resumeSubscription()
     {
         $user = Auth::user();
-
         try {
             if ($user->subscription('main')->onGracePeriod()) {
                 $subscription = $user->subscription('main');
@@ -376,7 +377,7 @@ class ProfileController extends Controller
             }
         } catch (\Exception $exception) {
             \Log::error($exception);
-            $this->setFlashMessage('danger', 'There was en error while processing. TheHotMeal team has been notified.');
+            $this->setFlashMessage('danger', 'There was en error while processing. TheHotMeal team has been notified. Error Message: '.$exception->getMessage());
         }
 
         return redirect()->back();

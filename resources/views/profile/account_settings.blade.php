@@ -11,7 +11,11 @@
             <div class="col-lg-12">
                 <div class="box-form">
                     @if(session('message'))
-                        <div class="alert alert-{{@session('message')['type'] ?: 'success'}}">{{ @session('message')['message'] ?: session('message') }}</div>
+                        @if(is_string(session('message')))
+                            <div class="alert alert-info">{{ session('message') }}</div>
+                        @else
+                            <div class="alert alert-{{@session('message')['type'] ?: 'success'}}">{{ @session('message')['message'] ?: session('message') }}</div>
+                        @endif
                     @endif
                     <form class="form-horizontal" method="POST" action="{{ route('update-user-data') }}"
                           autocomplete="off">

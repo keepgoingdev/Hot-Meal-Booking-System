@@ -82,7 +82,9 @@
                             <strong>{{($user->subscription('main')->ends_at)->format('d M Y')}}</strong>
                             . You won't be charged for next cycle. <br/>
 
-                            {{--TODO: add re-subscribe button--}}
+                            <a class="btn btn-success" style="margin-top: 5px"
+                               href="/intapi/resume-subscription">Resume
+                                subscription</a>
                         @else
                             @if(!$user->stripe_id)
                                 An error occured while fetching subscription.

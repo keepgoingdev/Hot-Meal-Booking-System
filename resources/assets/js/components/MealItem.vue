@@ -6,9 +6,9 @@
             <p class="visible-sm visible-xs" >{{meal.serving_size}}</p>
             <div class="row visible-sm visible-xs">
                 <div class="col-xs-2">
-                    <!--<a href="#" @click.prevent="toggleBanned(meal.id)">
+                    <a href="#" @click.prevent="toggleBanned(meal.id)">
                         <i class="fa fa-2x fa-ban"></i>
-                    </a>-->
+                    </a>
                 </div>
                 <div class="col-xs-2">
                     <a href="javascript:;"
@@ -47,7 +47,7 @@
             <p v-if="meal.condiment">{{meal.condiment.serving_size}}</p>
         </td>
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
-            <!--<a href="#"  @click.prevent="toggleBanned(meal.id)"><i class="fa fa-2x fa-ban"></i></a>-->
+            <a href="#"  @click.prevent="toggleBanned(meal.id)"><i class="fa fa-2x fa-ban"></i></a>
         </td>
         <td class="semi-top hidden-sm hidden-xs text-center" v-bind:class="{'hidden': isUser != 1}">
             <a href="javascript:;"

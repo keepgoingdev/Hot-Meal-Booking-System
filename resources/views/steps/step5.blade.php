@@ -87,8 +87,8 @@
                                     @endif
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('email_confirmation') ? ' has-error' : '' }}">
-                                    <label for="email">Confirm Email address</label>
-                                    <input id="email" type="email" class="form-control" name="email_confirmation"
+                                    <label for="email-confirm">Confirm Email address</label>
+                                    <input id="email-confirm" type="email" class="form-control" name="email_confirmation"
                                            value="{{ old('email_confirmation') }}" required autofocus>
 
                                     @if ($errors->has('email_confirmation'))
@@ -171,12 +171,12 @@
                                         $id = '-two';
                                     }
                                     ?>
-                                    <div class="col-lg-3 col-sm-6 col-md-3">
+                                    <div class="col-lg-3 col-sm-6 col-md-3 plan-btn-wrapper">
                                         <a href="javascript:;"
                                            onclick="selectPlan({{$plan->id}})"
                                            class="btn btn-default plan_selector plan_selector_{{$plan->id}}"
                                            id="btn-subscribe{{$id}}">
-                                            <h3>${{$plan->cost/ $plan->month}}/mo.</h3>
+                                            <div class="plan-cost">${{$plan->cost/ $plan->month}}/mo.</div>
                                             @if($k != 0)
                                                 <p>${{($plan->cost)}} total for {{$plan->month}} months <br>
                                                     (save {{floor($plan->getSavingPercent($thehotmealPlans->first()->cost))}}

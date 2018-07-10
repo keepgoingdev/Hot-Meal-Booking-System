@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('old_password') ? ' has-error' : '' }}">
-                                <label for="email">Old password</label>
+                                <label for="password">Old password</label>
                                 <input id="password" type="password" class="form-control" name="old_password" value="">
 
                                 @if ($errors->has('old_password'))
@@ -56,8 +56,8 @@
                                 @endif
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="email">New password</label>
-                                <input id="password" type="password" class="form-control" name="password" value="">
+                                <label for="password-confirm">New password</label>
+                                <input id="password-confirm" type="password" class="form-control" name="password" value="">
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -76,7 +76,9 @@
             </div>
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
-                    @if(!$user->subscription('main'))
+                    @if ($subscription->status === 'canceled')
+                        <p>Your subscription has been cancelled</p>
+                    @elseif(!$user->subscription('main'))
                         An error occured while fetching subscription.
                         There is no active subscription on our database.
                         Please contact with support team. #9000

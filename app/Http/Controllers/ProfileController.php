@@ -288,9 +288,6 @@ class ProfileController extends Controller
             \Log::error($exception);
         }
 
-        //dd(session('message'));
-
-
         return view('profile.account_settings', array(
             'subscription' => $subscription,
             'user' => $user,

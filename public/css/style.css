@@ -1162,7 +1162,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .box-form-step-two .input-group input{
 	height: 40px;
+}
 
+.box-form-step-two .plans .plan-cost{
+	font-size: 25px;
+	margin-top: 23px;
+}
+
+.box-form-step-two .plans .plan_selector{
+	padding: 0;
+}
+
+.form-group.plans .plan-btn-wrapper:nth-child(2) .plan-cost{
+	margin-top: 25px;
 }
 
 /** STEP THREE **/
@@ -1340,7 +1352,6 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 90px;
 }
 #btn-subscribe-two{
-	padding:0px;
 	width: 100%;
 	height: 90px;
 }
@@ -2458,6 +2469,18 @@ input[type=number]::-webkit-outer-spin-button {
 	top: 50%;
 }
 
+@media(max-width: 1500px){
+	.tab-content{
+		width: 90%;
+	}
+	.box-form-step-two .plans .plan-cost{
+		font-size: 18px;
+	}
+	.form-group.plans .plan-btn-wrapper:nth-child(2) .plan-cost{
+		margin-top: 30px;
+	}
+}
+
 @media (max-width: 1199px) {
 	.block-prices {
 		padding: 100px 0;
@@ -2523,6 +2546,9 @@ input[type=number]::-webkit-outer-spin-button {
 		right: 15px;
 		padding: 10px;
 	}
+    .box-form-step-two .plans .plan-cost{
+        font-size: 25px;
+    }
 }
 
 @media (max-width: 767px) {

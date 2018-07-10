@@ -94,8 +94,8 @@ class RegisterController extends Controller
         $validator = $this->validator($input);
         $plan = Plan::findOrFail($input['plan']);
 
-        if ($plan->is_discount) {
-            $couponCode = $input['coupon'];
+        $couponCode = $input['coupon'];
+        if ($couponCode) {
             $discountCode = DiscountCode::validateCode($couponCode);
             if ($discountCode->is_activated || $discountCode->plan_id != $plan->id) {
                 return redirect(route('register'))->with('status', $validator->errors())->withInput();
@@ -118,12 +118,11 @@ class RegisterController extends Controller
             $s = WeekPlan::storeSessionDataInTable($dayMenus, $startingDate, $goal, $formData['weight-pounds'], $user->id);
 
             try {
-                $subscription = $user->newSubscription('main', $plan->stripe_plan);
-                if (!$plan->is_discount) {
-                    //   $subscription = $subscription->trialDays(14);
-                }
+                $subscription = $user
+                    ->newSubscription('main', $plan->stripe_plan)
+                    ->withCoupon($couponCode);
                 $subscription->create($request->stripeToken);
-            }  catch (\Exception $exception) {
+            } catch (\Exception $exception) {
                 \Sentry::captureException($exception);
                 \Log::debug($exception);
 

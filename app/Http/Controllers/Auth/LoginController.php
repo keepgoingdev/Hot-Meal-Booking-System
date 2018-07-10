@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -45,5 +46,11 @@ class LoginController extends Controller
             return redirect()->back();
         }
 
+        if($user->subscription('main')->ends_at && $user->subscription('main')->ends_at < Carbon::now()){
+            \Auth::logout();
+            session()->flash('message', 'Your subscription ended.');
+            return redirect()->back();
+        }
+        
     }
 }

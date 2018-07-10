@@ -85,3 +85,26 @@ Route::group(['prefix' => 'intapi'], function() {
 // Confirmation email
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
 Route::get('/users/confirmation-error', 'Auth\RegisterController@confirmationError')->name('confirmation-error');
+
+
+
+
+Route::get('insertcoupons', function() {
+	dd('disabled');
+	$codes = file('../codes.csv');
+
+	$insert = [];
+
+	foreach($codes as $code) {
+		$code = str_replace("\n", "", $code);
+		$code = str_replace("\r", "", $code);
+	    	$insert[] = [
+            		'name' => 'Groupon 1 Month Free',
+            		'code' => $code,
+            		'plan_id' => 8
+	      	];
+	}
+
+	\App\Models\DiscountCode::insert($insert);
+});
+

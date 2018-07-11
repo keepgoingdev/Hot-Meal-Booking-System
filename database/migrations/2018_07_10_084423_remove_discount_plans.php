@@ -13,7 +13,7 @@ class RemoveDiscountPlans extends Migration
      */
     public function up()
     {
-        \DB::update('UPDATE discount_codes SET plan_id = plan_id - 1');
+        \DB::update('UPDATE discount_codes SET plan_id = plan_id - 1 WHERE plan_id % 2 = 0');
         \DB::delete('DELETE FROM plans WHERE cost = 0');
     }
 

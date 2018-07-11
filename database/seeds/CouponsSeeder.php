@@ -16,6 +16,13 @@ class CouponsSeeder extends Seeder
         $limit_per_month = 4;
         $months_list = [1, 3, 6, 12];
 
+        // Delete all current coupons
+        $coupons = \Stripe\Coupon::all(["limit" => 100]);
+        foreach ($coupons->data as $coupon) {
+            echo $coupon->id . " deleted \r\n";
+            $coupon->delete();
+        }
+
         foreach ($months_list as $months) {
 
             $coupons = \DB::table('discount_codes')
@@ -28,7 +35,7 @@ class CouponsSeeder extends Seeder
             foreach ($coupons as $coupon) {
                 echo $coupon->code . "-" . $coupon->months_amount . '-' . $coupon->name . "\r\n";
                 try {
-                    \Stripe\Coupon::create(array(
+                    $coupon = \Stripe\Coupon::create(array(
                         "id" => $coupon->code,
                         "name" => $coupon->name,
                         "percent_off" => 100,
@@ -36,6 +43,7 @@ class CouponsSeeder extends Seeder
                         "duration_in_months" => $coupon->months_amount,
                         "max_redemptions" => 1
                     ));
+                    echo $coupon->id . " created \r\n";
                 } catch (\Exception $e) {
                     echo $coupon->code . ' : ' . $e->getMessage() . "\r\n";
                 }

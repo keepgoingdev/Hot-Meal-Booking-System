@@ -321,35 +321,32 @@
       $('#total-cost').removeClass('hidden');
 
       cardNumber.addEventListener('change', function (event) {
-        console.log('change-card', event)
-        var displayError = document.getElementById('card-errors');
-        if (event.error || event.empty == true || event.complete == false) {
-          if (event.error.message) {
-            displayError.textContent = event.error.message;
+          var $errorElement = $('#card-errors');
+          if (event.error) $errorElement.html('<div class="alert alert-info">' + event.error.message + '</div>');
+          if (event.empty == true || event.complete == false) {
+              $('#payment-button').attr('disabled', 'disabled');
+          } else {
+              displayError.textContent = '';
+              $('#payment-button').removeAttr('disabled');
           }
-          $('#payment-button').attr('disabled', 'disabled');
-        } else {
-          displayError.textContent = '';
-          $('#payment-button').removeAttr('disabled');
-        }
       });
 
       //Step 3: Create a token to securely transmit card information
       // Create a token or display an error when the form is submitted.
       var form = document.getElementById('dropin-container');
       form.addEventListener('submit', function (event) {
-        event.preventDefault();
+          event.preventDefault();
 
-        stripe.createToken(cardNumber).then(function (result) {
-          if (result.error) {
-            // Inform the customer that there was an error.
-            var $errorElement = $('#card-errors');
-              $errorElement.html('<div class="alert alert-info">' + result.error.message + '</div>');
-          } else {
-            // Send the token to your server.
-            stripeTokenHandler(result.token);
-          }
-        });
+          stripe.createToken(cardNumber).then(function (result) {
+              if (result.error) {
+                  // Inform the customer that there was an error.
+                  var $errorElement = $('#card-errors');
+                  $errorElement.html('<div class="alert alert-info">' + result.error.message + '</div>');
+              } else {
+                  // Send the token to your server.
+                  stripeTokenHandler(result.token);
+              }
+          });
       });
 
       //Step 4: Submit the token and the rest of your form to your server

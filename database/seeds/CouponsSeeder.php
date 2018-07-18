@@ -13,7 +13,7 @@ class CouponsSeeder extends Seeder
     {
         \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
-        $limit_per_month = 4;
+        $limit_per_month = app()->environment() === 'production' ? null : 4;
         $months_list = [1, 3, 6, 12];
 
         // Delete all current coupons

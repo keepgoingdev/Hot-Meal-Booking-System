@@ -37,20 +37,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     //override
     protected function authenticated($request, $user)
     {
-        if($user->confirmed == false) {
+        if ($user->confirmed == false) {
             \Auth::logout();
             session()->flash('message', 'Please confirm your email first, before signing in.');
             return redirect()->back();
         }
 
-        if($user->subscription('main')->ends_at && $user->subscription('main')->ends_at < Carbon::now()){
-            \Auth::logout();
-            session()->flash('message', 'Your subscription ended.');
-            return redirect()->back();
+        if ($user->subscription('main')->ends_at && $user->subscription('main')->ends_at < Carbon::now()) {
+            return redirect()->route('my-profile');
         }
-        
     }
 }

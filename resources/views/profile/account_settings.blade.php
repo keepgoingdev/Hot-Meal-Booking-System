@@ -76,9 +76,7 @@
             </div>
             <div class="col-lg-12 col-xs-12 col-sm-12">
                 <div class="col-lg-4" style="font-size:16px">
-                    @if ($subscription->status === 'canceled')
-                        <p>Your subscription has been cancelled</p>
-                    @elseif(!$user->subscription('main'))
+                    @if(!$user->subscription('main'))
                         An error occured while fetching subscription.
                         There is no active subscription on our database.
                         Please contact with support team. #9000

@@ -366,15 +366,11 @@ class ProfileController extends Controller
         try {
             if ($user->subscription('main')->onGracePeriod()) {
                 $subscription = $user->subscription('main');
-                if (!$subscription->stripe_plan) {
-                    //todo: if discounted, make not discounted
-                    $subscription->stripe_plan = $subscription->plan->id ?? null;
-                }
                 $subscription->resume();
             }
         } catch (\Exception $exception) {
             \Log::error($exception);
-            $this->setFlashMessage('danger', 'There was en error while processing. TheHotMeal team has been notified. Error Message: '.$exception->getMessage());
+            $this->setFlashMessage('danger', 'There was en error while processing. TheHotMeal team has been notified. Error Message: ' . $exception->getMessage());
         }
 
         return redirect()->back();

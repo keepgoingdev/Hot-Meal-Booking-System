@@ -97,8 +97,9 @@ class RegisterController extends Controller
         $couponCode = $input['coupon'];
         if ($couponCode) {
             $discountCode = DiscountCode::validateCode($couponCode);
-            if ($discountCode->is_activated || $discountCode->plan_id != $plan->id) {
-                return redirect(route('register'))->with('status', $validator->errors())->withInput();
+            if (!$discountCode || $discountCode->is_activated || $discountCode->plan_id != $plan->id) {
+                $validator->errors()->add('coupon', 'Invalid coupon');
+                return redirect()->route('register')->with('status', $validator->errors())->withInput();
             }
         }
 

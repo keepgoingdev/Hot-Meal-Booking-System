@@ -339,14 +339,12 @@
       var form = document.getElementById('dropin-container');
       form.addEventListener('submit', function (event) {
         event.preventDefault();
-        console.log('eventttt', event)
 
         stripe.createToken(cardNumber).then(function (result) {
-          console.log('token-createToken', result)
           if (result.error) {
             // Inform the customer that there was an error.
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = '<div class="alert alert-info">'+result.error.message+'</div>';
+            var $errorElement = $('#card-errors');
+              $errorElement.html('<div class="alert alert-info">' + result.error.message + '</div>');
           } else {
             // Send the token to your server.
             stripeTokenHandler(result.token);

@@ -29,13 +29,14 @@ class CouponsSeeder extends Seeder
                 ->join('plans', 'discount_codes.plan_id', '=', 'plans.id')
                 ->select('code', 'discount_codes.name', 'plans.month as months_amount')
                 ->where('plans.month', '=', $months)
+                ->where('discount_codes.is_activated', '=', 0)
                 ->take($limit_per_month)
                 ->get();
 
             foreach ($coupons as $coupon) {
-                echo $coupon->code . "-" . $coupon->months_amount . '-' . $coupon->name . "\r\n";
+                echo $coupon->code . " : " . $coupon->months_amount . ' : ' . $coupon->name . " ";
                 try {
-                    $coupon = \Stripe\Coupon::create(array(
+                    \Stripe\Coupon::create(array(
                         "id" => $coupon->code,
                         "name" => $coupon->name,
                         "percent_off" => 100,
@@ -43,7 +44,7 @@ class CouponsSeeder extends Seeder
                         "duration_in_months" => $coupon->months_amount,
                         "max_redemptions" => 1
                     ));
-                    echo $coupon->id . " created \r\n";
+                    echo "created \r\n";
                 } catch (\Exception $e) {
                     echo $coupon->code . ' : ' . $e->getMessage() . "\r\n";
                 }
